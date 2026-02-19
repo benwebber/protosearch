@@ -1,0 +1,940 @@
+syntax = "proto2";
+
+package protosearch.es.v8;
+
+import "google/protobuf/struct.proto";
+import "protosearch/protosearch.proto";
+
+extend protosearch.FieldMappingOptions {
+  optional AggregateMetricDoubleProperty aggregate_metric_double = 100;
+  optional FieldAliasProperty alias = 101;
+  optional BinaryProperty binary = 102;
+  optional BooleanProperty boolean = 103;
+  optional ByteNumberProperty byte = 104;
+  optional CompletionProperty completion = 105;
+  optional ConstantKeywordProperty constant_keyword = 106;
+  optional CountedKeywordProperty counted_keyword = 107;
+  optional DateProperty date = 108;
+  optional DateNanosProperty date_nanos = 109;
+  optional DateRangeProperty date_range = 110;
+  optional DenseVectorProperty dense_vector = 111;
+  optional DoubleNumberProperty double = 112;
+  optional DoubleRangeProperty double_range = 113;
+  optional FlattenedProperty flattened = 114;
+  optional FloatNumberProperty float = 115;
+  optional FloatRangeProperty float_range = 116;
+  optional GeoPointProperty geo_point = 117;
+  optional GeoShapeProperty geo_shape = 118;
+  optional HalfFloatNumberProperty half_float = 119;
+  optional HistogramProperty histogram = 120;
+  optional IcuCollationProperty icu_collation_keyword = 121;
+  optional IntegerNumberProperty integer = 122;
+  optional IntegerRangeProperty integer_range = 123;
+  optional IpProperty ip = 124;
+  optional IpRangeProperty ip_range = 125;
+  optional JoinProperty join = 126;
+  optional KeywordProperty keyword = 127;
+  optional LongNumberProperty long = 128;
+  optional LongRangeProperty long_range = 129;
+  optional MatchOnlyTextProperty match_only_text = 130;
+  optional Murmur3HashProperty murmur3 = 131;
+  optional NestedProperty nested = 132;
+  optional ObjectProperty object = 133;
+  optional PassthroughObjectProperty passthrough = 134;
+  optional PercolatorProperty percolator = 135;
+  optional PointProperty point = 136;
+  optional RankFeatureProperty rank_feature = 137;
+  optional RankFeaturesProperty rank_features = 138;
+  optional RankVectorProperty rank_vectors = 139;
+  optional ScaledFloatNumberProperty scaled_float = 140;
+  optional SearchAsYouTypeProperty search_as_you_type = 141;
+  optional SemanticTextProperty semantic_text = 142;
+  optional ShapeProperty shape = 143;
+  optional ShortNumberProperty short = 144;
+  optional SparseVectorProperty sparse_vector = 145;
+  optional TextProperty text = 146;
+  optional TokenCountProperty token_count = 147;
+  optional UnsignedLongNumberProperty unsigned_long = 148;
+  optional VersionProperty version = 149;
+  optional WildcardProperty wildcard = 150;
+}
+
+message AggregateMetricDoubleProperty {
+  optional string default_metric = 1;
+  optional string dynamic = 2;
+  optional google.protobuf.Struct fields = 3;
+  optional double ignore_above = 4;
+  optional bool ignore_malformed = 5;
+  map<string, string> meta = 6;
+  repeated string metrics = 7;
+  optional google.protobuf.Struct properties = 8;
+  optional string synthetic_source_keep = 9;
+  optional string time_series_metric = 10;
+}
+
+message BinaryProperty {
+  optional string copy_to = 1;
+  optional bool doc_values = 2;
+  optional string dynamic = 3;
+  optional google.protobuf.Struct fields = 4;
+  optional double ignore_above = 5;
+  map<string, string> meta = 6;
+  optional google.protobuf.Struct properties = 7;
+  optional bool store = 8;
+  optional string synthetic_source_keep = 9;
+}
+
+message BooleanProperty {
+  optional double boost = 1;
+  optional string copy_to = 2;
+  optional bool doc_values = 3;
+  optional string dynamic = 4;
+  optional NumericFielddata fielddata = 5;
+  optional google.protobuf.Struct fields = 6;
+  optional double ignore_above = 7;
+  optional bool ignore_malformed = 8;
+  optional bool index = 9;
+  map<string, string> meta = 10;
+  optional bool null_value = 11;
+  optional string on_script_error = 12;
+  optional google.protobuf.Struct properties = 13;
+  optional Script script = 14;
+  optional bool store = 15;
+  optional string synthetic_source_keep = 16;
+  optional bool time_series_dimension = 17;
+}
+
+message ByteNumberProperty {
+  optional double boost = 1;
+  optional bool coerce = 2;
+  optional string copy_to = 3;
+  optional bool doc_values = 4;
+  optional string dynamic = 5;
+  optional google.protobuf.Struct fields = 6;
+  optional double ignore_above = 7;
+  optional bool ignore_malformed = 8;
+  optional bool index = 9;
+  map<string, string> meta = 10;
+  optional double null_value = 11;
+  optional string on_script_error = 12;
+  optional google.protobuf.Struct properties = 13;
+  optional Script script = 14;
+  optional bool store = 15;
+  optional string synthetic_source_keep = 16;
+  optional bool time_series_dimension = 17;
+  optional string time_series_metric = 18;
+}
+
+message ChunkingSettings {
+  optional double max_chunk_size = 1;
+  optional double overlap = 2;
+  optional double sentence_overlap = 3;
+  optional string strategy = 4;
+}
+
+message CompletionProperty {
+  optional string analyzer = 1;
+  repeated SuggestContext contexts = 2;
+  optional string copy_to = 3;
+  optional bool doc_values = 4;
+  optional string dynamic = 5;
+  optional google.protobuf.Struct fields = 6;
+  optional double ignore_above = 7;
+  optional double max_input_length = 8;
+  map<string, string> meta = 9;
+  optional bool preserve_position_increments = 10;
+  optional bool preserve_separators = 11;
+  optional google.protobuf.Struct properties = 12;
+  optional string search_analyzer = 13;
+  optional bool store = 14;
+  optional string synthetic_source_keep = 15;
+}
+
+message ConstantKeywordProperty {
+  optional string dynamic = 1;
+  optional google.protobuf.Struct fields = 2;
+  optional double ignore_above = 3;
+  map<string, string> meta = 4;
+  optional google.protobuf.Struct properties = 5;
+  optional string synthetic_source_keep = 6;
+  optional google.protobuf.Struct value = 7;
+}
+
+message CountedKeywordProperty {
+  optional string dynamic = 1;
+  optional google.protobuf.Struct fields = 2;
+  optional double ignore_above = 3;
+  optional bool index = 4;
+  map<string, string> meta = 5;
+  optional google.protobuf.Struct properties = 6;
+  optional string synthetic_source_keep = 7;
+}
+
+message DateNanosProperty {
+  optional double boost = 1;
+  optional string copy_to = 2;
+  optional bool doc_values = 3;
+  optional string dynamic = 4;
+  optional google.protobuf.Struct fields = 5;
+  optional string format = 6;
+  optional double ignore_above = 7;
+  optional bool ignore_malformed = 8;
+  optional bool index = 9;
+  map<string, string> meta = 10;
+  optional string null_value = 11;
+  optional string on_script_error = 12;
+  optional double precision_step = 13;
+  optional google.protobuf.Struct properties = 14;
+  optional Script script = 15;
+  optional bool store = 16;
+  optional string synthetic_source_keep = 17;
+}
+
+message DateProperty {
+  optional double boost = 1;
+  optional string copy_to = 2;
+  optional bool doc_values = 3;
+  optional string dynamic = 4;
+  optional NumericFielddata fielddata = 5;
+  optional google.protobuf.Struct fields = 6;
+  optional string format = 7;
+  optional double ignore_above = 8;
+  optional bool ignore_malformed = 9;
+  optional bool index = 10;
+  optional string locale = 11;
+  map<string, string> meta = 12;
+  optional string null_value = 13;
+  optional string on_script_error = 14;
+  optional double precision_step = 15;
+  optional google.protobuf.Struct properties = 16;
+  optional Script script = 17;
+  optional bool store = 18;
+  optional string synthetic_source_keep = 19;
+}
+
+message DateRangeProperty {
+  optional double boost = 1;
+  optional bool coerce = 2;
+  optional string copy_to = 3;
+  optional bool doc_values = 4;
+  optional string dynamic = 5;
+  optional google.protobuf.Struct fields = 6;
+  optional string format = 7;
+  optional double ignore_above = 8;
+  optional bool index = 9;
+  map<string, string> meta = 10;
+  optional google.protobuf.Struct properties = 11;
+  optional bool store = 12;
+  optional string synthetic_source_keep = 13;
+}
+
+message DenseVectorIndexOptions {
+  optional double confidence_interval = 1;
+  optional double ef_construction = 2;
+  optional double m = 3;
+  optional string type = 4;
+}
+
+message DenseVectorProperty {
+  optional double dims = 1;
+  optional string dynamic = 2;
+  optional string element_type = 3;
+  optional google.protobuf.Struct fields = 4;
+  optional double ignore_above = 5;
+  optional bool index = 6;
+  optional DenseVectorIndexOptions index_options = 7;
+  map<string, string> meta = 8;
+  optional google.protobuf.Struct properties = 9;
+  optional string similarity = 10;
+  optional string synthetic_source_keep = 11;
+}
+
+message DoubleNumberProperty {
+  optional double boost = 1;
+  optional bool coerce = 2;
+  optional string copy_to = 3;
+  optional bool doc_values = 4;
+  optional string dynamic = 5;
+  optional google.protobuf.Struct fields = 6;
+  optional double ignore_above = 7;
+  optional bool ignore_malformed = 8;
+  optional bool index = 9;
+  map<string, string> meta = 10;
+  optional double null_value = 11;
+  optional string on_script_error = 12;
+  optional google.protobuf.Struct properties = 13;
+  optional Script script = 14;
+  optional bool store = 15;
+  optional string synthetic_source_keep = 16;
+  optional bool time_series_dimension = 17;
+  optional string time_series_metric = 18;
+}
+
+message DoubleRangeProperty {
+  optional double boost = 1;
+  optional bool coerce = 2;
+  optional string copy_to = 3;
+  optional bool doc_values = 4;
+  optional string dynamic = 5;
+  optional google.protobuf.Struct fields = 6;
+  optional double ignore_above = 7;
+  optional bool index = 8;
+  map<string, string> meta = 9;
+  optional google.protobuf.Struct properties = 10;
+  optional bool store = 11;
+  optional string synthetic_source_keep = 12;
+}
+
+message FieldAliasProperty {
+  optional string dynamic = 1;
+  optional google.protobuf.Struct fields = 2;
+  optional double ignore_above = 3;
+  map<string, string> meta = 4;
+  optional string path = 5;
+  optional google.protobuf.Struct properties = 6;
+  optional string synthetic_source_keep = 7;
+}
+
+message FielddataFrequencyFilter {
+  optional double max = 1;
+  optional double min = 2;
+  optional double min_segment_size = 3;
+}
+
+message FlattenedProperty {
+  optional double boost = 1;
+  optional double depth_limit = 2;
+  optional bool doc_values = 3;
+  optional string dynamic = 4;
+  optional bool eager_global_ordinals = 5;
+  optional google.protobuf.Struct fields = 6;
+  optional double ignore_above = 7;
+  optional bool index = 8;
+  optional string index_options = 9;
+  map<string, string> meta = 10;
+  optional string null_value = 11;
+  optional google.protobuf.Struct properties = 12;
+  optional string similarity = 13;
+  optional bool split_queries_on_whitespace = 14;
+  optional string synthetic_source_keep = 15;
+  repeated string time_series_dimensions = 16;
+}
+
+message FloatNumberProperty {
+  optional double boost = 1;
+  optional bool coerce = 2;
+  optional string copy_to = 3;
+  optional bool doc_values = 4;
+  optional string dynamic = 5;
+  optional google.protobuf.Struct fields = 6;
+  optional double ignore_above = 7;
+  optional bool ignore_malformed = 8;
+  optional bool index = 9;
+  map<string, string> meta = 10;
+  optional double null_value = 11;
+  optional string on_script_error = 12;
+  optional google.protobuf.Struct properties = 13;
+  optional Script script = 14;
+  optional bool store = 15;
+  optional string synthetic_source_keep = 16;
+  optional bool time_series_dimension = 17;
+  optional string time_series_metric = 18;
+}
+
+message FloatRangeProperty {
+  optional double boost = 1;
+  optional bool coerce = 2;
+  optional string copy_to = 3;
+  optional bool doc_values = 4;
+  optional string dynamic = 5;
+  optional google.protobuf.Struct fields = 6;
+  optional double ignore_above = 7;
+  optional bool index = 8;
+  map<string, string> meta = 9;
+  optional google.protobuf.Struct properties = 10;
+  optional bool store = 11;
+  optional string synthetic_source_keep = 12;
+}
+
+message GeoPointProperty {
+  optional string copy_to = 1;
+  optional bool doc_values = 2;
+  optional string dynamic = 3;
+  optional google.protobuf.Struct fields = 4;
+  optional double ignore_above = 5;
+  optional bool ignore_malformed = 6;
+  optional bool ignore_z_value = 7;
+  optional bool index = 8;
+  map<string, string> meta = 9;
+  optional LatLonGeoLocation null_value = 10;
+  optional string on_script_error = 11;
+  optional google.protobuf.Struct properties = 12;
+  optional Script script = 13;
+  optional bool store = 14;
+  optional string synthetic_source_keep = 15;
+  optional string time_series_metric = 16;
+}
+
+message GeoShapeProperty {
+  optional bool coerce = 1;
+  optional string copy_to = 2;
+  optional bool doc_values = 3;
+  optional string dynamic = 4;
+  optional google.protobuf.Struct fields = 5;
+  optional double ignore_above = 6;
+  optional bool ignore_malformed = 7;
+  optional bool ignore_z_value = 8;
+  optional bool index = 9;
+  map<string, string> meta = 10;
+  optional string orientation = 11;
+  optional google.protobuf.Struct properties = 12;
+  optional bool store = 13;
+  optional string strategy = 14;
+  optional string synthetic_source_keep = 15;
+}
+
+message HalfFloatNumberProperty {
+  optional double boost = 1;
+  optional bool coerce = 2;
+  optional string copy_to = 3;
+  optional bool doc_values = 4;
+  optional string dynamic = 5;
+  optional google.protobuf.Struct fields = 6;
+  optional double ignore_above = 7;
+  optional bool ignore_malformed = 8;
+  optional bool index = 9;
+  map<string, string> meta = 10;
+  optional double null_value = 11;
+  optional string on_script_error = 12;
+  optional google.protobuf.Struct properties = 13;
+  optional Script script = 14;
+  optional bool store = 15;
+  optional string synthetic_source_keep = 16;
+  optional bool time_series_dimension = 17;
+  optional string time_series_metric = 18;
+}
+
+message HistogramProperty {
+  optional string dynamic = 1;
+  optional google.protobuf.Struct fields = 2;
+  optional double ignore_above = 3;
+  optional bool ignore_malformed = 4;
+  map<string, string> meta = 5;
+  optional google.protobuf.Struct properties = 6;
+  optional string synthetic_source_keep = 7;
+}
+
+message IcuCollationProperty {
+  optional string alternate = 1;
+  optional string case_first = 2;
+  optional bool case_level = 3;
+  optional string copy_to = 4;
+  optional string country = 5;
+  optional string decomposition = 6;
+  optional bool doc_values = 7;
+  optional string dynamic = 8;
+  optional google.protobuf.Struct fields = 9;
+  optional bool hiragana_quaternary_mode = 10;
+  optional double ignore_above = 11;
+  optional bool index = 12;
+  optional string index_options = 13;
+  optional string language = 14;
+  map<string, string> meta = 15;
+  optional bool norms = 16;
+  optional string null_value = 17;
+  optional bool numeric = 18;
+  optional google.protobuf.Struct properties = 19;
+  optional string rules = 20;
+  optional bool store = 21;
+  optional string strength = 22;
+  optional string synthetic_source_keep = 23;
+  optional string variable_top = 24;
+  optional string variant = 25;
+}
+
+message IntegerNumberProperty {
+  optional double boost = 1;
+  optional bool coerce = 2;
+  optional string copy_to = 3;
+  optional bool doc_values = 4;
+  optional string dynamic = 5;
+  optional google.protobuf.Struct fields = 6;
+  optional double ignore_above = 7;
+  optional bool ignore_malformed = 8;
+  optional bool index = 9;
+  map<string, string> meta = 10;
+  optional double null_value = 11;
+  optional string on_script_error = 12;
+  optional google.protobuf.Struct properties = 13;
+  optional Script script = 14;
+  optional bool store = 15;
+  optional string synthetic_source_keep = 16;
+  optional bool time_series_dimension = 17;
+  optional string time_series_metric = 18;
+}
+
+message IntegerRangeProperty {
+  optional double boost = 1;
+  optional bool coerce = 2;
+  optional string copy_to = 3;
+  optional bool doc_values = 4;
+  optional string dynamic = 5;
+  optional google.protobuf.Struct fields = 6;
+  optional double ignore_above = 7;
+  optional bool index = 8;
+  map<string, string> meta = 9;
+  optional google.protobuf.Struct properties = 10;
+  optional bool store = 11;
+  optional string synthetic_source_keep = 12;
+}
+
+message IpProperty {
+  optional double boost = 1;
+  optional string copy_to = 2;
+  optional bool doc_values = 3;
+  optional string dynamic = 4;
+  optional google.protobuf.Struct fields = 5;
+  optional double ignore_above = 6;
+  optional bool ignore_malformed = 7;
+  optional bool index = 8;
+  map<string, string> meta = 9;
+  optional string null_value = 10;
+  optional string on_script_error = 11;
+  optional google.protobuf.Struct properties = 12;
+  optional Script script = 13;
+  optional bool store = 14;
+  optional string synthetic_source_keep = 15;
+  optional bool time_series_dimension = 16;
+}
+
+message IpRangeProperty {
+  optional double boost = 1;
+  optional bool coerce = 2;
+  optional string copy_to = 3;
+  optional bool doc_values = 4;
+  optional string dynamic = 5;
+  optional google.protobuf.Struct fields = 6;
+  optional double ignore_above = 7;
+  optional bool index = 8;
+  map<string, string> meta = 9;
+  optional google.protobuf.Struct properties = 10;
+  optional bool store = 11;
+  optional string synthetic_source_keep = 12;
+}
+
+message JoinProperty {
+  optional string dynamic = 1;
+  optional bool eager_global_ordinals = 2;
+  optional google.protobuf.Struct fields = 3;
+  optional double ignore_above = 4;
+  map<string, string> meta = 5;
+  optional google.protobuf.Struct properties = 6;
+  map<string, string> relations = 7;
+  optional string synthetic_source_keep = 8;
+}
+
+message KeywordProperty {
+  optional double boost = 1;
+  optional string copy_to = 2;
+  optional bool doc_values = 3;
+  optional string dynamic = 4;
+  optional bool eager_global_ordinals = 5;
+  optional google.protobuf.Struct fields = 6;
+  optional double ignore_above = 7;
+  optional bool index = 8;
+  optional string index_options = 9;
+  map<string, string> meta = 10;
+  optional string normalizer = 11;
+  optional bool norms = 12;
+  optional string null_value = 13;
+  optional string on_script_error = 14;
+  optional google.protobuf.Struct properties = 15;
+  optional Script script = 16;
+  optional string similarity = 17;
+  optional bool split_queries_on_whitespace = 18;
+  optional bool store = 19;
+  optional string synthetic_source_keep = 20;
+  optional bool time_series_dimension = 21;
+}
+
+message LatLonGeoLocation {
+  optional double lat = 1;
+  optional double lon = 2;
+}
+
+message LongNumberProperty {
+  optional double boost = 1;
+  optional bool coerce = 2;
+  optional string copy_to = 3;
+  optional bool doc_values = 4;
+  optional string dynamic = 5;
+  optional google.protobuf.Struct fields = 6;
+  optional double ignore_above = 7;
+  optional bool ignore_malformed = 8;
+  optional bool index = 9;
+  map<string, string> meta = 10;
+  optional double null_value = 11;
+  optional string on_script_error = 12;
+  optional google.protobuf.Struct properties = 13;
+  optional Script script = 14;
+  optional bool store = 15;
+  optional string synthetic_source_keep = 16;
+  optional bool time_series_dimension = 17;
+  optional string time_series_metric = 18;
+}
+
+message LongRangeProperty {
+  optional double boost = 1;
+  optional bool coerce = 2;
+  optional string copy_to = 3;
+  optional bool doc_values = 4;
+  optional string dynamic = 5;
+  optional google.protobuf.Struct fields = 6;
+  optional double ignore_above = 7;
+  optional bool index = 8;
+  map<string, string> meta = 9;
+  optional google.protobuf.Struct properties = 10;
+  optional bool store = 11;
+  optional string synthetic_source_keep = 12;
+}
+
+message MatchOnlyTextProperty {
+  optional string copy_to = 1;
+  optional google.protobuf.Struct fields = 2;
+  map<string, string> meta = 3;
+}
+
+message Murmur3HashProperty {
+  optional string copy_to = 1;
+  optional bool doc_values = 2;
+  optional string dynamic = 3;
+  optional google.protobuf.Struct fields = 4;
+  optional double ignore_above = 5;
+  map<string, string> meta = 6;
+  optional google.protobuf.Struct properties = 7;
+  optional bool store = 8;
+  optional string synthetic_source_keep = 9;
+}
+
+message NestedProperty {
+  optional string copy_to = 1;
+  optional string dynamic = 2;
+  optional bool enabled = 3;
+  optional google.protobuf.Struct fields = 4;
+  optional double ignore_above = 5;
+  optional bool include_in_parent = 6;
+  optional bool include_in_root = 7;
+  map<string, string> meta = 8;
+  optional google.protobuf.Struct properties = 9;
+  optional bool store = 10;
+  optional string synthetic_source_keep = 11;
+}
+
+message NumericFielddata {
+  optional string format = 1;
+}
+
+message ObjectProperty {
+  optional string copy_to = 1;
+  optional string dynamic = 2;
+  optional bool enabled = 3;
+  optional google.protobuf.Struct fields = 4;
+  optional double ignore_above = 5;
+  map<string, string> meta = 6;
+  optional google.protobuf.Struct properties = 7;
+  optional bool store = 8;
+  optional string subobjects = 9;
+  optional string synthetic_source_keep = 10;
+}
+
+message PassthroughObjectProperty {
+  optional string copy_to = 1;
+  optional string dynamic = 2;
+  optional bool enabled = 3;
+  optional google.protobuf.Struct fields = 4;
+  optional double ignore_above = 5;
+  map<string, string> meta = 6;
+  optional double priority = 7;
+  optional google.protobuf.Struct properties = 8;
+  optional bool store = 9;
+  optional string synthetic_source_keep = 10;
+  optional bool time_series_dimension = 11;
+}
+
+message PercolatorProperty {
+  optional string dynamic = 1;
+  optional google.protobuf.Struct fields = 2;
+  optional double ignore_above = 3;
+  map<string, string> meta = 4;
+  optional google.protobuf.Struct properties = 5;
+  optional string synthetic_source_keep = 6;
+}
+
+message PointProperty {
+  optional string copy_to = 1;
+  optional bool doc_values = 2;
+  optional string dynamic = 3;
+  optional google.protobuf.Struct fields = 4;
+  optional double ignore_above = 5;
+  optional bool ignore_malformed = 6;
+  optional bool ignore_z_value = 7;
+  map<string, string> meta = 8;
+  optional string null_value = 9;
+  optional google.protobuf.Struct properties = 10;
+  optional bool store = 11;
+  optional string synthetic_source_keep = 12;
+}
+
+message RankFeatureProperty {
+  optional string dynamic = 1;
+  optional google.protobuf.Struct fields = 2;
+  optional double ignore_above = 3;
+  map<string, string> meta = 4;
+  optional bool positive_score_impact = 5;
+  optional google.protobuf.Struct properties = 6;
+  optional string synthetic_source_keep = 7;
+}
+
+message RankFeaturesProperty {
+  optional string dynamic = 1;
+  optional google.protobuf.Struct fields = 2;
+  optional double ignore_above = 3;
+  map<string, string> meta = 4;
+  optional bool positive_score_impact = 5;
+  optional google.protobuf.Struct properties = 6;
+  optional string synthetic_source_keep = 7;
+}
+
+message RankVectorProperty {
+  optional double dims = 1;
+  optional string dynamic = 2;
+  optional string element_type = 3;
+  optional google.protobuf.Struct fields = 4;
+  optional double ignore_above = 5;
+  map<string, string> meta = 6;
+  optional google.protobuf.Struct properties = 7;
+  optional string synthetic_source_keep = 8;
+}
+
+message ScaledFloatNumberProperty {
+  optional double boost = 1;
+  optional bool coerce = 2;
+  optional string copy_to = 3;
+  optional bool doc_values = 4;
+  optional string dynamic = 5;
+  optional google.protobuf.Struct fields = 6;
+  optional double ignore_above = 7;
+  optional bool ignore_malformed = 8;
+  optional bool index = 9;
+  map<string, string> meta = 10;
+  optional double null_value = 11;
+  optional string on_script_error = 12;
+  optional google.protobuf.Struct properties = 13;
+  optional double scaling_factor = 14;
+  optional Script script = 15;
+  optional bool store = 16;
+  optional string synthetic_source_keep = 17;
+  optional bool time_series_dimension = 18;
+  optional string time_series_metric = 19;
+}
+
+message Script {
+  optional string id = 1;
+  optional string lang = 2;
+  map<string, string> options = 3;
+  optional google.protobuf.Struct params = 4;
+  optional string source = 5;
+}
+
+message SearchAsYouTypeProperty {
+  optional string analyzer = 1;
+  optional string copy_to = 2;
+  optional string dynamic = 3;
+  optional google.protobuf.Struct fields = 4;
+  optional double ignore_above = 5;
+  optional bool index = 6;
+  optional string index_options = 7;
+  optional double max_shingle_size = 8;
+  map<string, string> meta = 9;
+  optional bool norms = 10;
+  optional google.protobuf.Struct properties = 11;
+  optional string search_analyzer = 12;
+  optional string search_quote_analyzer = 13;
+  optional string similarity = 14;
+  optional bool store = 15;
+  optional string synthetic_source_keep = 16;
+  optional string term_vector = 17;
+}
+
+message SemanticTextIndexOptions {
+  optional DenseVectorIndexOptions dense_vector = 1;
+}
+
+message SemanticTextProperty {
+  optional ChunkingSettings chunking_settings = 1;
+  optional google.protobuf.Struct fields = 2;
+  optional SemanticTextIndexOptions index_options = 3;
+  optional string inference_id = 4;
+  map<string, string> meta = 5;
+  optional string search_inference_id = 6;
+}
+
+message ShapeProperty {
+  optional bool coerce = 1;
+  optional string copy_to = 2;
+  optional bool doc_values = 3;
+  optional string dynamic = 4;
+  optional google.protobuf.Struct fields = 5;
+  optional double ignore_above = 6;
+  optional bool ignore_malformed = 7;
+  optional bool ignore_z_value = 8;
+  map<string, string> meta = 9;
+  optional string orientation = 10;
+  optional google.protobuf.Struct properties = 11;
+  optional bool store = 12;
+  optional string synthetic_source_keep = 13;
+}
+
+message ShortNumberProperty {
+  optional double boost = 1;
+  optional bool coerce = 2;
+  optional string copy_to = 3;
+  optional bool doc_values = 4;
+  optional string dynamic = 5;
+  optional google.protobuf.Struct fields = 6;
+  optional double ignore_above = 7;
+  optional bool ignore_malformed = 8;
+  optional bool index = 9;
+  map<string, string> meta = 10;
+  optional double null_value = 11;
+  optional string on_script_error = 12;
+  optional google.protobuf.Struct properties = 13;
+  optional Script script = 14;
+  optional bool store = 15;
+  optional string synthetic_source_keep = 16;
+  optional bool time_series_dimension = 17;
+  optional string time_series_metric = 18;
+}
+
+message SparseVectorIndexOptions {
+  optional bool prune = 1;
+  optional TokenPruningConfig pruning_config = 2;
+}
+
+message SparseVectorProperty {
+  optional string dynamic = 1;
+  optional google.protobuf.Struct fields = 2;
+  optional double ignore_above = 3;
+  optional SparseVectorIndexOptions index_options = 4;
+  map<string, string> meta = 5;
+  optional google.protobuf.Struct properties = 6;
+  optional bool store = 7;
+  optional string synthetic_source_keep = 8;
+}
+
+message SuggestContext {
+  optional string name = 1;
+  optional string path = 2;
+  optional double precision = 3;
+  optional string type = 4;
+}
+
+message TextIndexPrefixes {
+  optional double max_chars = 1;
+  optional double min_chars = 2;
+}
+
+message TextProperty {
+  optional string analyzer = 1;
+  optional double boost = 2;
+  optional string copy_to = 3;
+  optional string dynamic = 4;
+  optional bool eager_global_ordinals = 5;
+  optional bool fielddata = 6;
+  optional FielddataFrequencyFilter fielddata_frequency_filter = 7;
+  optional google.protobuf.Struct fields = 8;
+  optional double ignore_above = 9;
+  optional bool index = 10;
+  optional string index_options = 11;
+  optional bool index_phrases = 12;
+  optional TextIndexPrefixes index_prefixes = 13;
+  map<string, string> meta = 14;
+  optional bool norms = 15;
+  optional double position_increment_gap = 16;
+  optional google.protobuf.Struct properties = 17;
+  optional string search_analyzer = 18;
+  optional string search_quote_analyzer = 19;
+  optional string similarity = 20;
+  optional bool store = 21;
+  optional string synthetic_source_keep = 22;
+  optional string term_vector = 23;
+}
+
+message TokenCountProperty {
+  optional string analyzer = 1;
+  optional double boost = 2;
+  optional string copy_to = 3;
+  optional bool doc_values = 4;
+  optional string dynamic = 5;
+  optional bool enable_position_increments = 6;
+  optional google.protobuf.Struct fields = 7;
+  optional double ignore_above = 8;
+  optional bool index = 9;
+  map<string, string> meta = 10;
+  optional double null_value = 11;
+  optional google.protobuf.Struct properties = 12;
+  optional bool store = 13;
+  optional string synthetic_source_keep = 14;
+}
+
+message TokenPruningConfig {
+  optional bool only_score_pruned_tokens = 1;
+  optional double tokens_freq_ratio_threshold = 2;
+  optional double tokens_weight_threshold = 3;
+}
+
+message UnsignedLongNumberProperty {
+  optional double boost = 1;
+  optional bool coerce = 2;
+  optional string copy_to = 3;
+  optional bool doc_values = 4;
+  optional string dynamic = 5;
+  optional google.protobuf.Struct fields = 6;
+  optional double ignore_above = 7;
+  optional bool ignore_malformed = 8;
+  optional bool index = 9;
+  map<string, string> meta = 10;
+  optional double null_value = 11;
+  optional string on_script_error = 12;
+  optional google.protobuf.Struct properties = 13;
+  optional Script script = 14;
+  optional bool store = 15;
+  optional string synthetic_source_keep = 16;
+  optional bool time_series_dimension = 17;
+  optional string time_series_metric = 18;
+}
+
+message VersionProperty {
+  optional string copy_to = 1;
+  optional bool doc_values = 2;
+  optional string dynamic = 3;
+  optional google.protobuf.Struct fields = 4;
+  optional double ignore_above = 5;
+  map<string, string> meta = 6;
+  optional google.protobuf.Struct properties = 7;
+  optional bool store = 8;
+  optional string synthetic_source_keep = 9;
+}
+
+message WildcardProperty {
+  optional string copy_to = 1;
+  optional bool doc_values = 2;
+  optional string dynamic = 3;
+  optional google.protobuf.Struct fields = 4;
+  optional double ignore_above = 5;
+  map<string, string> meta = 6;
+  optional string null_value = 7;
+  optional google.protobuf.Struct properties = 8;
+  optional bool store = 9;
+  optional string synthetic_source_keep = 10;
+}

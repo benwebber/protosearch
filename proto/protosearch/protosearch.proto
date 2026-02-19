@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+package protosearch;
+
+import "google/protobuf/descriptor.proto";
+import "google/protobuf/struct.proto";
+
+message FieldMappingOptions {
+  optional string name = 1;
+  optional google.protobuf.Struct property = 2;
+
+  extensions 100 to max;
+}
+
+extend google.protobuf.FieldOptions {
+  optional FieldMappingOptions mapping = 50000;
+}

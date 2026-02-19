@@ -1,0 +1,3734 @@
+---
+source: src/lib.rs
+expression: spec
+---
+{
+  "properties": {
+    "_types.mapping.AggregateMetricDoubleProperty": {
+      "name": "aggregate_metric_double",
+      "parameters": {
+        "default_metric": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "ignore_malformed": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "metrics": {
+          "Repeated": {
+            "Scalar": "String"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "time_series_metric": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.BinaryProperty": {
+      "name": "binary",
+      "parameters": {
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.BooleanProperty": {
+      "name": "boolean",
+      "parameters": {
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fielddata": {
+          "Value": {
+            "Definition": "indices._types.NumericFielddata"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "ignore_malformed": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "null_value": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "on_script_error": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "script": {
+          "Value": {
+            "Definition": "_types.Script"
+          }
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "time_series_dimension": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        }
+      }
+    },
+    "_types.mapping.ByteNumberProperty": {
+      "name": "byte",
+      "parameters": {
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "coerce": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "ignore_malformed": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "null_value": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "on_script_error": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "script": {
+          "Value": {
+            "Definition": "_types.Script"
+          }
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "time_series_dimension": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "time_series_metric": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.CompletionProperty": {
+      "name": "completion",
+      "parameters": {
+        "analyzer": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "contexts": {
+          "Repeated": {
+            "Definition": "_types.mapping.SuggestContext"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "max_input_length": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "preserve_position_increments": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "preserve_separators": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "search_analyzer": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.ConstantKeywordProperty": {
+      "name": "constant_keyword",
+      "parameters": {
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "value": {
+          "Value": "Object"
+        }
+      }
+    },
+    "_types.mapping.CountedKeywordProperty": {
+      "name": "counted_keyword",
+      "parameters": {
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.DateNanosProperty": {
+      "name": "date_nanos",
+      "parameters": {
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "format": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "ignore_malformed": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "null_value": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "on_script_error": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "precision_step": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "script": {
+          "Value": {
+            "Definition": "_types.Script"
+          }
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.DateProperty": {
+      "name": "date",
+      "parameters": {
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fielddata": {
+          "Value": {
+            "Definition": "indices._types.NumericFielddata"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "format": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "ignore_malformed": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "locale": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "null_value": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "on_script_error": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "precision_step": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "script": {
+          "Value": {
+            "Definition": "_types.Script"
+          }
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.DateRangeProperty": {
+      "name": "date_range",
+      "parameters": {
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "coerce": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "format": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.DenseVectorProperty": {
+      "name": "dense_vector",
+      "parameters": {
+        "dims": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "element_type": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index_options": {
+          "Value": {
+            "Definition": "_types.mapping.DenseVectorIndexOptions"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "similarity": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.DoubleNumberProperty": {
+      "name": "double",
+      "parameters": {
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "coerce": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "ignore_malformed": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "null_value": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "on_script_error": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "script": {
+          "Value": {
+            "Definition": "_types.Script"
+          }
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "time_series_dimension": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "time_series_metric": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.DoubleRangeProperty": {
+      "name": "double_range",
+      "parameters": {
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "coerce": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.FieldAliasProperty": {
+      "name": "alias",
+      "parameters": {
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "path": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.FlattenedProperty": {
+      "name": "flattened",
+      "parameters": {
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "depth_limit": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "eager_global_ordinals": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index_options": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "null_value": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "similarity": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "split_queries_on_whitespace": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "time_series_dimensions": {
+          "Repeated": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.FloatNumberProperty": {
+      "name": "float",
+      "parameters": {
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "coerce": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "ignore_malformed": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "null_value": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "on_script_error": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "script": {
+          "Value": {
+            "Definition": "_types.Script"
+          }
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "time_series_dimension": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "time_series_metric": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.FloatRangeProperty": {
+      "name": "float_range",
+      "parameters": {
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "coerce": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.GeoPointProperty": {
+      "name": "geo_point",
+      "parameters": {
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "ignore_malformed": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "ignore_z_value": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "null_value": {
+          "Value": {
+            "Definition": "_types.LatLonGeoLocation"
+          }
+        },
+        "on_script_error": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "script": {
+          "Value": {
+            "Definition": "_types.Script"
+          }
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "time_series_metric": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.GeoShapeProperty": {
+      "name": "geo_shape",
+      "parameters": {
+        "coerce": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "ignore_malformed": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "ignore_z_value": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "orientation": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "strategy": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.HalfFloatNumberProperty": {
+      "name": "half_float",
+      "parameters": {
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "coerce": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "ignore_malformed": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "null_value": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "on_script_error": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "script": {
+          "Value": {
+            "Definition": "_types.Script"
+          }
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "time_series_dimension": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "time_series_metric": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.HistogramProperty": {
+      "name": "histogram",
+      "parameters": {
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "ignore_malformed": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.IcuCollationProperty": {
+      "name": "icu_collation_keyword",
+      "parameters": {
+        "alternate": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "case_first": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "case_level": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "country": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "decomposition": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "hiragana_quaternary_mode": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index_options": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "language": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "norms": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "null_value": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "numeric": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "rules": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "strength": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "variable_top": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "variant": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.IntegerNumberProperty": {
+      "name": "integer",
+      "parameters": {
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "coerce": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "ignore_malformed": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "null_value": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "on_script_error": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "script": {
+          "Value": {
+            "Definition": "_types.Script"
+          }
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "time_series_dimension": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "time_series_metric": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.IntegerRangeProperty": {
+      "name": "integer_range",
+      "parameters": {
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "coerce": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.IpProperty": {
+      "name": "ip",
+      "parameters": {
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "ignore_malformed": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "null_value": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "on_script_error": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "script": {
+          "Value": {
+            "Definition": "_types.Script"
+          }
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "time_series_dimension": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        }
+      }
+    },
+    "_types.mapping.IpRangeProperty": {
+      "name": "ip_range",
+      "parameters": {
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "coerce": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.JoinProperty": {
+      "name": "join",
+      "parameters": {
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "eager_global_ordinals": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "relations": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.KeywordProperty": {
+      "name": "keyword",
+      "parameters": {
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "eager_global_ordinals": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index_options": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "normalizer": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "norms": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "null_value": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "on_script_error": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "script": {
+          "Value": {
+            "Definition": "_types.Script"
+          }
+        },
+        "similarity": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "split_queries_on_whitespace": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "time_series_dimension": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        }
+      }
+    },
+    "_types.mapping.LongNumberProperty": {
+      "name": "long",
+      "parameters": {
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "coerce": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "ignore_malformed": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "null_value": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "on_script_error": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "script": {
+          "Value": {
+            "Definition": "_types.Script"
+          }
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "time_series_dimension": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "time_series_metric": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.LongRangeProperty": {
+      "name": "long_range",
+      "parameters": {
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "coerce": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.MatchOnlyTextProperty": {
+      "name": "match_only_text",
+      "parameters": {
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        }
+      }
+    },
+    "_types.mapping.Murmur3HashProperty": {
+      "name": "murmur3",
+      "parameters": {
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.NestedProperty": {
+      "name": "nested",
+      "parameters": {
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "enabled": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "include_in_parent": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "include_in_root": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.ObjectProperty": {
+      "name": "object",
+      "parameters": {
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "enabled": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "subobjects": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.PassthroughObjectProperty": {
+      "name": "passthrough",
+      "parameters": {
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "enabled": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "priority": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "time_series_dimension": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        }
+      }
+    },
+    "_types.mapping.PercolatorProperty": {
+      "name": "percolator",
+      "parameters": {
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.PointProperty": {
+      "name": "point",
+      "parameters": {
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "ignore_malformed": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "ignore_z_value": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "null_value": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.RankFeatureProperty": {
+      "name": "rank_feature",
+      "parameters": {
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "positive_score_impact": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.RankFeaturesProperty": {
+      "name": "rank_features",
+      "parameters": {
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "positive_score_impact": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.RankVectorProperty": {
+      "name": "rank_vectors",
+      "parameters": {
+        "dims": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "element_type": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.ScaledFloatNumberProperty": {
+      "name": "scaled_float",
+      "parameters": {
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "coerce": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "ignore_malformed": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "null_value": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "on_script_error": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "scaling_factor": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "script": {
+          "Value": {
+            "Definition": "_types.Script"
+          }
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "time_series_dimension": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "time_series_metric": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.SearchAsYouTypeProperty": {
+      "name": "search_as_you_type",
+      "parameters": {
+        "analyzer": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index_options": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "max_shingle_size": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "norms": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "search_analyzer": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "search_quote_analyzer": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "similarity": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "term_vector": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.SemanticTextProperty": {
+      "name": "semantic_text",
+      "parameters": {
+        "chunking_settings": {
+          "Value": {
+            "Definition": "_types.mapping.ChunkingSettings"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "index_options": {
+          "Value": {
+            "Definition": "_types.mapping.SemanticTextIndexOptions"
+          }
+        },
+        "inference_id": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "search_inference_id": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.ShapeProperty": {
+      "name": "shape",
+      "parameters": {
+        "coerce": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "ignore_malformed": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "ignore_z_value": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "orientation": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.ShortNumberProperty": {
+      "name": "short",
+      "parameters": {
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "coerce": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "ignore_malformed": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "null_value": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "on_script_error": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "script": {
+          "Value": {
+            "Definition": "_types.Script"
+          }
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "time_series_dimension": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "time_series_metric": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.SparseVectorProperty": {
+      "name": "sparse_vector",
+      "parameters": {
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "index_options": {
+          "Value": {
+            "Definition": "_types.mapping.SparseVectorIndexOptions"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.TextProperty": {
+      "name": "text",
+      "parameters": {
+        "analyzer": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "eager_global_ordinals": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "fielddata": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "fielddata_frequency_filter": {
+          "Value": {
+            "Definition": "indices._types.FielddataFrequencyFilter"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index_options": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "index_phrases": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index_prefixes": {
+          "Value": {
+            "Definition": "_types.mapping.TextIndexPrefixes"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "norms": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "position_increment_gap": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "search_analyzer": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "search_quote_analyzer": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "similarity": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "term_vector": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.TokenCountProperty": {
+      "name": "token_count",
+      "parameters": {
+        "analyzer": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "enable_position_increments": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "null_value": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.UnsignedLongNumberProperty": {
+      "name": "unsigned_long",
+      "parameters": {
+        "boost": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "coerce": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "ignore_malformed": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "index": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "null_value": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "on_script_error": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "script": {
+          "Value": {
+            "Definition": "_types.Script"
+          }
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "time_series_dimension": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "time_series_metric": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.VersionProperty": {
+      "name": "version",
+      "parameters": {
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.WildcardProperty": {
+      "name": "wildcard",
+      "parameters": {
+        "copy_to": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "doc_values": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "dynamic": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "fields": {
+          "Value": "Object"
+        },
+        "ignore_above": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "meta": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "null_value": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "properties": {
+          "Value": "Object"
+        },
+        "store": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "synthetic_source_keep": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "_types.LatLonGeoLocation": {
+      "parameters": {
+        "lat": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "lon": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        }
+      }
+    },
+    "_types.Script": {
+      "parameters": {
+        "id": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "lang": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "options": {
+          "Map": [
+            "String",
+            {
+              "Scalar": "String"
+            }
+          ]
+        },
+        "params": {
+          "Value": "Object"
+        },
+        "source": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.TokenPruningConfig": {
+      "parameters": {
+        "only_score_pruned_tokens": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "tokens_freq_ratio_threshold": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "tokens_weight_threshold": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        }
+      }
+    },
+    "_types.mapping.ChunkingSettings": {
+      "parameters": {
+        "max_chunk_size": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "overlap": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "sentence_overlap": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "strategy": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.DenseVectorIndexOptions": {
+      "parameters": {
+        "confidence_interval": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "ef_construction": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "m": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "type": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.SemanticTextIndexOptions": {
+      "parameters": {
+        "dense_vector": {
+          "Value": {
+            "Definition": "_types.mapping.DenseVectorIndexOptions"
+          }
+        }
+      }
+    },
+    "_types.mapping.SparseVectorIndexOptions": {
+      "parameters": {
+        "prune": {
+          "Value": {
+            "Scalar": "Boolean"
+          }
+        },
+        "pruning_config": {
+          "Value": {
+            "Definition": "_types.TokenPruningConfig"
+          }
+        }
+      }
+    },
+    "_types.mapping.SuggestContext": {
+      "parameters": {
+        "name": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "path": {
+          "Value": {
+            "Scalar": "String"
+          }
+        },
+        "precision": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "type": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    },
+    "_types.mapping.TextIndexPrefixes": {
+      "parameters": {
+        "max_chars": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "min_chars": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        }
+      }
+    },
+    "indices._types.FielddataFrequencyFilter": {
+      "parameters": {
+        "max": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "min": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        },
+        "min_segment_size": {
+          "Value": {
+            "Scalar": "Double"
+          }
+        }
+      }
+    },
+    "indices._types.NumericFielddata": {
+      "parameters": {
+        "format": {
+          "Value": {
+            "Scalar": "String"
+          }
+        }
+      }
+    }
+  }
+}
