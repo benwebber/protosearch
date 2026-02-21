@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package tests;
+
+import "protosearch/es/v8/mapping.proto";
+import "protosearch/protosearch.proto";
+
+message TestCase {
+  // Simple.
+  string uid = 1 [(protosearch.mapping) = {
+    [protosearch.es.v8.keyword]: {}
+  }];
+
+  // Renamed with `name`.
+  string url = 2 [(protosearch.mapping) = {
+    name: "custom_url"
+    [protosearch.es.v8.keyword]: {}
+  }];
+
+  // Complex.
+  string title = 3 [(protosearch.mapping) = {
+    [protosearch.es.v8.text]: {
+      fields: {
+        fields: {
+          key: "en"
+          value: {
+            struct_value: {
+              fields: {
+                key: "type"
+                value: { string_value: "text" }
+              }
+              fields: {
+                key: "analyzer"
+                value: { string_value: "english" }
+              }
+            }
+          }
+        }
+        fields: {
+          key: "fr"
+          value: {
+            struct_value: {
+              fields: {
+                key: "type"
+                value: { string_value: "text" }
+              }
+              fields: {
+                key: "analyzer"
+                value: { string_value: "french" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }];
+
+  // Object.
+  SubMessage sub = 4 [(protosearch.mapping) = {
+    [protosearch.es.v8.object]: {}
+  }];
+
+  // Nested.
+  repeated SubMessage subs = 5 [(protosearch.mapping) = {
+    [protosearch.es.v8.nested]: {}
+  }];
+}
+
+message SubMessage {
+  string name = 1 [(protosearch.mapping) = {
+    [protosearch.es.v8.text]: {}
+  }];
+}

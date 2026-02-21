@@ -1,32 +1,32 @@
 ---
-source: src/lib.rs
+source: crates/protosearch-gen/src/lib.rs
 expression: spec
 ---
 {
-  "properties": {
+  "types": {
     "_types.mapping.AggregateMetricDoubleProperty": {
       "name": "aggregate_metric_double",
       "parameters": {
         "default_metric": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "ignore_malformed": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -44,15 +44,15 @@ expression: spec
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "time_series_metric": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -62,25 +62,25 @@ expression: spec
       "name": "binary",
       "parameters": {
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
@@ -93,15 +93,15 @@ expression: spec
           ]
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -111,45 +111,45 @@ expression: spec
       "name": "boolean",
       "parameters": {
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fielddata": {
-          "Value": {
+          "Optional": {
             "Definition": "indices._types.NumericFielddata"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "ignore_malformed": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -162,35 +162,35 @@ expression: spec
           ]
         },
         "null_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "on_script_error": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "script": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.Script"
           }
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "time_series_dimension": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         }
@@ -200,45 +200,45 @@ expression: spec
       "name": "byte",
       "parameters": {
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "coerce": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "ignore_malformed": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -251,40 +251,40 @@ expression: spec
           ]
         },
         "null_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "on_script_error": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "script": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.Script"
           }
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "time_series_dimension": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "time_series_metric": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -294,7 +294,7 @@ expression: spec
       "name": "completion",
       "parameters": {
         "analyzer": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
@@ -304,30 +304,30 @@ expression: spec
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "max_input_length": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
@@ -340,30 +340,30 @@ expression: spec
           ]
         },
         "preserve_position_increments": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "preserve_separators": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "search_analyzer": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -373,15 +373,15 @@ expression: spec
       "name": "constant_keyword",
       "parameters": {
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
@@ -394,15 +394,15 @@ expression: spec
           ]
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "value": {
-          "Value": "Object"
+          "Optional": "Object"
         }
       }
     },
@@ -410,20 +410,20 @@ expression: spec
       "name": "counted_keyword",
       "parameters": {
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -436,10 +436,10 @@ expression: spec
           ]
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -449,45 +449,45 @@ expression: spec
       "name": "date_nanos",
       "parameters": {
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "format": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "ignore_malformed": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -500,35 +500,35 @@ expression: spec
           ]
         },
         "null_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "on_script_error": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "precision_step": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "script": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.Script"
           }
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -538,55 +538,55 @@ expression: spec
       "name": "date",
       "parameters": {
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fielddata": {
-          "Value": {
+          "Optional": {
             "Definition": "indices._types.NumericFielddata"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "format": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "ignore_malformed": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "locale": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
@@ -599,35 +599,35 @@ expression: spec
           ]
         },
         "null_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "on_script_error": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "precision_step": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "script": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.Script"
           }
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -637,45 +637,45 @@ expression: spec
       "name": "date_range",
       "parameters": {
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "coerce": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "format": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -688,15 +688,15 @@ expression: spec
           ]
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -706,35 +706,35 @@ expression: spec
       "name": "dense_vector",
       "parameters": {
         "dims": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "element_type": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index_options": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.mapping.DenseVectorIndexOptions"
           }
         },
@@ -747,15 +747,15 @@ expression: spec
           ]
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "similarity": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -765,45 +765,45 @@ expression: spec
       "name": "double",
       "parameters": {
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "coerce": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "ignore_malformed": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -816,40 +816,40 @@ expression: spec
           ]
         },
         "null_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "on_script_error": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "script": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.Script"
           }
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "time_series_dimension": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "time_series_metric": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -859,40 +859,40 @@ expression: spec
       "name": "double_range",
       "parameters": {
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "coerce": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -905,15 +905,15 @@ expression: spec
           ]
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -923,15 +923,15 @@ expression: spec
       "name": "alias",
       "parameters": {
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
@@ -944,15 +944,15 @@ expression: spec
           ]
         },
         "path": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -962,45 +962,45 @@ expression: spec
       "name": "flattened",
       "parameters": {
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "depth_limit": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "eager_global_ordinals": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index_options": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
@@ -1013,25 +1013,25 @@ expression: spec
           ]
         },
         "null_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "similarity": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "split_queries_on_whitespace": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
@@ -1046,45 +1046,45 @@ expression: spec
       "name": "float",
       "parameters": {
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "coerce": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "ignore_malformed": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -1097,40 +1097,40 @@ expression: spec
           ]
         },
         "null_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "on_script_error": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "script": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.Script"
           }
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "time_series_dimension": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "time_series_metric": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -1140,40 +1140,40 @@ expression: spec
       "name": "float_range",
       "parameters": {
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "coerce": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -1186,15 +1186,15 @@ expression: spec
           ]
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -1204,40 +1204,40 @@ expression: spec
       "name": "geo_point",
       "parameters": {
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "ignore_malformed": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "ignore_z_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -1250,35 +1250,35 @@ expression: spec
           ]
         },
         "null_value": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.LatLonGeoLocation"
           }
         },
         "on_script_error": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "script": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.Script"
           }
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "time_series_metric": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -1288,45 +1288,45 @@ expression: spec
       "name": "geo_shape",
       "parameters": {
         "coerce": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "ignore_malformed": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "ignore_z_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -1339,25 +1339,25 @@ expression: spec
           ]
         },
         "orientation": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "strategy": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -1367,45 +1367,45 @@ expression: spec
       "name": "half_float",
       "parameters": {
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "coerce": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "ignore_malformed": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -1418,40 +1418,40 @@ expression: spec
           ]
         },
         "null_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "on_script_error": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "script": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.Script"
           }
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "time_series_dimension": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "time_series_metric": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -1461,20 +1461,20 @@ expression: spec
       "name": "histogram",
       "parameters": {
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "ignore_malformed": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -1487,10 +1487,10 @@ expression: spec
           ]
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -1500,70 +1500,70 @@ expression: spec
       "name": "icu_collation_keyword",
       "parameters": {
         "alternate": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "case_first": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "case_level": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "country": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "decomposition": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "hiragana_quaternary_mode": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index_options": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "language": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
@@ -1576,50 +1576,50 @@ expression: spec
           ]
         },
         "norms": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "null_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "numeric": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "rules": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "strength": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "variable_top": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "variant": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -1629,45 +1629,45 @@ expression: spec
       "name": "integer",
       "parameters": {
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "coerce": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "ignore_malformed": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -1680,40 +1680,40 @@ expression: spec
           ]
         },
         "null_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "on_script_error": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "script": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.Script"
           }
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "time_series_dimension": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "time_series_metric": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -1723,40 +1723,40 @@ expression: spec
       "name": "integer_range",
       "parameters": {
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "coerce": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -1769,15 +1769,15 @@ expression: spec
           ]
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -1787,40 +1787,40 @@ expression: spec
       "name": "ip",
       "parameters": {
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "ignore_malformed": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -1833,35 +1833,35 @@ expression: spec
           ]
         },
         "null_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "on_script_error": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "script": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.Script"
           }
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "time_series_dimension": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         }
@@ -1871,40 +1871,40 @@ expression: spec
       "name": "ip_range",
       "parameters": {
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "coerce": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -1917,15 +1917,15 @@ expression: spec
           ]
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -1935,20 +1935,20 @@ expression: spec
       "name": "join",
       "parameters": {
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "eager_global_ordinals": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
@@ -1961,7 +1961,7 @@ expression: spec
           ]
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "relations": {
           "Map": [
@@ -1972,7 +1972,7 @@ expression: spec
           ]
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -1982,45 +1982,45 @@ expression: spec
       "name": "keyword",
       "parameters": {
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "eager_global_ordinals": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index_options": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
@@ -2033,55 +2033,55 @@ expression: spec
           ]
         },
         "normalizer": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "norms": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "null_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "on_script_error": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "script": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.Script"
           }
         },
         "similarity": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "split_queries_on_whitespace": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "time_series_dimension": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         }
@@ -2091,45 +2091,45 @@ expression: spec
       "name": "long",
       "parameters": {
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "coerce": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "ignore_malformed": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -2142,40 +2142,40 @@ expression: spec
           ]
         },
         "null_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "on_script_error": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "script": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.Script"
           }
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "time_series_dimension": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "time_series_metric": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -2185,40 +2185,40 @@ expression: spec
       "name": "long_range",
       "parameters": {
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "coerce": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -2231,15 +2231,15 @@ expression: spec
           ]
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -2249,12 +2249,12 @@ expression: spec
       "name": "match_only_text",
       "parameters": {
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "meta": {
           "Map": [
@@ -2270,25 +2270,25 @@ expression: spec
       "name": "murmur3",
       "parameters": {
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
@@ -2301,15 +2301,15 @@ expression: spec
           ]
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -2319,35 +2319,35 @@ expression: spec
       "name": "nested",
       "parameters": {
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "enabled": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "include_in_parent": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "include_in_root": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -2360,15 +2360,15 @@ expression: spec
           ]
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -2378,25 +2378,25 @@ expression: spec
       "name": "object",
       "parameters": {
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "enabled": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
@@ -2409,20 +2409,20 @@ expression: spec
           ]
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "subobjects": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -2432,25 +2432,25 @@ expression: spec
       "name": "passthrough",
       "parameters": {
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "enabled": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
@@ -2463,25 +2463,25 @@ expression: spec
           ]
         },
         "priority": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "time_series_dimension": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         }
@@ -2491,15 +2491,15 @@ expression: spec
       "name": "percolator",
       "parameters": {
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
@@ -2512,10 +2512,10 @@ expression: spec
           ]
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -2525,35 +2525,35 @@ expression: spec
       "name": "point",
       "parameters": {
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "ignore_malformed": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "ignore_z_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -2566,20 +2566,20 @@ expression: spec
           ]
         },
         "null_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -2589,15 +2589,15 @@ expression: spec
       "name": "rank_feature",
       "parameters": {
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
@@ -2610,15 +2610,15 @@ expression: spec
           ]
         },
         "positive_score_impact": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -2628,15 +2628,15 @@ expression: spec
       "name": "rank_features",
       "parameters": {
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
@@ -2649,15 +2649,15 @@ expression: spec
           ]
         },
         "positive_score_impact": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -2667,25 +2667,25 @@ expression: spec
       "name": "rank_vectors",
       "parameters": {
         "dims": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "element_type": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
@@ -2698,10 +2698,10 @@ expression: spec
           ]
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -2711,45 +2711,45 @@ expression: spec
       "name": "scaled_float",
       "parameters": {
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "coerce": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "ignore_malformed": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -2762,45 +2762,45 @@ expression: spec
           ]
         },
         "null_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "on_script_error": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "scaling_factor": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "script": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.Script"
           }
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "time_series_dimension": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "time_series_metric": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -2810,40 +2810,40 @@ expression: spec
       "name": "search_as_you_type",
       "parameters": {
         "analyzer": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index_options": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "max_shingle_size": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
@@ -2856,40 +2856,40 @@ expression: spec
           ]
         },
         "norms": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "search_analyzer": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "search_quote_analyzer": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "similarity": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "term_vector": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -2899,20 +2899,20 @@ expression: spec
       "name": "semantic_text",
       "parameters": {
         "chunking_settings": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.mapping.ChunkingSettings"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "index_options": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.mapping.SemanticTextIndexOptions"
           }
         },
         "inference_id": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
@@ -2925,7 +2925,7 @@ expression: spec
           ]
         },
         "search_inference_id": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -2935,40 +2935,40 @@ expression: spec
       "name": "shape",
       "parameters": {
         "coerce": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "ignore_malformed": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "ignore_z_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -2981,20 +2981,20 @@ expression: spec
           ]
         },
         "orientation": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -3004,45 +3004,45 @@ expression: spec
       "name": "short",
       "parameters": {
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "coerce": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "ignore_malformed": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -3055,40 +3055,40 @@ expression: spec
           ]
         },
         "null_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "on_script_error": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "script": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.Script"
           }
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "time_series_dimension": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "time_series_metric": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -3098,20 +3098,20 @@ expression: spec
       "name": "sparse_vector",
       "parameters": {
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "index_options": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.mapping.SparseVectorIndexOptions"
           }
         },
@@ -3124,15 +3124,15 @@ expression: spec
           ]
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -3142,65 +3142,65 @@ expression: spec
       "name": "text",
       "parameters": {
         "analyzer": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "eager_global_ordinals": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "fielddata": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "fielddata_frequency_filter": {
-          "Value": {
+          "Optional": {
             "Definition": "indices._types.FielddataFrequencyFilter"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index_options": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "index_phrases": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index_prefixes": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.mapping.TextIndexPrefixes"
           }
         },
@@ -3213,45 +3213,45 @@ expression: spec
           ]
         },
         "norms": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "position_increment_gap": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "search_analyzer": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "search_quote_analyzer": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "similarity": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "term_vector": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -3261,45 +3261,45 @@ expression: spec
       "name": "token_count",
       "parameters": {
         "analyzer": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "enable_position_increments": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -3312,20 +3312,20 @@ expression: spec
           ]
         },
         "null_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -3335,45 +3335,45 @@ expression: spec
       "name": "unsigned_long",
       "parameters": {
         "boost": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "coerce": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "ignore_malformed": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "index": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
@@ -3386,40 +3386,40 @@ expression: spec
           ]
         },
         "null_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "on_script_error": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "script": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.Script"
           }
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "time_series_dimension": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "time_series_metric": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -3429,25 +3429,25 @@ expression: spec
       "name": "version",
       "parameters": {
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
@@ -3460,15 +3460,15 @@ expression: spec
           ]
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -3478,25 +3478,25 @@ expression: spec
       "name": "wildcard",
       "parameters": {
         "copy_to": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "doc_values": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "dynamic": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "fields": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "ignore_above": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
@@ -3509,36 +3509,36 @@ expression: spec
           ]
         },
         "null_value": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "properties": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "store": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "synthetic_source_keep": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
       }
     }
   },
-  "definitions": {
+  "shared_types": {
     "_types.LatLonGeoLocation": {
       "parameters": {
         "lat": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "lon": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         }
@@ -3547,12 +3547,12 @@ expression: spec
     "_types.Script": {
       "parameters": {
         "id": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "lang": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
@@ -3565,10 +3565,10 @@ expression: spec
           ]
         },
         "params": {
-          "Value": "Object"
+          "Optional": "Object"
         },
         "source": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -3577,17 +3577,17 @@ expression: spec
     "_types.TokenPruningConfig": {
       "parameters": {
         "only_score_pruned_tokens": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "tokens_freq_ratio_threshold": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "tokens_weight_threshold": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         }
@@ -3596,22 +3596,22 @@ expression: spec
     "_types.mapping.ChunkingSettings": {
       "parameters": {
         "max_chunk_size": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "overlap": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "sentence_overlap": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "strategy": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -3620,22 +3620,22 @@ expression: spec
     "_types.mapping.DenseVectorIndexOptions": {
       "parameters": {
         "confidence_interval": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "ef_construction": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "m": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "type": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -3644,7 +3644,7 @@ expression: spec
     "_types.mapping.SemanticTextIndexOptions": {
       "parameters": {
         "dense_vector": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.mapping.DenseVectorIndexOptions"
           }
         }
@@ -3653,12 +3653,12 @@ expression: spec
     "_types.mapping.SparseVectorIndexOptions": {
       "parameters": {
         "prune": {
-          "Value": {
+          "Optional": {
             "Scalar": "Boolean"
           }
         },
         "pruning_config": {
-          "Value": {
+          "Optional": {
             "Definition": "_types.TokenPruningConfig"
           }
         }
@@ -3667,22 +3667,22 @@ expression: spec
     "_types.mapping.SuggestContext": {
       "parameters": {
         "name": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "path": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         },
         "precision": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "type": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }
@@ -3691,12 +3691,12 @@ expression: spec
     "_types.mapping.TextIndexPrefixes": {
       "parameters": {
         "max_chars": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "min_chars": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         }
@@ -3705,17 +3705,17 @@ expression: spec
     "indices._types.FielddataFrequencyFilter": {
       "parameters": {
         "max": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "min": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         },
         "min_segment_size": {
-          "Value": {
+          "Optional": {
             "Scalar": "Double"
           }
         }
@@ -3724,7 +3724,7 @@ expression: spec
     "indices._types.NumericFielddata": {
       "parameters": {
         "format": {
-          "Value": {
+          "Optional": {
             "Scalar": "String"
           }
         }

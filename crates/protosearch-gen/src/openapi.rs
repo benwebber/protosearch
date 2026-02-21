@@ -1,8 +1,10 @@
 //! Extract data from an OpenAPI specification.
 use std::collections::HashMap;
 
+use indexmap::IndexMap;
 use openapiv3::{
-    AdditionalProperties, ArrayType, Components, ReferenceOr, Schema, SchemaKind, Type,
+    AdditionalProperties, ArrayType, Components, IntegerFormat, NumberFormat, ReferenceOr, Schema,
+    SchemaKind, Type, VariantOrUnknownOrEmpty,
 };
 
 use crate::error::{Error, Result};
@@ -14,10 +16,10 @@ pub fn resolve<'a>(components: &'a Components, reference: &str) -> Result<&'a Sc
     let schema_ref = components
         .schemas
         .get(name)
-        .ok_or_else(|| Error::InvalidSpec(format!("schema not found: {name}")))?;
-    schema_ref
-        .as_item()
-        .ok_or_else(|| Error::InvalidSpec(format!("expected item, got reference: {name}")))
+        .ok_or(Error::InvalidSpec(format!("schema not found: {name}")))?;
+    schema_ref.as_item().ok_or(Error::InvalidSpec(format!(
+        "expected item, got reference: {name}"
+    )))
 }
 
 /// Collect parameters from a property schema into `parameters`.
@@ -55,7 +57,7 @@ fn parameter_from_ref(
     match reference {
         ReferenceOr::Reference { reference } => {
             let _schema = resolve(components, reference)?;
-            Ok(spec::Parameter::Value(value_type_from_ref(
+            Ok(spec::Parameter::Optional(value_type_from_ref(
                 components, reference,
             )?))
         }
@@ -89,11 +91,11 @@ fn parameter_from_schema(components: &Components, schema: &Schema) -> Result<spe
                     return parameter_from_schema(components, s);
                 }
             }
-            Ok(spec::Parameter::Value(value_type_from_schema(
+            Ok(spec::Parameter::Optional(value_type_from_schema(
                 components, schema,
             )?))
         }
-        _ => Ok(spec::Parameter::Value(value_type_from_schema(
+        _ => Ok(spec::Parameter::Optional(value_type_from_schema(
             components, schema,
         )?)),
     }
@@ -120,8 +122,14 @@ fn value_type_from_schema(components: &Components, schema: &Schema) -> Result<sp
         SchemaKind::Type(typ) => match typ {
             Type::String(_) => Ok(spec::ValueType::Scalar(spec::ScalarType::String)),
             Type::Boolean(_) => Ok(spec::ValueType::Scalar(spec::ScalarType::Boolean)),
-            Type::Number(_) => Ok(spec::ValueType::Scalar(spec::ScalarType::Double)),
-            Type::Integer(_) => Ok(spec::ValueType::Scalar(spec::ScalarType::Integer)),
+            Type::Integer(i) => Ok(spec::ValueType::Scalar(match i.format {
+                VariantOrUnknownOrEmpty::Item(IntegerFormat::Int32) => spec::ScalarType::Int32,
+                _ => spec::ScalarType::Int64,
+            })),
+            Type::Number(n) => Ok(spec::ValueType::Scalar(match n.format {
+                VariantOrUnknownOrEmpty::Item(NumberFormat::Float) => spec::ScalarType::Float,
+                _ => spec::ScalarType::Double,
+            })),
             Type::Object(_obj) => Ok(spec::ValueType::Object),
             Type::Array(arr) => array_value_type(components, arr),
         },
@@ -171,4 +179,14 @@ pub fn schema_name(reference: &str) -> &str {
     reference
         .strip_prefix("#/components/schemas/")
         .unwrap_or(reference)
+}
+
+pub fn iter_discriminator_types(
+    discriminator: &IndexMap<String, String>,
+) -> impl Iterator<Item = (&str, &str)> {
+    discriminator
+        .iter()
+        // {dynamic_type}
+        .filter(|(k, _)| !k.starts_with('{'))
+        .map(|(k, v)| (schema_name(v), k.as_str()))
 }

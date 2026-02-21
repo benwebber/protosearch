@@ -5,28 +5,28 @@ use serde::{Deserialize, Serialize};
 
 /// An abstract mapping specification.
 #[derive(Debug, Serialize, Deserialize)]
-pub struct Spec {
-    pub properties: HashMap<String, Property>,
-    pub definitions: HashMap<String, Definition>,
+pub struct MappingSpec {
+    pub types: HashMap<String, PropertyType>,
+    pub shared_types: HashMap<String, SharedType>,
 }
 
 /// A mapping property.
 #[derive(Debug, Serialize, Deserialize)]
-pub struct Property {
+pub struct PropertyType {
     pub name: String,
     pub parameters: HashMap<String, Parameter>,
 }
 
 /// A named, structured property such as `fielddata`.
 #[derive(Debug, Serialize, Deserialize)]
-pub struct Definition {
+pub struct SharedType {
     pub parameters: HashMap<String, Parameter>,
 }
 
 /// A mapping parameter.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub enum Parameter {
-    Value(ValueType),
+    Optional(ValueType),
     Repeated(ValueType),
     Map(ScalarType, ValueType),
 }
@@ -47,14 +47,16 @@ pub enum ValueType {
 pub enum ScalarType {
     Boolean,
     String,
-    Integer,
+    Int32,
+    Int64,
+    Float,
     Double,
 }
 
 impl Parameter {
     pub fn definition_name(&self) -> Option<&str> {
         match self {
-            Self::Value(ValueType::Definition(t))
+            Self::Optional(ValueType::Definition(t))
             | Self::Repeated(ValueType::Definition(t))
             | Self::Map(_, ValueType::Definition(t)) => Some(t.as_str()),
             _ => None,

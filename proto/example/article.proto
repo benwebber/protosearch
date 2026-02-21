@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package example;
+
+import "protosearch/es/v8/mapping.proto";
+import "protosearch/protosearch.proto";
+
+message Article {
+  string uid = 1 [(protosearch.mapping) = {
+    name: "foo"
+    [protosearch.es.v8.keyword]: {}
+  }];
+  string url = 2 [(protosearch.mapping) = {
+    [protosearch.es.v8.text]: {}
+  }];
+  string title = 3 [(protosearch.mapping) = {
+    [protosearch.es.v8.text]: {}
+  }];
+  repeated Author authors = 4 [(protosearch.mapping) = {
+    [protosearch.es.v8.nested]: {}
+  }];
+  string text = 5 [(protosearch.mapping) = {
+    [protosearch.es.v8.text]: {}
+  }];
+}
+
+message Author {
+  string uid = 1 [(protosearch.mapping) = {
+    [protosearch.es.v8.keyword]: {}
+  }];
+  string name = 2 [(protosearch.mapping) = {
+    [protosearch.es.v8.text]: {}
+  }];
+}

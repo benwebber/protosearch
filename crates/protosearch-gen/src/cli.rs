@@ -20,9 +20,9 @@ pub enum Command {
         #[arg(default_value = "-")]
         output: FileOrStdout,
         #[arg(short, long)]
-        proto: Option<PathBuf>,
+        existing: Option<PathBuf>,
         #[arg(long, default_value_t = 100)]
-        tag_offset: u32,
+        number_offset: u32,
     },
     Extract {
         #[arg(default_value = "-")]

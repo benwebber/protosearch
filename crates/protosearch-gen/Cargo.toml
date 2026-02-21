@@ -1,0 +1,16 @@
+[package]
+name = "protosearch-gen"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+clap = { version = "4.5.58", features = ["derive", "cargo", "env"] }
+clap-stdin = "0.8.0"
+indexmap = "2.13.0"
+openapiv3 = "2.2.0"
+serde = { workspace = true, features = ["derive"] }
+serde_json.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+insta = { version = "1", features = ["json"] }

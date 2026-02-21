@@ -1,5 +1,5 @@
 ---
-source: src/lib.rs
+source: crates/protosearch-gen/src/lib.rs
 expression: file
 ---
 {
@@ -15,7 +15,7 @@ expression: file
               "Message": "AggregateMetricDoubleProperty"
             }
           },
-          "tag": 100
+          "number": 100
         },
         {
           "name": "alias",
@@ -24,7 +24,7 @@ expression: file
               "Message": "FieldAliasProperty"
             }
           },
-          "tag": 101
+          "number": 101
         },
         {
           "name": "binary",
@@ -33,7 +33,7 @@ expression: file
               "Message": "BinaryProperty"
             }
           },
-          "tag": 102
+          "number": 102
         },
         {
           "name": "boolean",
@@ -42,7 +42,7 @@ expression: file
               "Message": "BooleanProperty"
             }
           },
-          "tag": 103
+          "number": 103
         },
         {
           "name": "byte",
@@ -51,7 +51,7 @@ expression: file
               "Message": "ByteNumberProperty"
             }
           },
-          "tag": 104
+          "number": 104
         },
         {
           "name": "completion",
@@ -60,7 +60,7 @@ expression: file
               "Message": "CompletionProperty"
             }
           },
-          "tag": 105
+          "number": 105
         },
         {
           "name": "constant_keyword",
@@ -69,7 +69,7 @@ expression: file
               "Message": "ConstantKeywordProperty"
             }
           },
-          "tag": 106
+          "number": 106
         },
         {
           "name": "counted_keyword",
@@ -78,7 +78,7 @@ expression: file
               "Message": "CountedKeywordProperty"
             }
           },
-          "tag": 107
+          "number": 107
         },
         {
           "name": "date",
@@ -87,7 +87,7 @@ expression: file
               "Message": "DateProperty"
             }
           },
-          "tag": 108
+          "number": 108
         },
         {
           "name": "date_nanos",
@@ -96,7 +96,7 @@ expression: file
               "Message": "DateNanosProperty"
             }
           },
-          "tag": 109
+          "number": 109
         },
         {
           "name": "date_range",
@@ -105,7 +105,7 @@ expression: file
               "Message": "DateRangeProperty"
             }
           },
-          "tag": 110
+          "number": 110
         },
         {
           "name": "dense_vector",
@@ -114,7 +114,7 @@ expression: file
               "Message": "DenseVectorProperty"
             }
           },
-          "tag": 111
+          "number": 111
         },
         {
           "name": "double",
@@ -123,7 +123,7 @@ expression: file
               "Message": "DoubleNumberProperty"
             }
           },
-          "tag": 112
+          "number": 112
         },
         {
           "name": "double_range",
@@ -132,7 +132,7 @@ expression: file
               "Message": "DoubleRangeProperty"
             }
           },
-          "tag": 113
+          "number": 113
         },
         {
           "name": "flattened",
@@ -141,7 +141,7 @@ expression: file
               "Message": "FlattenedProperty"
             }
           },
-          "tag": 114
+          "number": 114
         },
         {
           "name": "float",
@@ -150,7 +150,7 @@ expression: file
               "Message": "FloatNumberProperty"
             }
           },
-          "tag": 115
+          "number": 115
         },
         {
           "name": "float_range",
@@ -159,7 +159,7 @@ expression: file
               "Message": "FloatRangeProperty"
             }
           },
-          "tag": 116
+          "number": 116
         },
         {
           "name": "geo_point",
@@ -168,7 +168,7 @@ expression: file
               "Message": "GeoPointProperty"
             }
           },
-          "tag": 117
+          "number": 117
         },
         {
           "name": "geo_shape",
@@ -177,7 +177,7 @@ expression: file
               "Message": "GeoShapeProperty"
             }
           },
-          "tag": 118
+          "number": 118
         },
         {
           "name": "half_float",
@@ -186,7 +186,7 @@ expression: file
               "Message": "HalfFloatNumberProperty"
             }
           },
-          "tag": 119
+          "number": 119
         },
         {
           "name": "histogram",
@@ -195,7 +195,7 @@ expression: file
               "Message": "HistogramProperty"
             }
           },
-          "tag": 120
+          "number": 120
         },
         {
           "name": "icu_collation_keyword",
@@ -204,7 +204,7 @@ expression: file
               "Message": "IcuCollationProperty"
             }
           },
-          "tag": 121
+          "number": 121
         },
         {
           "name": "integer",
@@ -213,7 +213,7 @@ expression: file
               "Message": "IntegerNumberProperty"
             }
           },
-          "tag": 122
+          "number": 122
         },
         {
           "name": "integer_range",
@@ -222,7 +222,7 @@ expression: file
               "Message": "IntegerRangeProperty"
             }
           },
-          "tag": 123
+          "number": 123
         },
         {
           "name": "ip",
@@ -231,7 +231,7 @@ expression: file
               "Message": "IpProperty"
             }
           },
-          "tag": 124
+          "number": 124
         },
         {
           "name": "ip_range",
@@ -240,7 +240,7 @@ expression: file
               "Message": "IpRangeProperty"
             }
           },
-          "tag": 125
+          "number": 125
         },
         {
           "name": "join",
@@ -249,7 +249,7 @@ expression: file
               "Message": "JoinProperty"
             }
           },
-          "tag": 126
+          "number": 126
         },
         {
           "name": "keyword",
@@ -258,7 +258,7 @@ expression: file
               "Message": "KeywordProperty"
             }
           },
-          "tag": 127
+          "number": 127
         },
         {
           "name": "long",
@@ -267,7 +267,7 @@ expression: file
               "Message": "LongNumberProperty"
             }
           },
-          "tag": 128
+          "number": 128
         },
         {
           "name": "long_range",
@@ -276,7 +276,7 @@ expression: file
               "Message": "LongRangeProperty"
             }
           },
-          "tag": 129
+          "number": 129
         },
         {
           "name": "match_only_text",
@@ -285,7 +285,7 @@ expression: file
               "Message": "MatchOnlyTextProperty"
             }
           },
-          "tag": 130
+          "number": 130
         },
         {
           "name": "murmur3",
@@ -294,7 +294,7 @@ expression: file
               "Message": "Murmur3HashProperty"
             }
           },
-          "tag": 131
+          "number": 131
         },
         {
           "name": "nested",
@@ -303,7 +303,7 @@ expression: file
               "Message": "NestedProperty"
             }
           },
-          "tag": 132
+          "number": 132
         },
         {
           "name": "object",
@@ -312,7 +312,7 @@ expression: file
               "Message": "ObjectProperty"
             }
           },
-          "tag": 133
+          "number": 133
         },
         {
           "name": "passthrough",
@@ -321,7 +321,7 @@ expression: file
               "Message": "PassthroughObjectProperty"
             }
           },
-          "tag": 134
+          "number": 134
         },
         {
           "name": "percolator",
@@ -330,7 +330,7 @@ expression: file
               "Message": "PercolatorProperty"
             }
           },
-          "tag": 135
+          "number": 135
         },
         {
           "name": "point",
@@ -339,7 +339,7 @@ expression: file
               "Message": "PointProperty"
             }
           },
-          "tag": 136
+          "number": 136
         },
         {
           "name": "rank_feature",
@@ -348,7 +348,7 @@ expression: file
               "Message": "RankFeatureProperty"
             }
           },
-          "tag": 137
+          "number": 137
         },
         {
           "name": "rank_features",
@@ -357,7 +357,7 @@ expression: file
               "Message": "RankFeaturesProperty"
             }
           },
-          "tag": 138
+          "number": 138
         },
         {
           "name": "rank_vectors",
@@ -366,7 +366,7 @@ expression: file
               "Message": "RankVectorProperty"
             }
           },
-          "tag": 139
+          "number": 139
         },
         {
           "name": "scaled_float",
@@ -375,7 +375,7 @@ expression: file
               "Message": "ScaledFloatNumberProperty"
             }
           },
-          "tag": 140
+          "number": 140
         },
         {
           "name": "search_as_you_type",
@@ -384,7 +384,7 @@ expression: file
               "Message": "SearchAsYouTypeProperty"
             }
           },
-          "tag": 141
+          "number": 141
         },
         {
           "name": "semantic_text",
@@ -393,7 +393,7 @@ expression: file
               "Message": "SemanticTextProperty"
             }
           },
-          "tag": 142
+          "number": 142
         },
         {
           "name": "shape",
@@ -402,7 +402,7 @@ expression: file
               "Message": "ShapeProperty"
             }
           },
-          "tag": 143
+          "number": 143
         },
         {
           "name": "short",
@@ -411,7 +411,7 @@ expression: file
               "Message": "ShortNumberProperty"
             }
           },
-          "tag": 144
+          "number": 144
         },
         {
           "name": "sparse_vector",
@@ -420,7 +420,7 @@ expression: file
               "Message": "SparseVectorProperty"
             }
           },
-          "tag": 145
+          "number": 145
         },
         {
           "name": "text",
@@ -429,7 +429,7 @@ expression: file
               "Message": "TextProperty"
             }
           },
-          "tag": 146
+          "number": 146
         },
         {
           "name": "token_count",
@@ -438,7 +438,7 @@ expression: file
               "Message": "TokenCountProperty"
             }
           },
-          "tag": 147
+          "number": 147
         },
         {
           "name": "unsigned_long",
@@ -447,7 +447,7 @@ expression: file
               "Message": "UnsignedLongNumberProperty"
             }
           },
-          "tag": 148
+          "number": 148
         },
         {
           "name": "version",
@@ -456,7 +456,7 @@ expression: file
               "Message": "VersionProperty"
             }
           },
-          "tag": 149
+          "number": 149
         },
         {
           "name": "wildcard",
@@ -465,7 +465,7 @@ expression: file
               "Message": "WildcardProperty"
             }
           },
-          "tag": 150
+          "number": 150
         }
       ],
       "reserved": []
@@ -482,7 +482,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "dynamic",
@@ -491,7 +491,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "fields",
@@ -500,7 +500,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "ignore_above",
@@ -509,7 +509,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "ignore_malformed",
@@ -518,7 +518,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "meta",
@@ -530,7 +530,7 @@ expression: file
               }
             ]
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "metrics",
@@ -539,7 +539,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "properties",
@@ -548,7 +548,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "synthetic_source_keep",
@@ -557,7 +557,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "time_series_metric",
@@ -566,7 +566,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 10
+          "number": 10
         }
       ],
       "reserved": []
@@ -581,7 +581,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "doc_values",
@@ -590,7 +590,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "dynamic",
@@ -599,7 +599,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "fields",
@@ -608,7 +608,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "ignore_above",
@@ -617,7 +617,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "meta",
@@ -629,7 +629,7 @@ expression: file
               }
             ]
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "properties",
@@ -638,7 +638,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "store",
@@ -647,7 +647,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "synthetic_source_keep",
@@ -656,7 +656,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 9
+          "number": 9
         }
       ],
       "reserved": []
@@ -671,7 +671,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "copy_to",
@@ -680,7 +680,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "doc_values",
@@ -689,7 +689,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "dynamic",
@@ -698,7 +698,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "fielddata",
@@ -707,7 +707,7 @@ expression: file
               "Message": "NumericFielddata"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "fields",
@@ -716,7 +716,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_above",
@@ -725,7 +725,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "ignore_malformed",
@@ -734,7 +734,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "index",
@@ -743,7 +743,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "meta",
@@ -755,7 +755,7 @@ expression: file
               }
             ]
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "null_value",
@@ -764,7 +764,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "on_script_error",
@@ -773,7 +773,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "properties",
@@ -782,7 +782,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "script",
@@ -791,7 +791,7 @@ expression: file
               "Message": "Script"
             }
           },
-          "tag": 14
+          "number": 14
         },
         {
           "name": "store",
@@ -800,7 +800,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 15
+          "number": 15
         },
         {
           "name": "synthetic_source_keep",
@@ -809,7 +809,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 16
+          "number": 16
         },
         {
           "name": "time_series_dimension",
@@ -818,7 +818,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 17
+          "number": 17
         }
       ],
       "reserved": []
@@ -833,7 +833,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "coerce",
@@ -842,7 +842,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "copy_to",
@@ -851,7 +851,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "doc_values",
@@ -860,7 +860,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "dynamic",
@@ -869,7 +869,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "fields",
@@ -878,7 +878,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_above",
@@ -887,7 +887,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "ignore_malformed",
@@ -896,7 +896,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "index",
@@ -905,7 +905,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "meta",
@@ -917,7 +917,7 @@ expression: file
               }
             ]
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "null_value",
@@ -926,7 +926,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "on_script_error",
@@ -935,7 +935,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "properties",
@@ -944,7 +944,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "script",
@@ -953,7 +953,7 @@ expression: file
               "Message": "Script"
             }
           },
-          "tag": 14
+          "number": 14
         },
         {
           "name": "store",
@@ -962,7 +962,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 15
+          "number": 15
         },
         {
           "name": "synthetic_source_keep",
@@ -971,7 +971,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 16
+          "number": 16
         },
         {
           "name": "time_series_dimension",
@@ -980,7 +980,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 17
+          "number": 17
         },
         {
           "name": "time_series_metric",
@@ -989,7 +989,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 18
+          "number": 18
         }
       ],
       "reserved": []
@@ -1004,7 +1004,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "overlap",
@@ -1013,7 +1013,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "sentence_overlap",
@@ -1022,7 +1022,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "strategy",
@@ -1031,7 +1031,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 4
+          "number": 4
         }
       ],
       "reserved": []
@@ -1046,7 +1046,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "contexts",
@@ -1055,7 +1055,7 @@ expression: file
               "Message": "SuggestContext"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "copy_to",
@@ -1064,7 +1064,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "doc_values",
@@ -1073,7 +1073,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "dynamic",
@@ -1082,7 +1082,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "fields",
@@ -1091,7 +1091,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_above",
@@ -1100,7 +1100,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "max_input_length",
@@ -1109,7 +1109,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "meta",
@@ -1121,7 +1121,7 @@ expression: file
               }
             ]
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "preserve_position_increments",
@@ -1130,7 +1130,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "preserve_separators",
@@ -1139,7 +1139,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "properties",
@@ -1148,7 +1148,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "search_analyzer",
@@ -1157,7 +1157,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "store",
@@ -1166,7 +1166,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 14
+          "number": 14
         },
         {
           "name": "synthetic_source_keep",
@@ -1175,7 +1175,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 15
+          "number": 15
         }
       ],
       "reserved": []
@@ -1190,7 +1190,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "fields",
@@ -1199,7 +1199,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "ignore_above",
@@ -1208,7 +1208,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "meta",
@@ -1220,7 +1220,7 @@ expression: file
               }
             ]
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "properties",
@@ -1229,7 +1229,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "synthetic_source_keep",
@@ -1238,7 +1238,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "value",
@@ -1247,7 +1247,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 7
+          "number": 7
         }
       ],
       "reserved": []
@@ -1262,7 +1262,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "fields",
@@ -1271,7 +1271,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "ignore_above",
@@ -1280,7 +1280,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "index",
@@ -1289,7 +1289,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "meta",
@@ -1301,7 +1301,7 @@ expression: file
               }
             ]
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "properties",
@@ -1310,7 +1310,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "synthetic_source_keep",
@@ -1319,7 +1319,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 7
+          "number": 7
         }
       ],
       "reserved": []
@@ -1334,7 +1334,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "copy_to",
@@ -1343,7 +1343,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "doc_values",
@@ -1352,7 +1352,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "dynamic",
@@ -1361,7 +1361,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "fields",
@@ -1370,7 +1370,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "format",
@@ -1379,7 +1379,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_above",
@@ -1388,7 +1388,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "ignore_malformed",
@@ -1397,7 +1397,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "index",
@@ -1406,7 +1406,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "meta",
@@ -1418,7 +1418,7 @@ expression: file
               }
             ]
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "null_value",
@@ -1427,7 +1427,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "on_script_error",
@@ -1436,7 +1436,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "precision_step",
@@ -1445,7 +1445,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "properties",
@@ -1454,7 +1454,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 14
+          "number": 14
         },
         {
           "name": "script",
@@ -1463,7 +1463,7 @@ expression: file
               "Message": "Script"
             }
           },
-          "tag": 15
+          "number": 15
         },
         {
           "name": "store",
@@ -1472,7 +1472,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 16
+          "number": 16
         },
         {
           "name": "synthetic_source_keep",
@@ -1481,7 +1481,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 17
+          "number": 17
         }
       ],
       "reserved": []
@@ -1496,7 +1496,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "copy_to",
@@ -1505,7 +1505,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "doc_values",
@@ -1514,7 +1514,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "dynamic",
@@ -1523,7 +1523,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "fielddata",
@@ -1532,7 +1532,7 @@ expression: file
               "Message": "NumericFielddata"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "fields",
@@ -1541,7 +1541,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "format",
@@ -1550,7 +1550,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "ignore_above",
@@ -1559,7 +1559,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "ignore_malformed",
@@ -1568,7 +1568,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "index",
@@ -1577,7 +1577,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "locale",
@@ -1586,7 +1586,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "meta",
@@ -1598,7 +1598,7 @@ expression: file
               }
             ]
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "null_value",
@@ -1607,7 +1607,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "on_script_error",
@@ -1616,7 +1616,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 14
+          "number": 14
         },
         {
           "name": "precision_step",
@@ -1625,7 +1625,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 15
+          "number": 15
         },
         {
           "name": "properties",
@@ -1634,7 +1634,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 16
+          "number": 16
         },
         {
           "name": "script",
@@ -1643,7 +1643,7 @@ expression: file
               "Message": "Script"
             }
           },
-          "tag": 17
+          "number": 17
         },
         {
           "name": "store",
@@ -1652,7 +1652,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 18
+          "number": 18
         },
         {
           "name": "synthetic_source_keep",
@@ -1661,7 +1661,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 19
+          "number": 19
         }
       ],
       "reserved": []
@@ -1676,7 +1676,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "coerce",
@@ -1685,7 +1685,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "copy_to",
@@ -1694,7 +1694,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "doc_values",
@@ -1703,7 +1703,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "dynamic",
@@ -1712,7 +1712,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "fields",
@@ -1721,7 +1721,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "format",
@@ -1730,7 +1730,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "ignore_above",
@@ -1739,7 +1739,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "index",
@@ -1748,7 +1748,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "meta",
@@ -1760,7 +1760,7 @@ expression: file
               }
             ]
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "properties",
@@ -1769,7 +1769,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "store",
@@ -1778,7 +1778,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "synthetic_source_keep",
@@ -1787,7 +1787,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 13
+          "number": 13
         }
       ],
       "reserved": []
@@ -1802,7 +1802,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "ef_construction",
@@ -1811,7 +1811,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "m",
@@ -1820,7 +1820,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "type",
@@ -1829,7 +1829,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 4
+          "number": 4
         }
       ],
       "reserved": []
@@ -1844,7 +1844,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "dynamic",
@@ -1853,7 +1853,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "element_type",
@@ -1862,7 +1862,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "fields",
@@ -1871,7 +1871,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "ignore_above",
@@ -1880,7 +1880,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "index",
@@ -1889,7 +1889,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "index_options",
@@ -1898,7 +1898,7 @@ expression: file
               "Message": "DenseVectorIndexOptions"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "meta",
@@ -1910,7 +1910,7 @@ expression: file
               }
             ]
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "properties",
@@ -1919,7 +1919,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "similarity",
@@ -1928,7 +1928,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "synthetic_source_keep",
@@ -1937,7 +1937,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 11
+          "number": 11
         }
       ],
       "reserved": []
@@ -1952,7 +1952,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "coerce",
@@ -1961,7 +1961,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "copy_to",
@@ -1970,7 +1970,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "doc_values",
@@ -1979,7 +1979,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "dynamic",
@@ -1988,7 +1988,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "fields",
@@ -1997,7 +1997,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_above",
@@ -2006,7 +2006,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "ignore_malformed",
@@ -2015,7 +2015,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "index",
@@ -2024,7 +2024,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "meta",
@@ -2036,7 +2036,7 @@ expression: file
               }
             ]
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "null_value",
@@ -2045,7 +2045,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "on_script_error",
@@ -2054,7 +2054,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "properties",
@@ -2063,7 +2063,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "script",
@@ -2072,7 +2072,7 @@ expression: file
               "Message": "Script"
             }
           },
-          "tag": 14
+          "number": 14
         },
         {
           "name": "store",
@@ -2081,7 +2081,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 15
+          "number": 15
         },
         {
           "name": "synthetic_source_keep",
@@ -2090,7 +2090,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 16
+          "number": 16
         },
         {
           "name": "time_series_dimension",
@@ -2099,7 +2099,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 17
+          "number": 17
         },
         {
           "name": "time_series_metric",
@@ -2108,7 +2108,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 18
+          "number": 18
         }
       ],
       "reserved": []
@@ -2123,7 +2123,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "coerce",
@@ -2132,7 +2132,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "copy_to",
@@ -2141,7 +2141,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "doc_values",
@@ -2150,7 +2150,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "dynamic",
@@ -2159,7 +2159,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "fields",
@@ -2168,7 +2168,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_above",
@@ -2177,7 +2177,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "index",
@@ -2186,7 +2186,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "meta",
@@ -2198,7 +2198,7 @@ expression: file
               }
             ]
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "properties",
@@ -2207,7 +2207,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "store",
@@ -2216,7 +2216,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "synthetic_source_keep",
@@ -2225,7 +2225,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 12
+          "number": 12
         }
       ],
       "reserved": []
@@ -2240,7 +2240,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "fields",
@@ -2249,7 +2249,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "ignore_above",
@@ -2258,7 +2258,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "meta",
@@ -2270,7 +2270,7 @@ expression: file
               }
             ]
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "path",
@@ -2279,7 +2279,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "properties",
@@ -2288,7 +2288,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "synthetic_source_keep",
@@ -2297,7 +2297,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 7
+          "number": 7
         }
       ],
       "reserved": []
@@ -2312,7 +2312,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "min",
@@ -2321,7 +2321,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "min_segment_size",
@@ -2330,7 +2330,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 3
+          "number": 3
         }
       ],
       "reserved": []
@@ -2345,7 +2345,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "depth_limit",
@@ -2354,7 +2354,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "doc_values",
@@ -2363,7 +2363,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "dynamic",
@@ -2372,7 +2372,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "eager_global_ordinals",
@@ -2381,7 +2381,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "fields",
@@ -2390,7 +2390,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_above",
@@ -2399,7 +2399,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "index",
@@ -2408,7 +2408,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "index_options",
@@ -2417,7 +2417,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "meta",
@@ -2429,7 +2429,7 @@ expression: file
               }
             ]
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "null_value",
@@ -2438,7 +2438,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "properties",
@@ -2447,7 +2447,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "similarity",
@@ -2456,7 +2456,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "split_queries_on_whitespace",
@@ -2465,7 +2465,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 14
+          "number": 14
         },
         {
           "name": "synthetic_source_keep",
@@ -2474,7 +2474,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 15
+          "number": 15
         },
         {
           "name": "time_series_dimensions",
@@ -2483,7 +2483,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 16
+          "number": 16
         }
       ],
       "reserved": []
@@ -2498,7 +2498,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "coerce",
@@ -2507,7 +2507,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "copy_to",
@@ -2516,7 +2516,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "doc_values",
@@ -2525,7 +2525,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "dynamic",
@@ -2534,7 +2534,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "fields",
@@ -2543,7 +2543,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_above",
@@ -2552,7 +2552,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "ignore_malformed",
@@ -2561,7 +2561,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "index",
@@ -2570,7 +2570,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "meta",
@@ -2582,7 +2582,7 @@ expression: file
               }
             ]
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "null_value",
@@ -2591,7 +2591,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "on_script_error",
@@ -2600,7 +2600,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "properties",
@@ -2609,7 +2609,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "script",
@@ -2618,7 +2618,7 @@ expression: file
               "Message": "Script"
             }
           },
-          "tag": 14
+          "number": 14
         },
         {
           "name": "store",
@@ -2627,7 +2627,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 15
+          "number": 15
         },
         {
           "name": "synthetic_source_keep",
@@ -2636,7 +2636,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 16
+          "number": 16
         },
         {
           "name": "time_series_dimension",
@@ -2645,7 +2645,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 17
+          "number": 17
         },
         {
           "name": "time_series_metric",
@@ -2654,7 +2654,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 18
+          "number": 18
         }
       ],
       "reserved": []
@@ -2669,7 +2669,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "coerce",
@@ -2678,7 +2678,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "copy_to",
@@ -2687,7 +2687,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "doc_values",
@@ -2696,7 +2696,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "dynamic",
@@ -2705,7 +2705,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "fields",
@@ -2714,7 +2714,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_above",
@@ -2723,7 +2723,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "index",
@@ -2732,7 +2732,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "meta",
@@ -2744,7 +2744,7 @@ expression: file
               }
             ]
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "properties",
@@ -2753,7 +2753,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "store",
@@ -2762,7 +2762,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "synthetic_source_keep",
@@ -2771,7 +2771,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 12
+          "number": 12
         }
       ],
       "reserved": []
@@ -2786,7 +2786,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "doc_values",
@@ -2795,7 +2795,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "dynamic",
@@ -2804,7 +2804,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "fields",
@@ -2813,7 +2813,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "ignore_above",
@@ -2822,7 +2822,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "ignore_malformed",
@@ -2831,7 +2831,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_z_value",
@@ -2840,7 +2840,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "index",
@@ -2849,7 +2849,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "meta",
@@ -2861,7 +2861,7 @@ expression: file
               }
             ]
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "null_value",
@@ -2870,7 +2870,7 @@ expression: file
               "Message": "LatLonGeoLocation"
             }
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "on_script_error",
@@ -2879,7 +2879,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "properties",
@@ -2888,7 +2888,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "script",
@@ -2897,7 +2897,7 @@ expression: file
               "Message": "Script"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "store",
@@ -2906,7 +2906,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 14
+          "number": 14
         },
         {
           "name": "synthetic_source_keep",
@@ -2915,7 +2915,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 15
+          "number": 15
         },
         {
           "name": "time_series_metric",
@@ -2924,7 +2924,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 16
+          "number": 16
         }
       ],
       "reserved": []
@@ -2939,7 +2939,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "copy_to",
@@ -2948,7 +2948,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "doc_values",
@@ -2957,7 +2957,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "dynamic",
@@ -2966,7 +2966,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "fields",
@@ -2975,7 +2975,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "ignore_above",
@@ -2984,7 +2984,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_malformed",
@@ -2993,7 +2993,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "ignore_z_value",
@@ -3002,7 +3002,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "index",
@@ -3011,7 +3011,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "meta",
@@ -3023,7 +3023,7 @@ expression: file
               }
             ]
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "orientation",
@@ -3032,7 +3032,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "properties",
@@ -3041,7 +3041,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "store",
@@ -3050,7 +3050,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "strategy",
@@ -3059,7 +3059,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 14
+          "number": 14
         },
         {
           "name": "synthetic_source_keep",
@@ -3068,7 +3068,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 15
+          "number": 15
         }
       ],
       "reserved": []
@@ -3083,7 +3083,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "coerce",
@@ -3092,7 +3092,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "copy_to",
@@ -3101,7 +3101,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "doc_values",
@@ -3110,7 +3110,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "dynamic",
@@ -3119,7 +3119,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "fields",
@@ -3128,7 +3128,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_above",
@@ -3137,7 +3137,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "ignore_malformed",
@@ -3146,7 +3146,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "index",
@@ -3155,7 +3155,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "meta",
@@ -3167,7 +3167,7 @@ expression: file
               }
             ]
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "null_value",
@@ -3176,7 +3176,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "on_script_error",
@@ -3185,7 +3185,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "properties",
@@ -3194,7 +3194,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "script",
@@ -3203,7 +3203,7 @@ expression: file
               "Message": "Script"
             }
           },
-          "tag": 14
+          "number": 14
         },
         {
           "name": "store",
@@ -3212,7 +3212,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 15
+          "number": 15
         },
         {
           "name": "synthetic_source_keep",
@@ -3221,7 +3221,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 16
+          "number": 16
         },
         {
           "name": "time_series_dimension",
@@ -3230,7 +3230,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 17
+          "number": 17
         },
         {
           "name": "time_series_metric",
@@ -3239,7 +3239,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 18
+          "number": 18
         }
       ],
       "reserved": []
@@ -3254,7 +3254,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "fields",
@@ -3263,7 +3263,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "ignore_above",
@@ -3272,7 +3272,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "ignore_malformed",
@@ -3281,7 +3281,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "meta",
@@ -3293,7 +3293,7 @@ expression: file
               }
             ]
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "properties",
@@ -3302,7 +3302,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "synthetic_source_keep",
@@ -3311,7 +3311,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 7
+          "number": 7
         }
       ],
       "reserved": []
@@ -3326,7 +3326,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "case_first",
@@ -3335,7 +3335,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "case_level",
@@ -3344,7 +3344,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "copy_to",
@@ -3353,7 +3353,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "country",
@@ -3362,7 +3362,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "decomposition",
@@ -3371,7 +3371,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "doc_values",
@@ -3380,7 +3380,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "dynamic",
@@ -3389,7 +3389,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "fields",
@@ -3398,7 +3398,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "hiragana_quaternary_mode",
@@ -3407,7 +3407,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "ignore_above",
@@ -3416,7 +3416,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "index",
@@ -3425,7 +3425,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "index_options",
@@ -3434,7 +3434,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "language",
@@ -3443,7 +3443,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 14
+          "number": 14
         },
         {
           "name": "meta",
@@ -3455,7 +3455,7 @@ expression: file
               }
             ]
           },
-          "tag": 15
+          "number": 15
         },
         {
           "name": "norms",
@@ -3464,7 +3464,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 16
+          "number": 16
         },
         {
           "name": "null_value",
@@ -3473,7 +3473,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 17
+          "number": 17
         },
         {
           "name": "numeric",
@@ -3482,7 +3482,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 18
+          "number": 18
         },
         {
           "name": "properties",
@@ -3491,7 +3491,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 19
+          "number": 19
         },
         {
           "name": "rules",
@@ -3500,7 +3500,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 20
+          "number": 20
         },
         {
           "name": "store",
@@ -3509,7 +3509,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 21
+          "number": 21
         },
         {
           "name": "strength",
@@ -3518,7 +3518,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 22
+          "number": 22
         },
         {
           "name": "synthetic_source_keep",
@@ -3527,7 +3527,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 23
+          "number": 23
         },
         {
           "name": "variable_top",
@@ -3536,7 +3536,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 24
+          "number": 24
         },
         {
           "name": "variant",
@@ -3545,7 +3545,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 25
+          "number": 25
         }
       ],
       "reserved": []
@@ -3560,7 +3560,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "coerce",
@@ -3569,7 +3569,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "copy_to",
@@ -3578,7 +3578,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "doc_values",
@@ -3587,7 +3587,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "dynamic",
@@ -3596,7 +3596,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "fields",
@@ -3605,7 +3605,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_above",
@@ -3614,7 +3614,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "ignore_malformed",
@@ -3623,7 +3623,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "index",
@@ -3632,7 +3632,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "meta",
@@ -3644,7 +3644,7 @@ expression: file
               }
             ]
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "null_value",
@@ -3653,7 +3653,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "on_script_error",
@@ -3662,7 +3662,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "properties",
@@ -3671,7 +3671,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "script",
@@ -3680,7 +3680,7 @@ expression: file
               "Message": "Script"
             }
           },
-          "tag": 14
+          "number": 14
         },
         {
           "name": "store",
@@ -3689,7 +3689,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 15
+          "number": 15
         },
         {
           "name": "synthetic_source_keep",
@@ -3698,7 +3698,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 16
+          "number": 16
         },
         {
           "name": "time_series_dimension",
@@ -3707,7 +3707,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 17
+          "number": 17
         },
         {
           "name": "time_series_metric",
@@ -3716,7 +3716,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 18
+          "number": 18
         }
       ],
       "reserved": []
@@ -3731,7 +3731,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "coerce",
@@ -3740,7 +3740,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "copy_to",
@@ -3749,7 +3749,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "doc_values",
@@ -3758,7 +3758,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "dynamic",
@@ -3767,7 +3767,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "fields",
@@ -3776,7 +3776,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_above",
@@ -3785,7 +3785,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "index",
@@ -3794,7 +3794,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "meta",
@@ -3806,7 +3806,7 @@ expression: file
               }
             ]
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "properties",
@@ -3815,7 +3815,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "store",
@@ -3824,7 +3824,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "synthetic_source_keep",
@@ -3833,7 +3833,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 12
+          "number": 12
         }
       ],
       "reserved": []
@@ -3848,7 +3848,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "copy_to",
@@ -3857,7 +3857,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "doc_values",
@@ -3866,7 +3866,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "dynamic",
@@ -3875,7 +3875,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "fields",
@@ -3884,7 +3884,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "ignore_above",
@@ -3893,7 +3893,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_malformed",
@@ -3902,7 +3902,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "index",
@@ -3911,7 +3911,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "meta",
@@ -3923,7 +3923,7 @@ expression: file
               }
             ]
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "null_value",
@@ -3932,7 +3932,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "on_script_error",
@@ -3941,7 +3941,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "properties",
@@ -3950,7 +3950,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "script",
@@ -3959,7 +3959,7 @@ expression: file
               "Message": "Script"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "store",
@@ -3968,7 +3968,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 14
+          "number": 14
         },
         {
           "name": "synthetic_source_keep",
@@ -3977,7 +3977,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 15
+          "number": 15
         },
         {
           "name": "time_series_dimension",
@@ -3986,7 +3986,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 16
+          "number": 16
         }
       ],
       "reserved": []
@@ -4001,7 +4001,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "coerce",
@@ -4010,7 +4010,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "copy_to",
@@ -4019,7 +4019,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "doc_values",
@@ -4028,7 +4028,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "dynamic",
@@ -4037,7 +4037,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "fields",
@@ -4046,7 +4046,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_above",
@@ -4055,7 +4055,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "index",
@@ -4064,7 +4064,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "meta",
@@ -4076,7 +4076,7 @@ expression: file
               }
             ]
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "properties",
@@ -4085,7 +4085,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "store",
@@ -4094,7 +4094,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "synthetic_source_keep",
@@ -4103,7 +4103,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 12
+          "number": 12
         }
       ],
       "reserved": []
@@ -4118,7 +4118,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "eager_global_ordinals",
@@ -4127,7 +4127,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "fields",
@@ -4136,7 +4136,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "ignore_above",
@@ -4145,7 +4145,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "meta",
@@ -4157,7 +4157,7 @@ expression: file
               }
             ]
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "properties",
@@ -4166,7 +4166,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "relations",
@@ -4178,7 +4178,7 @@ expression: file
               }
             ]
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "synthetic_source_keep",
@@ -4187,7 +4187,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 8
+          "number": 8
         }
       ],
       "reserved": []
@@ -4202,7 +4202,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "copy_to",
@@ -4211,7 +4211,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "doc_values",
@@ -4220,7 +4220,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "dynamic",
@@ -4229,7 +4229,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "eager_global_ordinals",
@@ -4238,7 +4238,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "fields",
@@ -4247,7 +4247,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_above",
@@ -4256,7 +4256,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "index",
@@ -4265,7 +4265,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "index_options",
@@ -4274,7 +4274,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "meta",
@@ -4286,7 +4286,7 @@ expression: file
               }
             ]
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "normalizer",
@@ -4295,7 +4295,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "norms",
@@ -4304,7 +4304,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "null_value",
@@ -4313,7 +4313,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "on_script_error",
@@ -4322,7 +4322,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 14
+          "number": 14
         },
         {
           "name": "properties",
@@ -4331,7 +4331,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 15
+          "number": 15
         },
         {
           "name": "script",
@@ -4340,7 +4340,7 @@ expression: file
               "Message": "Script"
             }
           },
-          "tag": 16
+          "number": 16
         },
         {
           "name": "similarity",
@@ -4349,7 +4349,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 17
+          "number": 17
         },
         {
           "name": "split_queries_on_whitespace",
@@ -4358,7 +4358,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 18
+          "number": 18
         },
         {
           "name": "store",
@@ -4367,7 +4367,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 19
+          "number": 19
         },
         {
           "name": "synthetic_source_keep",
@@ -4376,7 +4376,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 20
+          "number": 20
         },
         {
           "name": "time_series_dimension",
@@ -4385,7 +4385,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 21
+          "number": 21
         }
       ],
       "reserved": []
@@ -4400,7 +4400,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "lon",
@@ -4409,7 +4409,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 2
+          "number": 2
         }
       ],
       "reserved": []
@@ -4424,7 +4424,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "coerce",
@@ -4433,7 +4433,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "copy_to",
@@ -4442,7 +4442,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "doc_values",
@@ -4451,7 +4451,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "dynamic",
@@ -4460,7 +4460,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "fields",
@@ -4469,7 +4469,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_above",
@@ -4478,7 +4478,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "ignore_malformed",
@@ -4487,7 +4487,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "index",
@@ -4496,7 +4496,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "meta",
@@ -4508,7 +4508,7 @@ expression: file
               }
             ]
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "null_value",
@@ -4517,7 +4517,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "on_script_error",
@@ -4526,7 +4526,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "properties",
@@ -4535,7 +4535,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "script",
@@ -4544,7 +4544,7 @@ expression: file
               "Message": "Script"
             }
           },
-          "tag": 14
+          "number": 14
         },
         {
           "name": "store",
@@ -4553,7 +4553,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 15
+          "number": 15
         },
         {
           "name": "synthetic_source_keep",
@@ -4562,7 +4562,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 16
+          "number": 16
         },
         {
           "name": "time_series_dimension",
@@ -4571,7 +4571,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 17
+          "number": 17
         },
         {
           "name": "time_series_metric",
@@ -4580,7 +4580,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 18
+          "number": 18
         }
       ],
       "reserved": []
@@ -4595,7 +4595,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "coerce",
@@ -4604,7 +4604,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "copy_to",
@@ -4613,7 +4613,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "doc_values",
@@ -4622,7 +4622,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "dynamic",
@@ -4631,7 +4631,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "fields",
@@ -4640,7 +4640,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_above",
@@ -4649,7 +4649,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "index",
@@ -4658,7 +4658,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "meta",
@@ -4670,7 +4670,7 @@ expression: file
               }
             ]
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "properties",
@@ -4679,7 +4679,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "store",
@@ -4688,7 +4688,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "synthetic_source_keep",
@@ -4697,7 +4697,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 12
+          "number": 12
         }
       ],
       "reserved": []
@@ -4712,7 +4712,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "fields",
@@ -4721,7 +4721,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "meta",
@@ -4733,7 +4733,7 @@ expression: file
               }
             ]
           },
-          "tag": 3
+          "number": 3
         }
       ],
       "reserved": []
@@ -4748,7 +4748,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "doc_values",
@@ -4757,7 +4757,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "dynamic",
@@ -4766,7 +4766,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "fields",
@@ -4775,7 +4775,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "ignore_above",
@@ -4784,7 +4784,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "meta",
@@ -4796,7 +4796,7 @@ expression: file
               }
             ]
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "properties",
@@ -4805,7 +4805,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "store",
@@ -4814,7 +4814,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "synthetic_source_keep",
@@ -4823,7 +4823,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 9
+          "number": 9
         }
       ],
       "reserved": []
@@ -4838,7 +4838,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "dynamic",
@@ -4847,7 +4847,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "enabled",
@@ -4856,7 +4856,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "fields",
@@ -4865,7 +4865,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "ignore_above",
@@ -4874,7 +4874,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "include_in_parent",
@@ -4883,7 +4883,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "include_in_root",
@@ -4892,7 +4892,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "meta",
@@ -4904,7 +4904,7 @@ expression: file
               }
             ]
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "properties",
@@ -4913,7 +4913,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "store",
@@ -4922,7 +4922,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "synthetic_source_keep",
@@ -4931,7 +4931,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 11
+          "number": 11
         }
       ],
       "reserved": []
@@ -4946,7 +4946,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         }
       ],
       "reserved": []
@@ -4961,7 +4961,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "dynamic",
@@ -4970,7 +4970,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "enabled",
@@ -4979,7 +4979,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "fields",
@@ -4988,7 +4988,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "ignore_above",
@@ -4997,7 +4997,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "meta",
@@ -5009,7 +5009,7 @@ expression: file
               }
             ]
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "properties",
@@ -5018,7 +5018,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "store",
@@ -5027,7 +5027,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "subobjects",
@@ -5036,7 +5036,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "synthetic_source_keep",
@@ -5045,7 +5045,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 10
+          "number": 10
         }
       ],
       "reserved": []
@@ -5060,7 +5060,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "dynamic",
@@ -5069,7 +5069,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "enabled",
@@ -5078,7 +5078,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "fields",
@@ -5087,7 +5087,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "ignore_above",
@@ -5096,7 +5096,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "meta",
@@ -5108,7 +5108,7 @@ expression: file
               }
             ]
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "priority",
@@ -5117,7 +5117,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "properties",
@@ -5126,7 +5126,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "store",
@@ -5135,7 +5135,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "synthetic_source_keep",
@@ -5144,7 +5144,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "time_series_dimension",
@@ -5153,7 +5153,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 11
+          "number": 11
         }
       ],
       "reserved": []
@@ -5168,7 +5168,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "fields",
@@ -5177,7 +5177,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "ignore_above",
@@ -5186,7 +5186,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "meta",
@@ -5198,7 +5198,7 @@ expression: file
               }
             ]
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "properties",
@@ -5207,7 +5207,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "synthetic_source_keep",
@@ -5216,7 +5216,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 6
+          "number": 6
         }
       ],
       "reserved": []
@@ -5231,7 +5231,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "doc_values",
@@ -5240,7 +5240,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "dynamic",
@@ -5249,7 +5249,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "fields",
@@ -5258,7 +5258,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "ignore_above",
@@ -5267,7 +5267,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "ignore_malformed",
@@ -5276,7 +5276,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_z_value",
@@ -5285,7 +5285,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "meta",
@@ -5297,7 +5297,7 @@ expression: file
               }
             ]
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "null_value",
@@ -5306,7 +5306,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "properties",
@@ -5315,7 +5315,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "store",
@@ -5324,7 +5324,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "synthetic_source_keep",
@@ -5333,7 +5333,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 12
+          "number": 12
         }
       ],
       "reserved": []
@@ -5348,7 +5348,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "fields",
@@ -5357,7 +5357,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "ignore_above",
@@ -5366,7 +5366,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "meta",
@@ -5378,7 +5378,7 @@ expression: file
               }
             ]
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "positive_score_impact",
@@ -5387,7 +5387,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "properties",
@@ -5396,7 +5396,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "synthetic_source_keep",
@@ -5405,7 +5405,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 7
+          "number": 7
         }
       ],
       "reserved": []
@@ -5420,7 +5420,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "fields",
@@ -5429,7 +5429,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "ignore_above",
@@ -5438,7 +5438,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "meta",
@@ -5450,7 +5450,7 @@ expression: file
               }
             ]
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "positive_score_impact",
@@ -5459,7 +5459,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "properties",
@@ -5468,7 +5468,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "synthetic_source_keep",
@@ -5477,7 +5477,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 7
+          "number": 7
         }
       ],
       "reserved": []
@@ -5492,7 +5492,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "dynamic",
@@ -5501,7 +5501,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "element_type",
@@ -5510,7 +5510,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "fields",
@@ -5519,7 +5519,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "ignore_above",
@@ -5528,7 +5528,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "meta",
@@ -5540,7 +5540,7 @@ expression: file
               }
             ]
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "properties",
@@ -5549,7 +5549,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "synthetic_source_keep",
@@ -5558,7 +5558,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 8
+          "number": 8
         }
       ],
       "reserved": []
@@ -5573,7 +5573,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "coerce",
@@ -5582,7 +5582,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "copy_to",
@@ -5591,7 +5591,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "doc_values",
@@ -5600,7 +5600,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "dynamic",
@@ -5609,7 +5609,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "fields",
@@ -5618,7 +5618,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_above",
@@ -5627,7 +5627,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "ignore_malformed",
@@ -5636,7 +5636,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "index",
@@ -5645,7 +5645,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "meta",
@@ -5657,7 +5657,7 @@ expression: file
               }
             ]
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "null_value",
@@ -5666,7 +5666,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "on_script_error",
@@ -5675,7 +5675,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "properties",
@@ -5684,7 +5684,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "scaling_factor",
@@ -5693,7 +5693,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 14
+          "number": 14
         },
         {
           "name": "script",
@@ -5702,7 +5702,7 @@ expression: file
               "Message": "Script"
             }
           },
-          "tag": 15
+          "number": 15
         },
         {
           "name": "store",
@@ -5711,7 +5711,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 16
+          "number": 16
         },
         {
           "name": "synthetic_source_keep",
@@ -5720,7 +5720,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 17
+          "number": 17
         },
         {
           "name": "time_series_dimension",
@@ -5729,7 +5729,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 18
+          "number": 18
         },
         {
           "name": "time_series_metric",
@@ -5738,7 +5738,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 19
+          "number": 19
         }
       ],
       "reserved": []
@@ -5753,7 +5753,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "lang",
@@ -5762,7 +5762,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "options",
@@ -5774,7 +5774,7 @@ expression: file
               }
             ]
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "params",
@@ -5783,7 +5783,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "source",
@@ -5792,7 +5792,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 5
+          "number": 5
         }
       ],
       "reserved": []
@@ -5807,7 +5807,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "copy_to",
@@ -5816,7 +5816,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "dynamic",
@@ -5825,7 +5825,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "fields",
@@ -5834,7 +5834,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "ignore_above",
@@ -5843,7 +5843,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "index",
@@ -5852,7 +5852,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "index_options",
@@ -5861,7 +5861,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "max_shingle_size",
@@ -5870,7 +5870,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "meta",
@@ -5882,7 +5882,7 @@ expression: file
               }
             ]
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "norms",
@@ -5891,7 +5891,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "properties",
@@ -5900,7 +5900,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "search_analyzer",
@@ -5909,7 +5909,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "search_quote_analyzer",
@@ -5918,7 +5918,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "similarity",
@@ -5927,7 +5927,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 14
+          "number": 14
         },
         {
           "name": "store",
@@ -5936,7 +5936,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 15
+          "number": 15
         },
         {
           "name": "synthetic_source_keep",
@@ -5945,7 +5945,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 16
+          "number": 16
         },
         {
           "name": "term_vector",
@@ -5954,7 +5954,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 17
+          "number": 17
         }
       ],
       "reserved": []
@@ -5969,7 +5969,7 @@ expression: file
               "Message": "DenseVectorIndexOptions"
             }
           },
-          "tag": 1
+          "number": 1
         }
       ],
       "reserved": []
@@ -5984,7 +5984,7 @@ expression: file
               "Message": "ChunkingSettings"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "fields",
@@ -5993,7 +5993,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "index_options",
@@ -6002,7 +6002,7 @@ expression: file
               "Message": "SemanticTextIndexOptions"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "inference_id",
@@ -6011,7 +6011,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "meta",
@@ -6023,7 +6023,7 @@ expression: file
               }
             ]
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "search_inference_id",
@@ -6032,7 +6032,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 6
+          "number": 6
         }
       ],
       "reserved": []
@@ -6047,7 +6047,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "copy_to",
@@ -6056,7 +6056,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "doc_values",
@@ -6065,7 +6065,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "dynamic",
@@ -6074,7 +6074,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "fields",
@@ -6083,7 +6083,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "ignore_above",
@@ -6092,7 +6092,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_malformed",
@@ -6101,7 +6101,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "ignore_z_value",
@@ -6110,7 +6110,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "meta",
@@ -6122,7 +6122,7 @@ expression: file
               }
             ]
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "orientation",
@@ -6131,7 +6131,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "properties",
@@ -6140,7 +6140,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "store",
@@ -6149,7 +6149,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "synthetic_source_keep",
@@ -6158,7 +6158,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 13
+          "number": 13
         }
       ],
       "reserved": []
@@ -6173,7 +6173,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "coerce",
@@ -6182,7 +6182,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "copy_to",
@@ -6191,7 +6191,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "doc_values",
@@ -6200,7 +6200,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "dynamic",
@@ -6209,7 +6209,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "fields",
@@ -6218,7 +6218,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_above",
@@ -6227,7 +6227,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "ignore_malformed",
@@ -6236,7 +6236,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "index",
@@ -6245,7 +6245,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "meta",
@@ -6257,7 +6257,7 @@ expression: file
               }
             ]
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "null_value",
@@ -6266,7 +6266,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "on_script_error",
@@ -6275,7 +6275,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "properties",
@@ -6284,7 +6284,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "script",
@@ -6293,7 +6293,7 @@ expression: file
               "Message": "Script"
             }
           },
-          "tag": 14
+          "number": 14
         },
         {
           "name": "store",
@@ -6302,7 +6302,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 15
+          "number": 15
         },
         {
           "name": "synthetic_source_keep",
@@ -6311,7 +6311,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 16
+          "number": 16
         },
         {
           "name": "time_series_dimension",
@@ -6320,7 +6320,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 17
+          "number": 17
         },
         {
           "name": "time_series_metric",
@@ -6329,7 +6329,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 18
+          "number": 18
         }
       ],
       "reserved": []
@@ -6344,7 +6344,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "pruning_config",
@@ -6353,7 +6353,7 @@ expression: file
               "Message": "TokenPruningConfig"
             }
           },
-          "tag": 2
+          "number": 2
         }
       ],
       "reserved": []
@@ -6368,7 +6368,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "fields",
@@ -6377,7 +6377,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "ignore_above",
@@ -6386,7 +6386,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "index_options",
@@ -6395,7 +6395,7 @@ expression: file
               "Message": "SparseVectorIndexOptions"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "meta",
@@ -6407,7 +6407,7 @@ expression: file
               }
             ]
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "properties",
@@ -6416,7 +6416,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "store",
@@ -6425,7 +6425,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "synthetic_source_keep",
@@ -6434,7 +6434,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 8
+          "number": 8
         }
       ],
       "reserved": []
@@ -6449,7 +6449,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "path",
@@ -6458,7 +6458,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "precision",
@@ -6467,7 +6467,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "type",
@@ -6476,7 +6476,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 4
+          "number": 4
         }
       ],
       "reserved": []
@@ -6491,7 +6491,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "min_chars",
@@ -6500,7 +6500,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 2
+          "number": 2
         }
       ],
       "reserved": []
@@ -6515,7 +6515,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "boost",
@@ -6524,7 +6524,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "copy_to",
@@ -6533,7 +6533,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "dynamic",
@@ -6542,7 +6542,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "eager_global_ordinals",
@@ -6551,7 +6551,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "fielddata",
@@ -6560,7 +6560,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "fielddata_frequency_filter",
@@ -6569,7 +6569,7 @@ expression: file
               "Message": "FielddataFrequencyFilter"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "fields",
@@ -6578,7 +6578,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "ignore_above",
@@ -6587,7 +6587,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "index",
@@ -6596,7 +6596,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "index_options",
@@ -6605,7 +6605,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "index_phrases",
@@ -6614,7 +6614,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "index_prefixes",
@@ -6623,7 +6623,7 @@ expression: file
               "Message": "TextIndexPrefixes"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "meta",
@@ -6635,7 +6635,7 @@ expression: file
               }
             ]
           },
-          "tag": 14
+          "number": 14
         },
         {
           "name": "norms",
@@ -6644,7 +6644,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 15
+          "number": 15
         },
         {
           "name": "position_increment_gap",
@@ -6653,7 +6653,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 16
+          "number": 16
         },
         {
           "name": "properties",
@@ -6662,7 +6662,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 17
+          "number": 17
         },
         {
           "name": "search_analyzer",
@@ -6671,7 +6671,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 18
+          "number": 18
         },
         {
           "name": "search_quote_analyzer",
@@ -6680,7 +6680,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 19
+          "number": 19
         },
         {
           "name": "similarity",
@@ -6689,7 +6689,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 20
+          "number": 20
         },
         {
           "name": "store",
@@ -6698,7 +6698,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 21
+          "number": 21
         },
         {
           "name": "synthetic_source_keep",
@@ -6707,7 +6707,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 22
+          "number": 22
         },
         {
           "name": "term_vector",
@@ -6716,7 +6716,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 23
+          "number": 23
         }
       ],
       "reserved": []
@@ -6731,7 +6731,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "boost",
@@ -6740,7 +6740,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "copy_to",
@@ -6749,7 +6749,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "doc_values",
@@ -6758,7 +6758,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "dynamic",
@@ -6767,7 +6767,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "enable_position_increments",
@@ -6776,7 +6776,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "fields",
@@ -6785,7 +6785,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "ignore_above",
@@ -6794,7 +6794,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "index",
@@ -6803,7 +6803,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "meta",
@@ -6815,7 +6815,7 @@ expression: file
               }
             ]
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "null_value",
@@ -6824,7 +6824,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "properties",
@@ -6833,7 +6833,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "store",
@@ -6842,7 +6842,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "synthetic_source_keep",
@@ -6851,7 +6851,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 14
+          "number": 14
         }
       ],
       "reserved": []
@@ -6866,7 +6866,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "tokens_freq_ratio_threshold",
@@ -6875,7 +6875,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "tokens_weight_threshold",
@@ -6884,7 +6884,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 3
+          "number": 3
         }
       ],
       "reserved": []
@@ -6899,7 +6899,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "coerce",
@@ -6908,7 +6908,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "copy_to",
@@ -6917,7 +6917,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "doc_values",
@@ -6926,7 +6926,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "dynamic",
@@ -6935,7 +6935,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "fields",
@@ -6944,7 +6944,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "ignore_above",
@@ -6953,7 +6953,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "ignore_malformed",
@@ -6962,7 +6962,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "index",
@@ -6971,7 +6971,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "meta",
@@ -6983,7 +6983,7 @@ expression: file
               }
             ]
           },
-          "tag": 10
+          "number": 10
         },
         {
           "name": "null_value",
@@ -6992,7 +6992,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 11
+          "number": 11
         },
         {
           "name": "on_script_error",
@@ -7001,7 +7001,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 12
+          "number": 12
         },
         {
           "name": "properties",
@@ -7010,7 +7010,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 13
+          "number": 13
         },
         {
           "name": "script",
@@ -7019,7 +7019,7 @@ expression: file
               "Message": "Script"
             }
           },
-          "tag": 14
+          "number": 14
         },
         {
           "name": "store",
@@ -7028,7 +7028,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 15
+          "number": 15
         },
         {
           "name": "synthetic_source_keep",
@@ -7037,7 +7037,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 16
+          "number": 16
         },
         {
           "name": "time_series_dimension",
@@ -7046,7 +7046,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 17
+          "number": 17
         },
         {
           "name": "time_series_metric",
@@ -7055,7 +7055,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 18
+          "number": 18
         }
       ],
       "reserved": []
@@ -7070,7 +7070,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "doc_values",
@@ -7079,7 +7079,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "dynamic",
@@ -7088,7 +7088,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "fields",
@@ -7097,7 +7097,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "ignore_above",
@@ -7106,7 +7106,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "meta",
@@ -7118,7 +7118,7 @@ expression: file
               }
             ]
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "properties",
@@ -7127,7 +7127,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "store",
@@ -7136,7 +7136,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "synthetic_source_keep",
@@ -7145,7 +7145,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 9
+          "number": 9
         }
       ],
       "reserved": []
@@ -7160,7 +7160,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 1
+          "number": 1
         },
         {
           "name": "doc_values",
@@ -7169,7 +7169,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 2
+          "number": 2
         },
         {
           "name": "dynamic",
@@ -7178,7 +7178,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 3
+          "number": 3
         },
         {
           "name": "fields",
@@ -7187,7 +7187,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 4
+          "number": 4
         },
         {
           "name": "ignore_above",
@@ -7196,7 +7196,7 @@ expression: file
               "Scalar": "Double"
             }
           },
-          "tag": 5
+          "number": 5
         },
         {
           "name": "meta",
@@ -7208,7 +7208,7 @@ expression: file
               }
             ]
           },
-          "tag": 6
+          "number": 6
         },
         {
           "name": "null_value",
@@ -7217,7 +7217,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 7
+          "number": 7
         },
         {
           "name": "properties",
@@ -7226,7 +7226,7 @@ expression: file
               "Message": "google.protobuf.Struct"
             }
           },
-          "tag": 8
+          "number": 8
         },
         {
           "name": "store",
@@ -7235,7 +7235,7 @@ expression: file
               "Scalar": "Bool"
             }
           },
-          "tag": 9
+          "number": 9
         },
         {
           "name": "synthetic_source_keep",
@@ -7244,7 +7244,7 @@ expression: file
               "Scalar": "String"
             }
           },
-          "tag": 10
+          "number": 10
         }
       ],
       "reserved": []

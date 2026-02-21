@@ -3,9 +3,9 @@ use std::fs;
 use clap::Parser;
 use openapiv3::OpenAPI;
 
-use protosearch::cli;
-use protosearch::proto;
-use protosearch::spec;
+use protosearch_gen::cli;
+use protosearch_gen::proto;
+use protosearch_gen::spec;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args = cli::Args::parse();
@@ -14,27 +14,27 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             package,
             input,
             output,
-            proto,
-            tag_offset,
+            existing,
+            number_offset,
         } => {
             let reader = input.clone().into_reader()?;
-            let spec: spec::Spec = serde_json::from_reader(reader)?;
-            let file = match proto {
+            let spec: spec::MappingSpec = serde_json::from_reader(reader)?;
+            let mut file = match existing {
                 Some(path) => {
                     let mut file: proto::File = serde_json::from_reader(fs::File::open(path)?)?;
                     file.package = package.to_string();
-                    protosearch::compile_into(&spec, &mut file, *tag_offset)?;
                     file
                 }
-                None => protosearch::compile(package, &spec, *tag_offset)?,
+                None => proto::File::new(package),
             };
+            protosearch_gen::compile_into(&spec, Some(&mut file), *number_offset)?;
             let mut writer = output.clone().into_writer()?;
             serde_json::to_writer_pretty(&mut writer, &file)?;
         }
         cli::Command::Extract { input, output } => {
             let reader = input.clone().into_reader()?;
             let openapi: OpenAPI = serde_json::from_reader(reader)?;
-            let spec = protosearch::extract(&openapi)?;
+            let spec = protosearch_gen::extract(&openapi)?;
             let mut writer = output.clone().into_writer()?;
             serde_json::to_writer_pretty(&mut writer, &spec)?;
         }
@@ -42,7 +42,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             let reader = input.clone().into_reader()?;
             let file: proto::File = serde_json::from_reader(reader)?;
             let mut writer = output.clone().into_writer()?;
-            protosearch::render(&mut writer, &file)?;
+            protosearch_gen::render(&mut writer, &file)?;
         }
     }
     Ok(())

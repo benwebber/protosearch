@@ -1,5 +1,5 @@
 ---
-source: src/lib.rs
+source: crates/protosearch-gen/src/lib.rs
 expression: "String :: from_utf8(buf).unwrap()"
 ---
 syntax = "proto2";
