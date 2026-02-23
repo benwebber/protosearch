@@ -1,0 +1,14 @@
+---
+source: crates/protosearch-plugin/src/lib.rs
+expression: "output_for(& resp, \"tests.NullFielddataCase\")"
+---
+{
+  "tests.NullFielddataCase.json": {
+    "properties": {
+      "field": {
+        "fielddata": null,
+        "type": "text"
+      }
+    }
+  }
+}

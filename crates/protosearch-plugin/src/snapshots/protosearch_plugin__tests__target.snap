@@ -1,0 +1,46 @@
+---
+source: crates/protosearch-plugin/src/lib.rs
+expression: "output_for(& resp, \"tests.TestCase\")"
+---
+{
+  "tests.TestCase.json": {
+    "properties": {
+      "bar": {
+        "analyzer": "english",
+        "coerce": true,
+        "copy_to": "copy_field",
+        "doc_values": true,
+        "dynamic": "strict",
+        "eager_global_ordinals": true,
+        "enabled": true,
+        "fielddata": true,
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        },
+        "format": "yyyy-MM-dd",
+        "ignore_above": 256,
+        "ignore_malformed": false,
+        "index": true,
+        "index_options": "positions",
+        "meta": {
+          "unit": "ms"
+        },
+        "normalizer": "lowercase",
+        "norms": true,
+        "null_value": "NULL",
+        "position_increment_gap": 100,
+        "search_analyzer": "english",
+        "similarity": "BM25",
+        "store": true,
+        "subobjects": false,
+        "term_vector": "with_positions",
+        "type": "text"
+      },
+      "test_field_with_target_json": {
+        "type": "keyword"
+      }
+    }
+  }
+}

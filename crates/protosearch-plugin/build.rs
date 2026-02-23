@@ -4,13 +4,29 @@ use std::path::PathBuf;
 fn main() {
     let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
     let proto_dir = PathBuf::from("../../proto");
+    let protoc = protoc_bin_vendored::protoc_bin_path().unwrap();
 
     println!("cargo:rerun-if-changed={}", proto_dir.to_str().unwrap());
 
-    // Use protoc directly through a Command to generate a descriptor set.
-    // This is more reliable than fighting with protobuf-codegen's wrapper
-    // which insists on generating .rs files.
-    let protoc = protoc_bin_vendored::protoc_bin_path().unwrap();
+    protobuf_codegen::Codegen::new()
+        .protoc()
+        .protoc_path(&protoc)
+        .include(&proto_dir)
+        .input(proto_dir.join("protosearch/protosearch.proto"))
+        .cargo_out_dir("proto")
+        .run_from_script();
+
+    // The generated code includes inner attributes that can't be used inside `include!`.
+    // We either need to strip the attributes or output the file to `src/` directly.
+    // <https://github.com/rust-lang/rust/issues/117464>
+    let generated = std::fs::read_to_string(out_dir.join("proto/protosearch.rs")).unwrap();
+    let stripped: String = generated
+        .lines()
+        .filter(|line| !line.starts_with("#![") && !line.starts_with("//!"))
+        .flat_map(|line| [line, "\n"])
+        .collect();
+    std::fs::write(out_dir.join("protosearch.rs"), stripped).unwrap();
+
     let status = std::process::Command::new(protoc)
         .arg("-I")
         .arg(&proto_dir)
@@ -21,7 +37,6 @@ fn main() {
         .arg(proto_dir.join("tests/tests.proto"))
         .status()
         .expect("failed to execute protoc");
-
     if !status.success() {
         panic!("protoc failed with status {}", status);
     }

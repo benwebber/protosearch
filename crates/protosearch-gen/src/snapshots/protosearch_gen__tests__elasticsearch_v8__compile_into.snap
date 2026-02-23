@@ -3,10 +3,10 @@ source: crates/protosearch-gen/src/lib.rs
 expression: file
 ---
 {
-  "package": "protosearch.es.v8",
+  "package": "protosearch.elasticsearch",
   "extensions": [
     {
-      "name": "protosearch.FieldMappingOptions",
+      "name": "protosearch.MappingOptions",
       "fields": [
         {
           "name": "aggregate_metric_double",
@@ -15,7 +15,7 @@ expression: file
               "Message": "AggregateMetricDoubleProperty"
             }
           },
-          "number": 100
+          "number": 1000
         },
         {
           "name": "alias",
@@ -24,7 +24,7 @@ expression: file
               "Message": "FieldAliasProperty"
             }
           },
-          "number": 101
+          "number": 1001
         },
         {
           "name": "binary",
@@ -33,7 +33,7 @@ expression: file
               "Message": "BinaryProperty"
             }
           },
-          "number": 102
+          "number": 1002
         },
         {
           "name": "boolean",
@@ -42,7 +42,7 @@ expression: file
               "Message": "BooleanProperty"
             }
           },
-          "number": 103
+          "number": 1003
         },
         {
           "name": "byte",
@@ -51,7 +51,7 @@ expression: file
               "Message": "ByteNumberProperty"
             }
           },
-          "number": 104
+          "number": 1004
         },
         {
           "name": "completion",
@@ -60,7 +60,7 @@ expression: file
               "Message": "CompletionProperty"
             }
           },
-          "number": 105
+          "number": 1005
         },
         {
           "name": "constant_keyword",
@@ -69,7 +69,7 @@ expression: file
               "Message": "ConstantKeywordProperty"
             }
           },
-          "number": 106
+          "number": 1006
         },
         {
           "name": "counted_keyword",
@@ -78,7 +78,7 @@ expression: file
               "Message": "CountedKeywordProperty"
             }
           },
-          "number": 107
+          "number": 1007
         },
         {
           "name": "date",
@@ -87,7 +87,7 @@ expression: file
               "Message": "DateProperty"
             }
           },
-          "number": 108
+          "number": 1008
         },
         {
           "name": "date_nanos",
@@ -96,7 +96,7 @@ expression: file
               "Message": "DateNanosProperty"
             }
           },
-          "number": 109
+          "number": 1009
         },
         {
           "name": "date_range",
@@ -105,7 +105,7 @@ expression: file
               "Message": "DateRangeProperty"
             }
           },
-          "number": 110
+          "number": 1010
         },
         {
           "name": "dense_vector",
@@ -114,7 +114,7 @@ expression: file
               "Message": "DenseVectorProperty"
             }
           },
-          "number": 111
+          "number": 1011
         },
         {
           "name": "double",
@@ -123,7 +123,7 @@ expression: file
               "Message": "DoubleNumberProperty"
             }
           },
-          "number": 112
+          "number": 1012
         },
         {
           "name": "double_range",
@@ -132,7 +132,7 @@ expression: file
               "Message": "DoubleRangeProperty"
             }
           },
-          "number": 113
+          "number": 1013
         },
         {
           "name": "flattened",
@@ -141,7 +141,7 @@ expression: file
               "Message": "FlattenedProperty"
             }
           },
-          "number": 114
+          "number": 1014
         },
         {
           "name": "float",
@@ -150,7 +150,7 @@ expression: file
               "Message": "FloatNumberProperty"
             }
           },
-          "number": 115
+          "number": 1015
         },
         {
           "name": "float_range",
@@ -159,7 +159,7 @@ expression: file
               "Message": "FloatRangeProperty"
             }
           },
-          "number": 116
+          "number": 1016
         },
         {
           "name": "geo_point",
@@ -168,7 +168,7 @@ expression: file
               "Message": "GeoPointProperty"
             }
           },
-          "number": 117
+          "number": 1017
         },
         {
           "name": "geo_shape",
@@ -177,7 +177,7 @@ expression: file
               "Message": "GeoShapeProperty"
             }
           },
-          "number": 118
+          "number": 1018
         },
         {
           "name": "half_float",
@@ -186,7 +186,7 @@ expression: file
               "Message": "HalfFloatNumberProperty"
             }
           },
-          "number": 119
+          "number": 1019
         },
         {
           "name": "histogram",
@@ -195,7 +195,7 @@ expression: file
               "Message": "HistogramProperty"
             }
           },
-          "number": 120
+          "number": 1020
         },
         {
           "name": "icu_collation_keyword",
@@ -204,7 +204,7 @@ expression: file
               "Message": "IcuCollationProperty"
             }
           },
-          "number": 121
+          "number": 1021
         },
         {
           "name": "integer",
@@ -213,7 +213,7 @@ expression: file
               "Message": "IntegerNumberProperty"
             }
           },
-          "number": 122
+          "number": 1022
         },
         {
           "name": "integer_range",
@@ -222,7 +222,7 @@ expression: file
               "Message": "IntegerRangeProperty"
             }
           },
-          "number": 123
+          "number": 1023
         },
         {
           "name": "ip",
@@ -231,7 +231,7 @@ expression: file
               "Message": "IpProperty"
             }
           },
-          "number": 124
+          "number": 1024
         },
         {
           "name": "ip_range",
@@ -240,7 +240,7 @@ expression: file
               "Message": "IpRangeProperty"
             }
           },
-          "number": 125
+          "number": 1025
         },
         {
           "name": "join",
@@ -249,7 +249,7 @@ expression: file
               "Message": "JoinProperty"
             }
           },
-          "number": 126
+          "number": 1026
         },
         {
           "name": "keyword",
@@ -258,7 +258,7 @@ expression: file
               "Message": "KeywordProperty"
             }
           },
-          "number": 127
+          "number": 1027
         },
         {
           "name": "long",
@@ -267,7 +267,7 @@ expression: file
               "Message": "LongNumberProperty"
             }
           },
-          "number": 128
+          "number": 1028
         },
         {
           "name": "long_range",
@@ -276,7 +276,7 @@ expression: file
               "Message": "LongRangeProperty"
             }
           },
-          "number": 129
+          "number": 1029
         },
         {
           "name": "match_only_text",
@@ -285,7 +285,7 @@ expression: file
               "Message": "MatchOnlyTextProperty"
             }
           },
-          "number": 130
+          "number": 1030
         },
         {
           "name": "murmur3",
@@ -294,7 +294,7 @@ expression: file
               "Message": "Murmur3HashProperty"
             }
           },
-          "number": 131
+          "number": 1031
         },
         {
           "name": "nested",
@@ -303,7 +303,7 @@ expression: file
               "Message": "NestedProperty"
             }
           },
-          "number": 132
+          "number": 1032
         },
         {
           "name": "object",
@@ -312,7 +312,7 @@ expression: file
               "Message": "ObjectProperty"
             }
           },
-          "number": 133
+          "number": 1033
         },
         {
           "name": "passthrough",
@@ -321,7 +321,7 @@ expression: file
               "Message": "PassthroughObjectProperty"
             }
           },
-          "number": 134
+          "number": 1034
         },
         {
           "name": "percolator",
@@ -330,7 +330,7 @@ expression: file
               "Message": "PercolatorProperty"
             }
           },
-          "number": 135
+          "number": 1035
         },
         {
           "name": "point",
@@ -339,7 +339,7 @@ expression: file
               "Message": "PointProperty"
             }
           },
-          "number": 136
+          "number": 1036
         },
         {
           "name": "rank_feature",
@@ -348,7 +348,7 @@ expression: file
               "Message": "RankFeatureProperty"
             }
           },
-          "number": 137
+          "number": 1037
         },
         {
           "name": "rank_features",
@@ -357,7 +357,7 @@ expression: file
               "Message": "RankFeaturesProperty"
             }
           },
-          "number": 138
+          "number": 1038
         },
         {
           "name": "rank_vectors",
@@ -366,7 +366,7 @@ expression: file
               "Message": "RankVectorProperty"
             }
           },
-          "number": 139
+          "number": 1039
         },
         {
           "name": "scaled_float",
@@ -375,7 +375,7 @@ expression: file
               "Message": "ScaledFloatNumberProperty"
             }
           },
-          "number": 140
+          "number": 1040
         },
         {
           "name": "search_as_you_type",
@@ -384,7 +384,7 @@ expression: file
               "Message": "SearchAsYouTypeProperty"
             }
           },
-          "number": 141
+          "number": 1041
         },
         {
           "name": "semantic_text",
@@ -393,7 +393,7 @@ expression: file
               "Message": "SemanticTextProperty"
             }
           },
-          "number": 142
+          "number": 1042
         },
         {
           "name": "shape",
@@ -402,7 +402,7 @@ expression: file
               "Message": "ShapeProperty"
             }
           },
-          "number": 143
+          "number": 1043
         },
         {
           "name": "short",
@@ -411,7 +411,7 @@ expression: file
               "Message": "ShortNumberProperty"
             }
           },
-          "number": 144
+          "number": 1044
         },
         {
           "name": "sparse_vector",
@@ -420,7 +420,7 @@ expression: file
               "Message": "SparseVectorProperty"
             }
           },
-          "number": 145
+          "number": 1045
         },
         {
           "name": "text",
@@ -429,7 +429,7 @@ expression: file
               "Message": "TextProperty"
             }
           },
-          "number": 146
+          "number": 1046
         },
         {
           "name": "token_count",
@@ -438,7 +438,7 @@ expression: file
               "Message": "TokenCountProperty"
             }
           },
-          "number": 147
+          "number": 1047
         },
         {
           "name": "unsigned_long",
@@ -447,7 +447,7 @@ expression: file
               "Message": "UnsignedLongNumberProperty"
             }
           },
-          "number": 148
+          "number": 1048
         },
         {
           "name": "version",
@@ -456,7 +456,7 @@ expression: file
               "Message": "VersionProperty"
             }
           },
-          "number": 149
+          "number": 1049
         },
         {
           "name": "wildcard",
@@ -465,7 +465,7 @@ expression: file
               "Message": "WildcardProperty"
             }
           },
-          "number": 150
+          "number": 1050
         }
       ],
       "reserved": []

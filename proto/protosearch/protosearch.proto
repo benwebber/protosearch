@@ -5,13 +5,63 @@ package protosearch;
 import "google/protobuf/descriptor.proto";
 import "google/protobuf/struct.proto";
 
-message FieldMappingOptions {
-  optional string name = 1;
-  optional google.protobuf.Struct property = 2;
-
-  extensions 100 to max;
+extend google.protobuf.FieldOptions {
+  optional FieldMapping field = 50000;
 }
 
-extend google.protobuf.FieldOptions {
-  optional FieldMappingOptions mapping = 50000;
+message FieldMapping {
+  // These mapping parameters are common to some or all types.
+  //
+  //    https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-parameters
+  //    https://docs.opensearch.org/latest/mappings/mapping-parameters/index/
+  //
+  // We deliberately ignore the following fields that only apply to text types:
+  //
+  //    index_phrases
+  //    index_prefixes
+  //
+  // We also deliberately omit the `properties` field because we represent
+  // `object` and `nested` fields as messages.
+  optional string type = 1;
+  optional string analyzer = 2;
+  optional bool coerce = 3;
+  optional string copy_to = 4;
+  optional bool doc_values = 5;
+  optional string dynamic = 6;
+  optional bool eager_global_ordinals = 7;
+  optional bool enabled = 8;
+  optional google.protobuf.Value fielddata = 9;
+  map<string, FieldMapping> fields = 10;
+  optional string format = 11;
+  optional int32 ignore_above = 12;
+  optional bool ignore_malformed = 13;
+  optional string index_options = 14;
+  // index_phrases
+  // index_prefixes
+  optional bool index = 15;
+  map<string, string> meta = 16;
+  optional string normalizer = 17;
+  optional bool norms = 18;
+  optional google.protobuf.Value null_value = 19;
+  optional int32 position_increment_gap = 20;
+  // properties
+  optional string search_analyzer = 21;
+  optional string similarity = 22;
+  optional bool subobjects = 23;
+  optional bool store = 24;
+  optional string term_vector = 25;
+
+  optional Output output = 100;
+
+  extensions 1000 to max;
+}
+
+message Output {
+  optional string name = 1;
+  repeated OutputTarget target = 2;
+}
+
+message OutputTarget {
+  optional string label = 1;
+  optional string json = 2;
 }

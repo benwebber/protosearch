@@ -1,1 +1,2 @@
 /target
+/crates/protosearch-plugin/src/proto.rs

@@ -12,6 +12,6 @@ lint:
 	cargo clippy
 	buf lint
 
-proto/protosearch/es/v8/mapping.proto: spec/elasticsearch.v8.json
+proto/protosearch/es/field.proto: spec/elasticsearch.v8.json
 	mkdir -p $(dir $@)
-	$(PROTOSEARCH_GEN) -- extract $< | $(PROTOSEARCH_GEN) -- compile --number-offset 100 protosearch.es.v8 | $(PROTOSEARCH_GEN) -- render > $@
+	$(PROTOSEARCH_GEN) -- extract $< | $(PROTOSEARCH_GEN) -- compile --number-offset 1000 protosearch.es | $(PROTOSEARCH_GEN) -- render > $@

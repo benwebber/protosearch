@@ -1,0 +1,19 @@
+---
+source: crates/protosearch-plugin/src/lib.rs
+expression: "output_for(& resp, \"tests.EnumCase\")"
+---
+{
+  "tests.EnumCase.json": {
+    "properties": {
+      "status_inferred": {
+        "type": "keyword"
+      },
+      "status_integer": {
+        "type": "integer"
+      },
+      "status_keyword": {
+        "type": "keyword"
+      }
+    }
+  }
+}

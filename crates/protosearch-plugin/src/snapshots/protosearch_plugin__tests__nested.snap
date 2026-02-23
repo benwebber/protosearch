@@ -1,0 +1,18 @@
+---
+source: crates/protosearch-plugin/src/lib.rs
+expression: "output_for(& resp, \"tests.NestedCase\")"
+---
+{
+  "tests.NestedCase.json": {
+    "properties": {
+      "sub": {
+        "properties": {
+          "value": {
+            "type": "keyword"
+          }
+        },
+        "type": "nested"
+      }
+    }
+  }
+}

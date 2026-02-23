@@ -14,6 +14,16 @@ pub enum Error {
     InvalidRequest(String),
     #[error("protobuf error: {0}")]
     Protobuf(#[from] protobuf::Error),
-    #[error("JSON error: {0}")]
-    Json(#[from] serde_json::Error),
+    #[error("serialization error: {0}")]
+    Serializer(#[from] serde_json::Error),
+    #[error("invalid JSON for field `{field}`: {source}")]
+    InvalidJson {
+        field: String,
+        #[source]
+        source: serde_json::Error,
+    },
+    #[error("field `{field}` has unsupported type `{typ}`")]
+    UnsupportedFieldType { field: String, typ: String },
+    #[error("unsupported protobuf type: `{0}`")]
+    UnsupportedProtobufType(String),
 }

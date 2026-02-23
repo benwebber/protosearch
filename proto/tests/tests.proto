@@ -2,72 +2,151 @@ syntax = "proto3";
 
 package tests;
 
-import "protosearch/es/v8/mapping.proto";
 import "protosearch/protosearch.proto";
 
 message TestCase {
-  // Simple.
-  string uid = 1 [(protosearch.mapping) = {
-    [protosearch.es.v8.keyword]: {}
+  string test_basic_field = 1 [(protosearch.field) = {
+    output: {name: "bar"}
+    type: "text"
+    analyzer: "english"
+    coerce: true
+    copy_to: "copy_field"
+    doc_values: true
+    dynamic: "strict"
+    eager_global_ordinals: true
+    enabled: true
+    fielddata: {bool_value: true}
+    fields: {
+      key: "raw"
+      value: {type: "keyword"}
+    }
+    format: "yyyy-MM-dd"
+    ignore_above: 256
+    ignore_malformed: false
+    index_options: "positions"
+    index: true
+    meta: {
+      key: "unit"
+      value: "ms"
+    }
+    normalizer: "lowercase"
+    norms: true
+    null_value: {string_value: "NULL"}
+    position_increment_gap: 100
+    search_analyzer: "english"
+    similarity: "BM25"
+    subobjects: false
+    store: true
+    term_vector: "with_positions"
   }];
 
-  // Renamed with `name`.
-  string url = 2 [(protosearch.mapping) = {
-    name: "custom_url"
-    [protosearch.es.v8.keyword]: {}
+  string test_field_with_target_json = 2 [(protosearch.field) = {
+    output: {
+      target: {
+        label: "foo"
+        json: '{"type": "keyword"}'
+      }
+    }
   }];
+}
 
-  // Complex.
-  string title = 3 [(protosearch.mapping) = {
-    [protosearch.es.v8.text]: {
-      fields: {
+message StructFielddataCase {
+  string field = 1 [(protosearch.field) = {
+    type: "text"
+    fielddata: {
+      struct_value: {
         fields: {
-          key: "en"
-          value: {
-            struct_value: {
-              fields: {
-                key: "type"
-                value: { string_value: "text" }
-              }
-              fields: {
-                key: "analyzer"
-                value: { string_value: "english" }
-              }
-            }
-          }
-        }
-        fields: {
-          key: "fr"
-          value: {
-            struct_value: {
-              fields: {
-                key: "type"
-                value: { string_value: "text" }
-              }
-              fields: {
-                key: "analyzer"
-                value: { string_value: "french" }
-              }
-            }
-          }
+          key: "setting"
+          value: {string_value: "value"}
         }
       }
     }
   }];
+}
 
-  // Object.
-  SubMessage sub = 4 [(protosearch.mapping) = {
-    [protosearch.es.v8.object]: {}
-  }];
-
-  // Nested.
-  repeated SubMessage subs = 5 [(protosearch.mapping) = {
-    [protosearch.es.v8.nested]: {}
+message ListFielddataCase {
+  string field = 1 [(protosearch.field) = {
+    type: "text"
+    fielddata: {
+      list_value: {
+        values: [
+          {string_value: "a"},
+          {bool_value: true}]
+      }
+    }
   }];
 }
 
-message SubMessage {
-  string name = 1 [(protosearch.mapping) = {
-    [protosearch.es.v8.text]: {}
+message NullFielddataCase {
+  string field = 1 [(protosearch.field) = {
+    type: "text"
+    fielddata: {null_value: NULL_VALUE}
   }];
+}
+
+message InvalidJsonTargetCase {
+  string field = 1 [(protosearch.field) = {
+    output: {
+      target: {
+        label: "invalid-json"
+        json: "not json"
+      }
+    }
+  }];
+}
+
+message NonObjectJsonTargetCase {
+  string field = 1 [(protosearch.field) = {
+    output: {
+      target: {
+        label: "non-object"
+        json: "[1, 2, 3]"
+      }
+    }
+  }];
+}
+
+enum Status {
+  STATUS_UNSPECIFIED = 0;
+  STATUS_ACTIVE = 1;
+}
+
+message EnumCase {
+  Status status_inferred = 1 [(protosearch.field) = {}];
+  Status status_keyword = 2 [(protosearch.field).type = "keyword"];
+  Status status_integer = 3 [(protosearch.field).type = "integer"];
+}
+
+message SubMessage {
+  string value = 1 [(protosearch.field) = {type: "keyword"}];
+}
+
+message NestedCase {
+  SubMessage sub = 1 [(protosearch.field) = {type: "nested"}];
+}
+
+message InferTypeTestCase {
+  message Message {}
+
+  enum Enum {
+    ENUM_UNSPECIFIED = 0;
+  }
+
+  string keyword_string = 1 [(protosearch.field) = {}];
+  Enum keyword_enum = 2 [(protosearch.field) = {}];
+  bool boolean = 3 [(protosearch.field) = {}];
+  int32 integer_int32 = 4 [(protosearch.field) = {}];
+  sint32 integer_sint32 = 5 [(protosearch.field) = {}];
+  sfixed32 integer_sfixed32 = 6 [(protosearch.field) = {}];
+  uint32 long_uint32 = 7 [(protosearch.field) = {}];
+  fixed32 long_fixed32 = 8 [(protosearch.field) = {}];
+  int64 long_int64 = 9 [(protosearch.field) = {}];
+  sint64 long_sint64 = 10 [(protosearch.field) = {}];
+  sfixed64 long_sfixed64 = 11 [(protosearch.field) = {}];
+  uint64 unsigned_long_uint64 = 12 [(protosearch.field) = {}];
+  fixed64 unsigned_long_fixed64 = 13 [(protosearch.field) = {}];
+  float float = 14 [(protosearch.field) = {}];
+  double double = 15 [(protosearch.field) = {}];
+  bytes binary = 16 [(protosearch.field) = {}];
+  Message object = 17 [(protosearch.field) = {}];
 }

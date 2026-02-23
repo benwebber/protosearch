@@ -1,0 +1,61 @@
+---
+source: crates/protosearch-plugin/src/lib.rs
+expression: "output_for(& resp, \"tests.InferTypeTestCase\")"
+---
+{
+  "tests.InferTypeTestCase.json": {
+    "properties": {
+      "binary": {
+        "type": "binary"
+      },
+      "boolean": {
+        "type": "boolean"
+      },
+      "double": {
+        "type": "double"
+      },
+      "float": {
+        "type": "float"
+      },
+      "integer_int32": {
+        "type": "integer"
+      },
+      "integer_sfixed32": {
+        "type": "integer"
+      },
+      "integer_sint32": {
+        "type": "integer"
+      },
+      "keyword_enum": {
+        "type": "keyword"
+      },
+      "keyword_string": {
+        "type": "keyword"
+      },
+      "long_fixed32": {
+        "type": "long"
+      },
+      "long_int64": {
+        "type": "long"
+      },
+      "long_sfixed64": {
+        "type": "long"
+      },
+      "long_sint64": {
+        "type": "long"
+      },
+      "long_uint32": {
+        "type": "long"
+      },
+      "object": {
+        "type": "object"
+      },
+      "unsigned_long_fixed64": {
+        "type": "unsigned_long"
+      },
+      "unsigned_long_uint64": {
+        "type": "unsigned_long"
+      }
+    }
+  }
+}

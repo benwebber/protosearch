@@ -107,7 +107,7 @@ pub fn compile_into(
         .collect();
     fields.sort_by(|a, b| a.name.cmp(&b.name));
     let new_ext = proto::ExtendBlock {
-        name: "protosearch.FieldMappingOptions".into(),
+        name: "protosearch.MappingOptions".into(),
         fields,
         reserved: Vec::new(),
     };
@@ -215,8 +215,8 @@ mod tests {
 
     snapshot_tests!(
         elasticsearch_v8,
-        "../../spec/elasticsearch.v8.json",
-        "protosearch.es.v8",
-        100
+        "spec/elasticsearch.v8.json",
+        "protosearch.elasticsearch",
+        1000
     );
 }
