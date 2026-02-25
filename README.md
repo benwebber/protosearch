@@ -1,16 +1,37 @@
 # protosearch
 
-Compile Protobuf messages to Elasticsearch/OpenSearch document mappings.
+Compile protobuf messages to Elasticsearch document mappings.
 
-`protosearch` provides field options to map message fields to [mapping field types](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/field-data-types).
+## Example
 
-Annotate your Protobuf messages like this:
+Imagine you have a protobuf message representing a search document.
+
+```protobuf
+message Article {
+  message Author {
+    optional string uid = 1;
+    optional string name = 2;
+  }
+
+  optional string uid = 1;
+  optional string title = 2;
+  repeated Author authors = 3;
+}
+```
+
+Annotate the message with `protosearch.field` options to map its fields to [mapping field types](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/field-data-types).
+
 
 ```protobuf
 import "protosearch/protosearch.proto";
 
 message Article {
-  string uid = 1 [(protosearch.field).type = "keyword"];
+  message Author {
+    string uid = 1 [(protosearch.field) = {}];
+    string name = 2 [(protosearch.field).type = "text"];
+  }
+
+  string uid = 1 [(protosearch.field) = {}];
   string title = 2 [(protosearch.field) = {
     type: "text"
     fields: {
@@ -26,22 +47,15 @@ message Article {
     type: "nested"
   }];
 }
-
-message Author {
-  string uid = 1 [(protosearch.field).type = "keyword"];
-  string name = 2 [(protosearch.field).type = "text"];
-}
 ```
 
-You can then compile a document mapping using `protoc-gen-protosearch`:
+Then use `protoc-gen-protosearch` to compile this to a document mapping:
 
 ```
-protoc -I proto/ --plugin=protoc-gen-protosearch --protosearch_out=. proto/example/article.proto
+protoc -I proto/ --plugin=protoc-gen-protosearch --protosearch_out=. proto/article.proto
 ```
 
-
-```javascript
-// example.Article.json
+```json
 {
   "properties": {
     "uid": {
@@ -67,7 +81,7 @@ protoc -I proto/ --plugin=protoc-gen-protosearch --protosearch_out=. proto/examp
         }
       }
     }
-	}
+  }
 }
 ```
 
@@ -81,20 +95,3 @@ protoc -I proto/ --plugin=protoc-gen-protosearch --protosearch_out=. proto/examp
     ```
     protoc -I proto/ --plugin=protoc-gen-protosearch --protosearch_out=. proto/example/example.proto
     ```
-
-## Type inference
-
-If `type` is not specified, `protoc-gen-protosearch` will infer a field type from the protobufs type.
-
-|Protobuf|Elasticsearch|
-|---|---|
-|`string`|`keyword`|
-|`bool`|`boolean`|
-|`int32`, `sint32`, `sfixed32`|`integer`|
-|`uint32`,`fixed32`|`long`|
-|`int64`, `sint64`, `sfixed64`|`long`|
-|`uint64`,`fixed64`|`unsigned_long`|
-|`float`|`float`|
-|`double`|`double`|
-|`bytes`|`binary`|
-|message|`object`|

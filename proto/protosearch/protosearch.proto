@@ -9,59 +9,156 @@ extend google.protobuf.FieldOptions {
   optional FieldMapping field = 50000;
 }
 
+/**
+ * FieldMapping represents common mapping parameters.
+ *
+ * These mapping parameters are common to some or all types.
+ *
+ *    https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-parameters
+ *    https://docs.opensearch.org/latest/mappings/mapping-parameters/index/
+ *
+ * We deliberately ignore the following fields that only apply to text types:
+ *
+ *    index_phrases
+ *    index_prefixes
+ *
+ * We also deliberately omit the `properties` field because we represent
+ * `object` and `nested` fields as messages.
+ */
 message FieldMapping {
-  // These mapping parameters are common to some or all types.
-  //
-  //    https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-parameters
-  //    https://docs.opensearch.org/latest/mappings/mapping-parameters/index/
-  //
-  // We deliberately ignore the following fields that only apply to text types:
-  //
-  //    index_phrases
-  //    index_prefixes
-  //
-  // We also deliberately omit the `properties` field because we represent
-  // `object` and `nested` fields as messages.
+  // The field type.
+  // If omitted, the plugin infers the type from the protobuf field type.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/type
   optional string type = 1;
+
+  // Analyzer used at index time. Applies to `text` fields.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/analyzer
   optional string analyzer = 2;
+
+  // Whether to coerce values to the declared mapping type. Applies to numeric
+  // and date fields.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/coerce
   optional bool coerce = 3;
+
+  // Copy this field's value to the named field.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/copy-to
   optional string copy_to = 4;
+
+  // Whether to store doc values for sorting and aggregation.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/doc-values
   optional bool doc_values = 5;
+
+  // How to handle unknown subfields. Applies to `object` fields.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dynamic
   optional string dynamic = 6;
+
+  // Whether to load global ordinals at refresh time.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/eager-global-ordinals
   optional bool eager_global_ordinals = 7;
+
+  // Whether to parse and index the field.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/enabled
   optional bool enabled = 8;
+
+  // Fielddata configuration for in-memory aggregations. Applies to `text` fields.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/fielddata
   optional google.protobuf.Value fielddata = 9;
+
+  // A multi-field mapping.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/fields
   map<string, FieldMapping> fields = 10;
+
+  // The date format. Applies to `date` and `date_nanos` fields.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/format
   optional string format = 11;
+
+  // Do not index strings longer than this length. Applies to `keyword` fields.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/ignore-above
   optional int32 ignore_above = 12;
+
+  // Ignore invalid values instead of rejecting the document.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/ignore-malformed
   optional bool ignore_malformed = 13;
+
+  // Which information to store in the index. Applies to `text` fields.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/index-options
   optional string index_options = 14;
+
   // index_phrases
   // index_prefixes
+
+  // Whether to index the field.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/index
   optional bool index = 15;
+
+  // Metadata about the field.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/meta
   map<string, string> meta = 16;
+
+  // Normalize `keyword` fields with this normalizer.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/normalizer
   optional string normalizer = 17;
+
+  // Whether to store field length norms for scoring.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/norms
   optional bool norms = 18;
+
+  // Replace explicit `null` values with this value at index time.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/null-value
   optional google.protobuf.Value null_value = 19;
+
+  // A gap inserted between elements in an array to prevent spurious matches.
+  // Applies to `text` fields.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/position-increment-gap
   optional int32 position_increment_gap = 20;
+
   // properties
+
+  // Analyzer used at search time.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/search-analyzer
   optional string search_analyzer = 21;
+
+  // The scoring algorithm.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/similarity
   optional string similarity = 22;
-  optional bool subobjects = 23;
-  optional bool store = 24;
+
+  // Whether to store this field separately from `_source`.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/store
+  optional bool store = 23;
+
+  // Whether dotted field names are interpreted as nested subobjects.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/subobjects
+  optional bool subobjects = 24;
+
+  // Whether to store term vectors.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/term-vector
   optional string term_vector = 25;
 
+  // Plugin-specific output options.
   optional Output output = 100;
 
+  // Reserved for future use.
   extensions 1000 to max;
 }
 
+/**
+ * Field output options.
+ */
 message Output {
+  // Rename this field in the mapping.
   optional string name = 1;
+
+  // Configure a literal mapping for a specific target.
   repeated OutputTarget target = 2;
 }
 
+/**
+ * A labelled, literal field mapping.
+ */
 message OutputTarget {
+  // The label that identifies this target.
   optional string label = 1;
+
+  // The literal mapping JSON.
   optional string json = 2;
 }

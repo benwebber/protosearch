@@ -1,7 +1,3 @@
-SPEC  := spec/$(VENDOR).$(VERSION).json
-
-PROTOSEARCH_GEN = cargo run --bin protosearch-gen
-
 .PHONY: fmt
 fmt:
 	cargo fmt
@@ -12,6 +8,6 @@ lint:
 	cargo clippy
 	buf lint
 
-proto/protosearch/es/field.proto: spec/elasticsearch.v8.json
-	mkdir -p $(dir $@)
-	$(PROTOSEARCH_GEN) -- extract $< | $(PROTOSEARCH_GEN) -- compile --number-offset 1000 protosearch.es | $(PROTOSEARCH_GEN) -- render > $@
+.PHONY: test
+test:
+	cargo test

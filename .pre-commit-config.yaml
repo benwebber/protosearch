@@ -1,0 +1,29 @@
+---
+repos:
+  - repo: local
+    hooks:
+      - id: cargo-fmt
+        name: cargo fmt
+        entry: cargo fmt --
+        language: system
+        types: [rust]
+        pass_filenames: false
+
+      - id: cargo-clippy
+        name: cargo clippy
+        language: system
+        types: [rust]
+        pass_filenames: false
+        entry: cargo clippy --all-targets --all-features -- -D warnings
+
+      - id: buf-format
+        name: buf format
+        entry: buf format -w --
+        language: system
+        types: [proto]
+
+      - id: buf-lint
+        name: buf lint
+        entry: buf lint --
+        language: system
+        types: [proto]
