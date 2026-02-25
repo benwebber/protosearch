@@ -1,5 +1,5 @@
 [package]
-name = "protosearch-gen"
+name = "protosearch-vendor"
 version.workspace = true
 edition.workspace = true
 

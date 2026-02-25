@@ -3,9 +3,7 @@ use std::fs;
 use clap::Parser;
 use openapiv3::OpenAPI;
 
-use protosearch_gen::cli;
-use protosearch_gen::proto;
-use protosearch_gen::spec;
+use protosearch_vendor::{cli, proto, spec};
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args = cli::Args::parse();
@@ -27,14 +25,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 }
                 None => proto::File::new(package),
             };
-            protosearch_gen::compile_into(&spec, Some(&mut file), *number_offset)?;
+            protosearch_vendor::compile_into(&spec, Some(&mut file), *number_offset)?;
             let mut writer = output.clone().into_writer()?;
             serde_json::to_writer_pretty(&mut writer, &file)?;
         }
         cli::Command::Extract { input, output } => {
             let reader = input.clone().into_reader()?;
             let openapi: OpenAPI = serde_json::from_reader(reader)?;
-            let spec = protosearch_gen::extract(&openapi)?;
+            let spec = protosearch_vendor::extract(&openapi)?;
             let mut writer = output.clone().into_writer()?;
             serde_json::to_writer_pretty(&mut writer, &spec)?;
         }
@@ -42,7 +40,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             let reader = input.clone().into_reader()?;
             let file: proto::File = serde_json::from_reader(reader)?;
             let mut writer = output.clone().into_writer()?;
-            protosearch_gen::render(&mut writer, &file)?;
+            protosearch_vendor::render(&mut writer, &file)?;
         }
     }
     Ok(())

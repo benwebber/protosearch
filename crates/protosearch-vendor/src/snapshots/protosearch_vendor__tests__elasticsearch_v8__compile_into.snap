@@ -1,0 +1,7253 @@
+---
+source: crates/protosearch-gen/src/lib.rs
+expression: file
+---
+{
+  "package": "protosearch.elasticsearch",
+  "extensions": [
+    {
+      "name": "protosearch.MappingOptions",
+      "fields": [
+        {
+          "name": "aggregate_metric_double",
+          "typ": {
+            "Optional": {
+              "Message": "AggregateMetricDoubleProperty"
+            }
+          },
+          "number": 1000
+        },
+        {
+          "name": "alias",
+          "typ": {
+            "Optional": {
+              "Message": "FieldAliasProperty"
+            }
+          },
+          "number": 1001
+        },
+        {
+          "name": "binary",
+          "typ": {
+            "Optional": {
+              "Message": "BinaryProperty"
+            }
+          },
+          "number": 1002
+        },
+        {
+          "name": "boolean",
+          "typ": {
+            "Optional": {
+              "Message": "BooleanProperty"
+            }
+          },
+          "number": 1003
+        },
+        {
+          "name": "byte",
+          "typ": {
+            "Optional": {
+              "Message": "ByteNumberProperty"
+            }
+          },
+          "number": 1004
+        },
+        {
+          "name": "completion",
+          "typ": {
+            "Optional": {
+              "Message": "CompletionProperty"
+            }
+          },
+          "number": 1005
+        },
+        {
+          "name": "constant_keyword",
+          "typ": {
+            "Optional": {
+              "Message": "ConstantKeywordProperty"
+            }
+          },
+          "number": 1006
+        },
+        {
+          "name": "counted_keyword",
+          "typ": {
+            "Optional": {
+              "Message": "CountedKeywordProperty"
+            }
+          },
+          "number": 1007
+        },
+        {
+          "name": "date",
+          "typ": {
+            "Optional": {
+              "Message": "DateProperty"
+            }
+          },
+          "number": 1008
+        },
+        {
+          "name": "date_nanos",
+          "typ": {
+            "Optional": {
+              "Message": "DateNanosProperty"
+            }
+          },
+          "number": 1009
+        },
+        {
+          "name": "date_range",
+          "typ": {
+            "Optional": {
+              "Message": "DateRangeProperty"
+            }
+          },
+          "number": 1010
+        },
+        {
+          "name": "dense_vector",
+          "typ": {
+            "Optional": {
+              "Message": "DenseVectorProperty"
+            }
+          },
+          "number": 1011
+        },
+        {
+          "name": "double",
+          "typ": {
+            "Optional": {
+              "Message": "DoubleNumberProperty"
+            }
+          },
+          "number": 1012
+        },
+        {
+          "name": "double_range",
+          "typ": {
+            "Optional": {
+              "Message": "DoubleRangeProperty"
+            }
+          },
+          "number": 1013
+        },
+        {
+          "name": "flattened",
+          "typ": {
+            "Optional": {
+              "Message": "FlattenedProperty"
+            }
+          },
+          "number": 1014
+        },
+        {
+          "name": "float",
+          "typ": {
+            "Optional": {
+              "Message": "FloatNumberProperty"
+            }
+          },
+          "number": 1015
+        },
+        {
+          "name": "float_range",
+          "typ": {
+            "Optional": {
+              "Message": "FloatRangeProperty"
+            }
+          },
+          "number": 1016
+        },
+        {
+          "name": "geo_point",
+          "typ": {
+            "Optional": {
+              "Message": "GeoPointProperty"
+            }
+          },
+          "number": 1017
+        },
+        {
+          "name": "geo_shape",
+          "typ": {
+            "Optional": {
+              "Message": "GeoShapeProperty"
+            }
+          },
+          "number": 1018
+        },
+        {
+          "name": "half_float",
+          "typ": {
+            "Optional": {
+              "Message": "HalfFloatNumberProperty"
+            }
+          },
+          "number": 1019
+        },
+        {
+          "name": "histogram",
+          "typ": {
+            "Optional": {
+              "Message": "HistogramProperty"
+            }
+          },
+          "number": 1020
+        },
+        {
+          "name": "icu_collation_keyword",
+          "typ": {
+            "Optional": {
+              "Message": "IcuCollationProperty"
+            }
+          },
+          "number": 1021
+        },
+        {
+          "name": "integer",
+          "typ": {
+            "Optional": {
+              "Message": "IntegerNumberProperty"
+            }
+          },
+          "number": 1022
+        },
+        {
+          "name": "integer_range",
+          "typ": {
+            "Optional": {
+              "Message": "IntegerRangeProperty"
+            }
+          },
+          "number": 1023
+        },
+        {
+          "name": "ip",
+          "typ": {
+            "Optional": {
+              "Message": "IpProperty"
+            }
+          },
+          "number": 1024
+        },
+        {
+          "name": "ip_range",
+          "typ": {
+            "Optional": {
+              "Message": "IpRangeProperty"
+            }
+          },
+          "number": 1025
+        },
+        {
+          "name": "join",
+          "typ": {
+            "Optional": {
+              "Message": "JoinProperty"
+            }
+          },
+          "number": 1026
+        },
+        {
+          "name": "keyword",
+          "typ": {
+            "Optional": {
+              "Message": "KeywordProperty"
+            }
+          },
+          "number": 1027
+        },
+        {
+          "name": "long",
+          "typ": {
+            "Optional": {
+              "Message": "LongNumberProperty"
+            }
+          },
+          "number": 1028
+        },
+        {
+          "name": "long_range",
+          "typ": {
+            "Optional": {
+              "Message": "LongRangeProperty"
+            }
+          },
+          "number": 1029
+        },
+        {
+          "name": "match_only_text",
+          "typ": {
+            "Optional": {
+              "Message": "MatchOnlyTextProperty"
+            }
+          },
+          "number": 1030
+        },
+        {
+          "name": "murmur3",
+          "typ": {
+            "Optional": {
+              "Message": "Murmur3HashProperty"
+            }
+          },
+          "number": 1031
+        },
+        {
+          "name": "nested",
+          "typ": {
+            "Optional": {
+              "Message": "NestedProperty"
+            }
+          },
+          "number": 1032
+        },
+        {
+          "name": "object",
+          "typ": {
+            "Optional": {
+              "Message": "ObjectProperty"
+            }
+          },
+          "number": 1033
+        },
+        {
+          "name": "passthrough",
+          "typ": {
+            "Optional": {
+              "Message": "PassthroughObjectProperty"
+            }
+          },
+          "number": 1034
+        },
+        {
+          "name": "percolator",
+          "typ": {
+            "Optional": {
+              "Message": "PercolatorProperty"
+            }
+          },
+          "number": 1035
+        },
+        {
+          "name": "point",
+          "typ": {
+            "Optional": {
+              "Message": "PointProperty"
+            }
+          },
+          "number": 1036
+        },
+        {
+          "name": "rank_feature",
+          "typ": {
+            "Optional": {
+              "Message": "RankFeatureProperty"
+            }
+          },
+          "number": 1037
+        },
+        {
+          "name": "rank_features",
+          "typ": {
+            "Optional": {
+              "Message": "RankFeaturesProperty"
+            }
+          },
+          "number": 1038
+        },
+        {
+          "name": "rank_vectors",
+          "typ": {
+            "Optional": {
+              "Message": "RankVectorProperty"
+            }
+          },
+          "number": 1039
+        },
+        {
+          "name": "scaled_float",
+          "typ": {
+            "Optional": {
+              "Message": "ScaledFloatNumberProperty"
+            }
+          },
+          "number": 1040
+        },
+        {
+          "name": "search_as_you_type",
+          "typ": {
+            "Optional": {
+              "Message": "SearchAsYouTypeProperty"
+            }
+          },
+          "number": 1041
+        },
+        {
+          "name": "semantic_text",
+          "typ": {
+            "Optional": {
+              "Message": "SemanticTextProperty"
+            }
+          },
+          "number": 1042
+        },
+        {
+          "name": "shape",
+          "typ": {
+            "Optional": {
+              "Message": "ShapeProperty"
+            }
+          },
+          "number": 1043
+        },
+        {
+          "name": "short",
+          "typ": {
+            "Optional": {
+              "Message": "ShortNumberProperty"
+            }
+          },
+          "number": 1044
+        },
+        {
+          "name": "sparse_vector",
+          "typ": {
+            "Optional": {
+              "Message": "SparseVectorProperty"
+            }
+          },
+          "number": 1045
+        },
+        {
+          "name": "text",
+          "typ": {
+            "Optional": {
+              "Message": "TextProperty"
+            }
+          },
+          "number": 1046
+        },
+        {
+          "name": "token_count",
+          "typ": {
+            "Optional": {
+              "Message": "TokenCountProperty"
+            }
+          },
+          "number": 1047
+        },
+        {
+          "name": "unsigned_long",
+          "typ": {
+            "Optional": {
+              "Message": "UnsignedLongNumberProperty"
+            }
+          },
+          "number": 1048
+        },
+        {
+          "name": "version",
+          "typ": {
+            "Optional": {
+              "Message": "VersionProperty"
+            }
+          },
+          "number": 1049
+        },
+        {
+          "name": "wildcard",
+          "typ": {
+            "Optional": {
+              "Message": "WildcardProperty"
+            }
+          },
+          "number": 1050
+        }
+      ],
+      "reserved": []
+    }
+  ],
+  "messages": [
+    {
+      "name": "AggregateMetricDoubleProperty",
+      "fields": [
+        {
+          "name": "default_metric",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "ignore_malformed",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 6
+        },
+        {
+          "name": "metrics",
+          "typ": {
+            "Repeated": {
+              "Scalar": "String"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "time_series_metric",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 10
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "BinaryProperty",
+      "fields": [
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 6
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 9
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "BooleanProperty",
+      "fields": [
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "fielddata",
+          "typ": {
+            "Optional": {
+              "Message": "NumericFielddata"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "ignore_malformed",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 10
+        },
+        {
+          "name": "null_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "on_script_error",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "script",
+          "typ": {
+            "Optional": {
+              "Message": "Script"
+            }
+          },
+          "number": 14
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 15
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 16
+        },
+        {
+          "name": "time_series_dimension",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 17
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "ByteNumberProperty",
+      "fields": [
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "coerce",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "ignore_malformed",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 10
+        },
+        {
+          "name": "null_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "on_script_error",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "script",
+          "typ": {
+            "Optional": {
+              "Message": "Script"
+            }
+          },
+          "number": 14
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 15
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 16
+        },
+        {
+          "name": "time_series_dimension",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 17
+        },
+        {
+          "name": "time_series_metric",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 18
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "ChunkingSettings",
+      "fields": [
+        {
+          "name": "max_chunk_size",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "overlap",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "sentence_overlap",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "strategy",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 4
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "CompletionProperty",
+      "fields": [
+        {
+          "name": "analyzer",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "contexts",
+          "typ": {
+            "Repeated": {
+              "Message": "SuggestContext"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "max_input_length",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 9
+        },
+        {
+          "name": "preserve_position_increments",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 10
+        },
+        {
+          "name": "preserve_separators",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "search_analyzer",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 14
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 15
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "ConstantKeywordProperty",
+      "fields": [
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 4
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "value",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 7
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "CountedKeywordProperty",
+      "fields": [
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 5
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 7
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "DateNanosProperty",
+      "fields": [
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "format",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "ignore_malformed",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 10
+        },
+        {
+          "name": "null_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "on_script_error",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "precision_step",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 14
+        },
+        {
+          "name": "script",
+          "typ": {
+            "Optional": {
+              "Message": "Script"
+            }
+          },
+          "number": 15
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 16
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 17
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "DateProperty",
+      "fields": [
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "fielddata",
+          "typ": {
+            "Optional": {
+              "Message": "NumericFielddata"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "format",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "ignore_malformed",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 10
+        },
+        {
+          "name": "locale",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 12
+        },
+        {
+          "name": "null_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "on_script_error",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 14
+        },
+        {
+          "name": "precision_step",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 15
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 16
+        },
+        {
+          "name": "script",
+          "typ": {
+            "Optional": {
+              "Message": "Script"
+            }
+          },
+          "number": 17
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 18
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 19
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "DateRangeProperty",
+      "fields": [
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "coerce",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "format",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 10
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 13
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "DenseVectorIndexOptions",
+      "fields": [
+        {
+          "name": "confidence_interval",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "ef_construction",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "m",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "type",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 4
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "DenseVectorProperty",
+      "fields": [
+        {
+          "name": "dims",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "element_type",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "index_options",
+          "typ": {
+            "Optional": {
+              "Message": "DenseVectorIndexOptions"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 8
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "similarity",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 10
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 11
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "DoubleNumberProperty",
+      "fields": [
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "coerce",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "ignore_malformed",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 10
+        },
+        {
+          "name": "null_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "on_script_error",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "script",
+          "typ": {
+            "Optional": {
+              "Message": "Script"
+            }
+          },
+          "number": 14
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 15
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 16
+        },
+        {
+          "name": "time_series_dimension",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 17
+        },
+        {
+          "name": "time_series_metric",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 18
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "DoubleRangeProperty",
+      "fields": [
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "coerce",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 9
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 10
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 12
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "FieldAliasProperty",
+      "fields": [
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 4
+        },
+        {
+          "name": "path",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 7
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "FielddataFrequencyFilter",
+      "fields": [
+        {
+          "name": "max",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "min",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "min_segment_size",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 3
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "FlattenedProperty",
+      "fields": [
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "depth_limit",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "eager_global_ordinals",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "index_options",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 10
+        },
+        {
+          "name": "null_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "similarity",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "split_queries_on_whitespace",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 14
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 15
+        },
+        {
+          "name": "time_series_dimensions",
+          "typ": {
+            "Repeated": {
+              "Scalar": "String"
+            }
+          },
+          "number": 16
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "FloatNumberProperty",
+      "fields": [
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "coerce",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "ignore_malformed",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 10
+        },
+        {
+          "name": "null_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "on_script_error",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "script",
+          "typ": {
+            "Optional": {
+              "Message": "Script"
+            }
+          },
+          "number": 14
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 15
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 16
+        },
+        {
+          "name": "time_series_dimension",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 17
+        },
+        {
+          "name": "time_series_metric",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 18
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "FloatRangeProperty",
+      "fields": [
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "coerce",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 9
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 10
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 12
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "GeoPointProperty",
+      "fields": [
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "ignore_malformed",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_z_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 9
+        },
+        {
+          "name": "null_value",
+          "typ": {
+            "Optional": {
+              "Message": "LatLonGeoLocation"
+            }
+          },
+          "number": 10
+        },
+        {
+          "name": "on_script_error",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "script",
+          "typ": {
+            "Optional": {
+              "Message": "Script"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 14
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 15
+        },
+        {
+          "name": "time_series_metric",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 16
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "GeoShapeProperty",
+      "fields": [
+        {
+          "name": "coerce",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_malformed",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "ignore_z_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 10
+        },
+        {
+          "name": "orientation",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "strategy",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 14
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 15
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "HalfFloatNumberProperty",
+      "fields": [
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "coerce",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "ignore_malformed",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 10
+        },
+        {
+          "name": "null_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "on_script_error",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "script",
+          "typ": {
+            "Optional": {
+              "Message": "Script"
+            }
+          },
+          "number": 14
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 15
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 16
+        },
+        {
+          "name": "time_series_dimension",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 17
+        },
+        {
+          "name": "time_series_metric",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 18
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "HistogramProperty",
+      "fields": [
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "ignore_malformed",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 5
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 7
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "IcuCollationProperty",
+      "fields": [
+        {
+          "name": "alternate",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "case_first",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "case_level",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "country",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "decomposition",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "hiragana_quaternary_mode",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 10
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "index_options",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "language",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 14
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 15
+        },
+        {
+          "name": "norms",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 16
+        },
+        {
+          "name": "null_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 17
+        },
+        {
+          "name": "numeric",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 18
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 19
+        },
+        {
+          "name": "rules",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 20
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 21
+        },
+        {
+          "name": "strength",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 22
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 23
+        },
+        {
+          "name": "variable_top",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 24
+        },
+        {
+          "name": "variant",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 25
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "IntegerNumberProperty",
+      "fields": [
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "coerce",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "ignore_malformed",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 10
+        },
+        {
+          "name": "null_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "on_script_error",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "script",
+          "typ": {
+            "Optional": {
+              "Message": "Script"
+            }
+          },
+          "number": 14
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 15
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 16
+        },
+        {
+          "name": "time_series_dimension",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 17
+        },
+        {
+          "name": "time_series_metric",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 18
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "IntegerRangeProperty",
+      "fields": [
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "coerce",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 9
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 10
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 12
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "IpProperty",
+      "fields": [
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_malformed",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 9
+        },
+        {
+          "name": "null_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 10
+        },
+        {
+          "name": "on_script_error",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "script",
+          "typ": {
+            "Optional": {
+              "Message": "Script"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 14
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 15
+        },
+        {
+          "name": "time_series_dimension",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 16
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "IpRangeProperty",
+      "fields": [
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "coerce",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 9
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 10
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 12
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "JoinProperty",
+      "fields": [
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "eager_global_ordinals",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 5
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "relations",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 7
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 8
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "KeywordProperty",
+      "fields": [
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "eager_global_ordinals",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "index_options",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 10
+        },
+        {
+          "name": "normalizer",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "norms",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "null_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "on_script_error",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 14
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 15
+        },
+        {
+          "name": "script",
+          "typ": {
+            "Optional": {
+              "Message": "Script"
+            }
+          },
+          "number": 16
+        },
+        {
+          "name": "similarity",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 17
+        },
+        {
+          "name": "split_queries_on_whitespace",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 18
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 19
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 20
+        },
+        {
+          "name": "time_series_dimension",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 21
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "LatLonGeoLocation",
+      "fields": [
+        {
+          "name": "lat",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "lon",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 2
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "LongNumberProperty",
+      "fields": [
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "coerce",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "ignore_malformed",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 10
+        },
+        {
+          "name": "null_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "on_script_error",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "script",
+          "typ": {
+            "Optional": {
+              "Message": "Script"
+            }
+          },
+          "number": 14
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 15
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 16
+        },
+        {
+          "name": "time_series_dimension",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 17
+        },
+        {
+          "name": "time_series_metric",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 18
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "LongRangeProperty",
+      "fields": [
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "coerce",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 9
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 10
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 12
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "MatchOnlyTextProperty",
+      "fields": [
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 3
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "Murmur3HashProperty",
+      "fields": [
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 6
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 9
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "NestedProperty",
+      "fields": [
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "enabled",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "include_in_parent",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "include_in_root",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 8
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 10
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 11
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "NumericFielddata",
+      "fields": [
+        {
+          "name": "format",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "ObjectProperty",
+      "fields": [
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "enabled",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 6
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "subobjects",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 10
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "PassthroughObjectProperty",
+      "fields": [
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "enabled",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 6
+        },
+        {
+          "name": "priority",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 10
+        },
+        {
+          "name": "time_series_dimension",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 11
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "PercolatorProperty",
+      "fields": [
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 4
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 6
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "PointProperty",
+      "fields": [
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "ignore_malformed",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_z_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 8
+        },
+        {
+          "name": "null_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 10
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 12
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "RankFeatureProperty",
+      "fields": [
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 4
+        },
+        {
+          "name": "positive_score_impact",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 7
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "RankFeaturesProperty",
+      "fields": [
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 4
+        },
+        {
+          "name": "positive_score_impact",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 7
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "RankVectorProperty",
+      "fields": [
+        {
+          "name": "dims",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "element_type",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 6
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 8
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "ScaledFloatNumberProperty",
+      "fields": [
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "coerce",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "ignore_malformed",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 10
+        },
+        {
+          "name": "null_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "on_script_error",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "scaling_factor",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 14
+        },
+        {
+          "name": "script",
+          "typ": {
+            "Optional": {
+              "Message": "Script"
+            }
+          },
+          "number": 15
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 16
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 17
+        },
+        {
+          "name": "time_series_dimension",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 18
+        },
+        {
+          "name": "time_series_metric",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 19
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "Script",
+      "fields": [
+        {
+          "name": "id",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "lang",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "options",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 3
+        },
+        {
+          "name": "params",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "source",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 5
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "SearchAsYouTypeProperty",
+      "fields": [
+        {
+          "name": "analyzer",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "index_options",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "max_shingle_size",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 9
+        },
+        {
+          "name": "norms",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 10
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "search_analyzer",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "search_quote_analyzer",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "similarity",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 14
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 15
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 16
+        },
+        {
+          "name": "term_vector",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 17
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "SemanticTextIndexOptions",
+      "fields": [
+        {
+          "name": "dense_vector",
+          "typ": {
+            "Optional": {
+              "Message": "DenseVectorIndexOptions"
+            }
+          },
+          "number": 1
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "SemanticTextProperty",
+      "fields": [
+        {
+          "name": "chunking_settings",
+          "typ": {
+            "Optional": {
+              "Message": "ChunkingSettings"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "index_options",
+          "typ": {
+            "Optional": {
+              "Message": "SemanticTextIndexOptions"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "inference_id",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 5
+        },
+        {
+          "name": "search_inference_id",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 6
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "ShapeProperty",
+      "fields": [
+        {
+          "name": "coerce",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_malformed",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "ignore_z_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 9
+        },
+        {
+          "name": "orientation",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 10
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 13
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "ShortNumberProperty",
+      "fields": [
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "coerce",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "ignore_malformed",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 10
+        },
+        {
+          "name": "null_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "on_script_error",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "script",
+          "typ": {
+            "Optional": {
+              "Message": "Script"
+            }
+          },
+          "number": 14
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 15
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 16
+        },
+        {
+          "name": "time_series_dimension",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 17
+        },
+        {
+          "name": "time_series_metric",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 18
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "SparseVectorIndexOptions",
+      "fields": [
+        {
+          "name": "prune",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "pruning_config",
+          "typ": {
+            "Optional": {
+              "Message": "TokenPruningConfig"
+            }
+          },
+          "number": 2
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "SparseVectorProperty",
+      "fields": [
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "index_options",
+          "typ": {
+            "Optional": {
+              "Message": "SparseVectorIndexOptions"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 5
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 8
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "SuggestContext",
+      "fields": [
+        {
+          "name": "name",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "path",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "precision",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "type",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 4
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "TextIndexPrefixes",
+      "fields": [
+        {
+          "name": "max_chars",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "min_chars",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 2
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "TextProperty",
+      "fields": [
+        {
+          "name": "analyzer",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "eager_global_ordinals",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "fielddata",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "fielddata_frequency_filter",
+          "typ": {
+            "Optional": {
+              "Message": "FielddataFrequencyFilter"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 10
+        },
+        {
+          "name": "index_options",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "index_phrases",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "index_prefixes",
+          "typ": {
+            "Optional": {
+              "Message": "TextIndexPrefixes"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 14
+        },
+        {
+          "name": "norms",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 15
+        },
+        {
+          "name": "position_increment_gap",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 16
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 17
+        },
+        {
+          "name": "search_analyzer",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 18
+        },
+        {
+          "name": "search_quote_analyzer",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 19
+        },
+        {
+          "name": "similarity",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 20
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 21
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 22
+        },
+        {
+          "name": "term_vector",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 23
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "TokenCountProperty",
+      "fields": [
+        {
+          "name": "analyzer",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "enable_position_increments",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 10
+        },
+        {
+          "name": "null_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 14
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "TokenPruningConfig",
+      "fields": [
+        {
+          "name": "only_score_pruned_tokens",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "tokens_freq_ratio_threshold",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "tokens_weight_threshold",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 3
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "UnsignedLongNumberProperty",
+      "fields": [
+        {
+          "name": "boost",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "coerce",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 6
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "ignore_malformed",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "index",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 10
+        },
+        {
+          "name": "null_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 11
+        },
+        {
+          "name": "on_script_error",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 12
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 13
+        },
+        {
+          "name": "script",
+          "typ": {
+            "Optional": {
+              "Message": "Script"
+            }
+          },
+          "number": 14
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 15
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 16
+        },
+        {
+          "name": "time_series_dimension",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 17
+        },
+        {
+          "name": "time_series_metric",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 18
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "VersionProperty",
+      "fields": [
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 6
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 9
+        }
+      ],
+      "reserved": []
+    },
+    {
+      "name": "WildcardProperty",
+      "fields": [
+        {
+          "name": "copy_to",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 1
+        },
+        {
+          "name": "doc_values",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 2
+        },
+        {
+          "name": "dynamic",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 3
+        },
+        {
+          "name": "fields",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 4
+        },
+        {
+          "name": "ignore_above",
+          "typ": {
+            "Optional": {
+              "Scalar": "Double"
+            }
+          },
+          "number": 5
+        },
+        {
+          "name": "meta",
+          "typ": {
+            "Map": [
+              "String",
+              {
+                "Scalar": "String"
+              }
+            ]
+          },
+          "number": 6
+        },
+        {
+          "name": "null_value",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 7
+        },
+        {
+          "name": "properties",
+          "typ": {
+            "Optional": {
+              "Message": "google.protobuf.Struct"
+            }
+          },
+          "number": 8
+        },
+        {
+          "name": "store",
+          "typ": {
+            "Optional": {
+              "Scalar": "Bool"
+            }
+          },
+          "number": 9
+        },
+        {
+          "name": "synthetic_source_keep",
+          "typ": {
+            "Optional": {
+              "Scalar": "String"
+            }
+          },
+          "number": 10
+        }
+      ],
+      "reserved": []
+    }
+  ]
+}

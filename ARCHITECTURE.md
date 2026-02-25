@@ -11,22 +11,22 @@ It has two connected components:
 
 This is a Rust project with two crates:
 
-* [`protosearch-gen`](crates/protosearch-gen/)
+* [`protosearch-vendor`](crates/protosearch-vendor/)
 
-  This crate compiles Elasticsearch/OpenSearch OpenAPI specifications into protobuf libraries providing field options specific to that dialect.
+  This crate compiles Elasticsearch/OpenSearch OpenAPI specifications into protobuf libraries providing field options specific to that vendor.
   It is only of interest to `protosearch` developers.
 
 * [`protosearch-plugin`](crates/protosearch-plugin/)
 
   This crate provides the `protoc` compiler plugin `protoc-gen-protosearch` that compiles messages annotated with `protosearch` field options into document mappings.
 
-### `protosearch-gen`
+### `protosearch-vendor`
 
-The `protosearch-gen` binary provides three commands:
+The `protosearch-vendor` binary provides three commands:
 
 * `extract`
 
-  Extract an abstract specification of the dialect's supported mapping types.
+  Extract an abstract specification of the vendor's supported mapping types.
 * `compile`
 
   Compile the abstract specification into a representation suitable to render as a protobuf file.

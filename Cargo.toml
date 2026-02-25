@@ -1,7 +1,7 @@
 [workspace]
 members = [
-  "crates/protosearch-gen",
   "crates/protosearch-plugin",
+  "crates/protosearch-vendor",
 ]
 resolver = "2"
 
