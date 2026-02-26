@@ -60,17 +60,15 @@ mod tests {
     }
 
     test_snapshot!(test_no_target, "tests.TestCase", None);
-    test_snapshot!(test_target, "tests.TestCase", Some("foo"));
-    test_snapshot!(test_struct_fielddata, "tests.StructFielddataCase", None);
-    test_snapshot!(test_list_fielddata, "tests.ListFielddataCase", None);
-    test_snapshot!(test_null_fielddata, "tests.NullFielddataCase", None);
-    test_snapshot!(test_nested, "tests.NestedCase", None);
-    test_snapshot!(test_enum, "tests.EnumCase", None);
     test_snapshot!(test_infer_type, "tests.InferTypeTestCase", None);
+    test_snapshot!(test_target, "tests.TestCase", Some("foo"));
+    test_snapshot!(test_fielddata, "tests.FieldDataTestCase", None);
+    test_snapshot!(test_enum, "tests.EnumTestCase", None);
+    test_snapshot!(test_nested, "tests.MessageTestCase", None);
 
     #[test]
-    fn test_invalid_json_target() {
-        let req = make_request("tests/tests.proto", Some("invalid-json"));
+    fn test_invalid_json_target_string() {
+        let req = make_request("tests/tests.proto", Some("invalid-json-string"));
         assert!(matches!(
             crate::process(&req).unwrap_err(),
             crate::Error::InvalidJson { .. }
@@ -79,16 +77,16 @@ mod tests {
 
     #[test]
     fn test_non_object_json_target() {
-        let req = make_request("tests/tests.proto", Some("non-object"));
+        let req = make_request("tests/tests.proto", Some("invalid-json-array"));
         assert!(matches!(
             crate::process(&req).unwrap_err(),
-            crate::Error::InvalidRequest(_)
+            crate::Error::InvalidJsonObject(_)
         ));
     }
 
     #[test]
     fn test_missing_descriptor() {
-        let req = make_request("tests/nonexistent.proto", None);
+        let req = make_request("missing.proto", None);
         assert!(matches!(
             crate::process(&req).unwrap_err(),
             crate::Error::InvalidRequest(_)

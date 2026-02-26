@@ -89,9 +89,9 @@ protoc -I proto/ --plugin=protoc-gen-protosearch --protosearch_out=. proto/artic
 
 1. Install `protoc-gen-protosearch` to your `$PATH`.
 2. Copy [`protosearch/protosearch.proto`](proto/protosearch/protosearch.proto) to your Protobuf path.
-3. Annotate your messages. (Refer to examples.)
+3. Annotate your messages. (See [doc/reference.md](reference).)
 4. Compile a Protobuf file to mappings. The plugin will produce one JSON file for each message type.
 
     ```
-    protoc -I proto/ --plugin=protoc-gen-protosearch --protosearch_out=. proto/example/example.proto
+    protoc -I proto/ --plugin=protoc-gen-protosearch --protosearch_out=. proto/example.proto
     ```

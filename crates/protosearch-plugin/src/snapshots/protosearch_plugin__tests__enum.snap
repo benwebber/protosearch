@@ -1,9 +1,9 @@
 ---
 source: crates/protosearch-plugin/src/lib.rs
-expression: "output_for(& resp, \"tests.EnumCase\")"
+expression: "output_for(& resp, \"tests.EnumTestCase\")"
 ---
 {
-  "tests.EnumCase.json": {
+  "tests.EnumTestCase.json": {
     "properties": {
       "status_inferred": {
         "type": "keyword"

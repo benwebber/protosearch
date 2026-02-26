@@ -34,7 +34,7 @@ fn main() {
         .arg("--include_source_info")
         .arg("--descriptor_set_out")
         .arg(out_dir.join("tests.pb"))
-        .arg(proto_dir.join("tests/tests.proto"))
+        .arg("tests/tests.proto")
         .status()
         .expect("failed to execute protoc");
     if !status.success() {

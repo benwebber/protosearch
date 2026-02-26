@@ -5,7 +5,7 @@ expression: "output_for(& resp, \"tests.TestCase\")"
 {
   "tests.TestCase.json": {
     "properties": {
-      "bar": {
+      "basic": {
         "analyzer": "english",
         "coerce": true,
         "copy_to": "copy_field",
@@ -38,7 +38,10 @@ expression: "output_for(& resp, \"tests.TestCase\")"
         "term_vector": "with_positions",
         "type": "text"
       },
-      "test_field_with_target_json": {
+      "foo": {
+        "type": "keyword"
+      },
+      "output_target": {
         "type": "keyword"
       }
     }

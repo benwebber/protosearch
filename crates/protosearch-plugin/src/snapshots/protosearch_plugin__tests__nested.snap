@@ -1,17 +1,41 @@
 ---
 source: crates/protosearch-plugin/src/lib.rs
-expression: "output_for(& resp, \"tests.NestedCase\")"
+expression: "output_for(& resp, \"tests.MessageTestCase\")"
 ---
 {
-  "tests.NestedCase.json": {
+  "tests.MessageTestCase.json": {
     "properties": {
-      "sub": {
+      "message_nested_repeated": {
         "properties": {
-          "value": {
+          "uid": {
             "type": "keyword"
           }
         },
         "type": "nested"
+      },
+      "message_nested_singular": {
+        "properties": {
+          "uid": {
+            "type": "keyword"
+          }
+        },
+        "type": "nested"
+      },
+      "message_object_repeated": {
+        "properties": {
+          "uid": {
+            "type": "keyword"
+          }
+        },
+        "type": "object"
+      },
+      "message_object_singular": {
+        "properties": {
+          "uid": {
+            "type": "keyword"
+          }
+        },
+        "type": "object"
       }
     }
   }

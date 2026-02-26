@@ -4,6 +4,5 @@ modules:
     lint:
       ignore_only:
         PACKAGE_VERSION_SUFFIX:
-          - proto/example
           - proto/protosearch
           - proto/tests

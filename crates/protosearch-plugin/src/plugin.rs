@@ -67,10 +67,7 @@ fn compile_field(ctx: &Context, field: &FieldDescriptor) -> Result<Option<(Strin
                     source: e,
                 })?;
             let Value::Object(mut params) = json else {
-                return Err(Error::InvalidRequest(format!(
-                    "field `{}`: target JSON must be an object",
-                    field.name()
-                )));
+                return Err(Error::InvalidJsonObject(field.name().into()));
             };
             let typ = params
                 .remove("type")

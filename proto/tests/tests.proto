@@ -5,8 +5,7 @@ package tests;
 import "protosearch/protosearch.proto";
 
 message TestCase {
-  string test_basic_field = 1 [(protosearch.field) = {
-    output: {name: "bar"}
+  string basic = 1 [(protosearch.field) = {
     type: "text"
     analyzer: "english"
     coerce: true
@@ -40,7 +39,11 @@ message TestCase {
     term_vector: "with_positions"
   }];
 
-  string test_field_with_target_json = 2 [(protosearch.field) = {
+  string output_name = 2 [(protosearch.field) = {
+    output: {name: "foo"}
+  }];
+
+  string output_target = 3 [(protosearch.field) = {
     output: {
       target: {
         label: "foo"
@@ -48,81 +51,6 @@ message TestCase {
       }
     }
   }];
-}
-
-message StructFielddataCase {
-  string field = 1 [(protosearch.field) = {
-    type: "text"
-    fielddata: {
-      struct_value: {
-        fields: {
-          key: "setting"
-          value: {string_value: "value"}
-        }
-      }
-    }
-  }];
-}
-
-message ListFielddataCase {
-  string field = 1 [(protosearch.field) = {
-    type: "text"
-    fielddata: {
-      list_value: {
-        values: [
-          {string_value: "a"},
-          {bool_value: true}]
-      }
-    }
-  }];
-}
-
-message NullFielddataCase {
-  string field = 1 [(protosearch.field) = {
-    type: "text"
-    fielddata: {null_value: NULL_VALUE}
-  }];
-}
-
-message InvalidJsonTargetCase {
-  string field = 1 [(protosearch.field) = {
-    output: {
-      target: {
-        label: "invalid-json"
-        json: "not json"
-      }
-    }
-  }];
-}
-
-message NonObjectJsonTargetCase {
-  string field = 1 [(protosearch.field) = {
-    output: {
-      target: {
-        label: "non-object"
-        json: "[1, 2, 3]"
-      }
-    }
-  }];
-}
-
-enum Status {
-  STATUS_UNSPECIFIED = 0;
-  STATUS_ACTIVE = 1;
-}
-
-message EnumCase {
-  Status status_inferred = 1 [(protosearch.field) = {}];
-  Status status_keyword = 2 [(protosearch.field).type = "keyword"];
-  Status status_integer = 3 [(protosearch.field).type = "integer"];
-}
-
-message SubMessage {
-  string value = 1 [(protosearch.field) = {type: "keyword"}];
-}
-
-message NestedCase {
-  SubMessage sub = 1 [(protosearch.field) = {type: "nested"}];
 }
 
 message InferTypeTestCase {
@@ -149,4 +77,71 @@ message InferTypeTestCase {
   double double = 15 [(protosearch.field) = {}];
   bytes binary = 16 [(protosearch.field) = {}];
   Message object = 17 [(protosearch.field) = {}];
+}
+
+message FieldDataTestcase {
+  string struct_value = 1 [(protosearch.field) = {
+    type: "text"
+    fielddata: {
+      struct_value: {
+        fields: {
+          key: "setting"
+          value: {string_value: "value"}
+        }
+      }
+    }
+  }];
+
+  string list_value = 2 [(protosearch.field) = {
+    type: "text"
+    fielddata: {
+      list_value: {
+        values: [
+          {string_value: "a"},
+          {bool_value: true}]
+      }
+    }
+  }];
+
+  string null_value = 3 [(protosearch.field) = {
+    type: "text"
+    fielddata: {null_value: NULL_VALUE}
+  }];
+}
+
+message ErrorsTestCase {
+  string invalid_json = 1 [(protosearch.field) = {
+    output: {
+      target: {
+        label: "invalid-json-string"
+        json: "foo"
+      }
+      target: {
+        label: "invalid-json-array"
+        json: "[1, 2, 3]"
+      }
+    }
+  }];
+}
+
+message EnumTestCase {
+  enum Enum {
+    ENUM_UNSPECIFIED = 0;
+    ENUM_ACTIVE = 1;
+  }
+
+  Enum status_inferred = 1 [(protosearch.field) = {}];
+  Enum status_keyword = 2 [(protosearch.field).type = "keyword"];
+  Enum status_integer = 3 [(protosearch.field).type = "integer"];
+}
+
+message MessageTestCase {
+  message Message {
+    string uid = 1 [(protosearch.field) = {}];
+  }
+
+  Message message_object_singular = 1 [(protosearch.field) = {type: "object"}];
+  Message message_nested_singular = 2 [(protosearch.field) = {type: "nested"}];
+  repeated Message message_object_repeated = 3 [(protosearch.field) = {type: "object"}];
+  repeated Message message_nested_repeated = 4 [(protosearch.field) = {type: "nested"}];
 }
