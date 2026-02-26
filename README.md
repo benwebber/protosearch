@@ -85,12 +85,16 @@ protoc -I proto/ --plugin=protoc-gen-protosearch --protosearch_out=. proto/artic
 }
 ```
 
+## Install
+
+1. Download [latest release](https://github.com/benwebber/protosearch/releases) of the plugin for your system, or build from source.
+2. Install `protoc-gen-protosearch` to your `$PATH`.
+2. Copy [`protosearch/protosearch.proto`](proto/protosearch/protosearch.proto) to your Protobuf path.
+
 ## Usage
 
-1. Install `protoc-gen-protosearch` to your `$PATH`.
-2. Copy [`protosearch/protosearch.proto`](proto/protosearch/protosearch.proto) to your Protobuf path.
-3. Annotate your messages. (See [reference](doc/reference.md).)
-4. Compile a Protobuf file to mappings. The plugin will produce one JSON file for each message type.
+1. Annotate your messages. (See [reference](doc/reference.md).)
+2. Compile a Protobuf file to mappings. The plugin will produce one JSON file for each message type.
 
     ```
     protoc -I proto/ --plugin=protoc-gen-protosearch --protosearch_out=. proto/example.proto
