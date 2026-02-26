@@ -3,7 +3,7 @@ mod error;
 mod mapping;
 mod plugin;
 
-#[allow(warnings, dead_code, unused_mut, unused_results, clippy::all)]
+#[allow(warnings, clippy::all)]
 mod proto {
     include!(concat!(env!("OUT_DIR"), "/protosearch.rs"));
 }

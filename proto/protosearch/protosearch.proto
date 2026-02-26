@@ -42,7 +42,7 @@ message FieldMapping {
 
   // Copy this field's value to the named field.
   // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/copy-to
-  optional string copy_to = 4;
+  repeated string copy_to = 4;
 
   // Whether to store doc values for sorting and aggregation.
   // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/doc-values

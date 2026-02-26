@@ -8,7 +8,9 @@ expression: "output_for(& resp, \"tests.TestCase\")"
       "basic": {
         "analyzer": "english",
         "coerce": true,
-        "copy_to": "copy_field",
+        "copy_to": [
+          "copy_field"
+        ],
         "doc_values": true,
         "dynamic": "strict",
         "eager_global_ordinals": true,

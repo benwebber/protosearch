@@ -24,8 +24,4 @@ pub enum Error {
     },
     #[error("field `{0}` must be a JSON object")]
     InvalidJsonObject(String),
-    #[error("field `{field}` has unsupported type `{typ}`")]
-    UnsupportedFieldType { field: String, typ: String },
-    #[error("unsupported protobuf type: `{0}`")]
-    UnsupportedProtobufType(String),
 }

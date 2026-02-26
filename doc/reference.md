@@ -130,6 +130,7 @@ If `type` is not specified, `protoc-gen-protosearch` will infer a field type fro
 |`double`|`double`|
 |`bytes`|`binary`|
 |message|`object`|
+|enum|`keyword`|
 
 ## `protoc-gen-protosearch`
 

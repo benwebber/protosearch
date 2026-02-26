@@ -188,8 +188,7 @@ fn other_to_json(msg: &dyn MessageDyn) -> Map<String, Value> {
                 for (k, v) in m.into_iter() {
                     let key_str = match k {
                         ReflectValueRef::String(s) => s.to_string(),
-                        // TODO: Return an error if a map has non-string keys.
-                        _ => unreachable!(),
+                        _ => unreachable!("all protosearch.FieldMapping maps have string keys"),
                     };
                     obj.insert(key_str, reflect_value_to_json(v));
                 }

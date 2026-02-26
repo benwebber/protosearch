@@ -12,11 +12,10 @@ pub struct Context {
 
 impl Context {
     pub fn new(protos: Vec<FileDescriptorProto>, target: Option<&str>) -> Result<Self> {
-        let file_descriptors = FileDescriptor::new_dynamic_fds(protos, &[])?;
-        let mut file_descriptors_by_name: HashMap<String, FileDescriptor> = HashMap::new();
-        for fd in file_descriptors {
-            file_descriptors_by_name.insert(fd.name().to_string(), fd);
-        }
+        let file_descriptors_by_name = FileDescriptor::new_dynamic_fds(protos, &[])?
+            .into_iter()
+            .map(|fd| (fd.name().into(), fd))
+            .collect();
         Ok(Context {
             file_descriptors_by_name,
             target: target.map(str::to_string),
