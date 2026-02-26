@@ -21,6 +21,15 @@ expression: "output_for(& resp, \"tests.MessageTestCase\")"
         },
         "type": "nested"
       },
+      "message_nested_with_parameters": {
+        "dynamic": "strict",
+        "properties": {
+          "uid": {
+            "type": "keyword"
+          }
+        },
+        "type": "nested"
+      },
       "message_object_repeated": {
         "properties": {
           "uid": {
@@ -30,6 +39,15 @@ expression: "output_for(& resp, \"tests.MessageTestCase\")"
         "type": "object"
       },
       "message_object_singular": {
+        "properties": {
+          "uid": {
+            "type": "keyword"
+          }
+        },
+        "type": "object"
+      },
+      "message_object_with_parameters": {
+        "dynamic": "strict",
         "properties": {
           "uid": {
             "type": "keyword"

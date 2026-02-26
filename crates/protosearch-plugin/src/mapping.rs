@@ -31,6 +31,8 @@ pub enum Property {
     Mapping {
         #[serde(rename = "type")]
         typ: String,
+        #[serde(default, flatten)]
+        parameters: BTreeMap<String, Value>,
         #[serde(flatten)]
         properties: Mapping,
     },

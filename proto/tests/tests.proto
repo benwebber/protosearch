@@ -144,4 +144,12 @@ message MessageTestCase {
   Message message_nested_singular = 2 [(protosearch.field) = {type: "nested"}];
   repeated Message message_object_repeated = 3 [(protosearch.field) = {type: "object"}];
   repeated Message message_nested_repeated = 4 [(protosearch.field) = {type: "nested"}];
+  Message message_object_with_parameters = 5 [(protosearch.field) = {
+    type: "object"
+    dynamic: "strict"
+  }];
+  Message message_nested_with_parameters = 6 [(protosearch.field) = {
+    type: "nested"
+    dynamic: "strict"
+  }];
 }

@@ -97,8 +97,9 @@ fn compile_field(ctx: &Context, field: &FieldDescriptor) -> Result<Option<(Strin
     .transpose()?
     .unwrap_or_default();
     let property = match (mapping.properties.is_empty(), property) {
-        (false, Property::Leaf { typ, .. }) => Property::Mapping {
+        (false, Property::Leaf { typ, parameters }) => Property::Mapping {
             typ,
+            parameters,
             properties: mapping,
         },
         (_, property) => property,
