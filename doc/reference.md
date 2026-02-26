@@ -132,6 +132,10 @@ If `type` is not specified, `protoc-gen-protosearch` will infer a field type fro
 |message|`object`|
 |enum|`keyword`|
 
+## Limitations
+
+The plugin does not support enum fields in `FieldMapping`.
+
 ## `protoc-gen-protosearch`
 
 With `protoc-gen-protosearch` installed on your `$PATH`, you can compile mappings like so:

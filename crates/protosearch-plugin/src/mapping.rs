@@ -115,7 +115,9 @@ fn reflect_value_to_json(v: ReflectValueRef) -> Value {
         ReflectValueRef::F64(f) => json!(f),
         ReflectValueRef::String(s) => json!(s),
         ReflectValueRef::Bytes(b) => json!(b),
-        ReflectValueRef::Enum(_, v) => json!(v),
+        ReflectValueRef::Enum(_, _) => {
+            unimplemented!("enum value mapping parameters are not supported")
+        }
         ReflectValueRef::Message(m) => to_json(&*m),
     }
 }
