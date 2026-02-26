@@ -15,3 +15,7 @@ tag_template = "v{new_version}"
 
 [[file]]
 src = "Cargo.toml"
+
+[[before_commit]]
+name = "Update workspace crates"
+cmd = "cargo update protosearch-plugin protosearch-vendor"
