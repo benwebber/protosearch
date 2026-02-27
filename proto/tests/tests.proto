@@ -103,7 +103,7 @@ message FieldDataTestcase {
   }];
 }
 
-message InvalidJsonTestCase {
+message InvalidTargetJsonTestCase {
   string invalid_json = 1 [(protosearch.mapping) = {
     target: {
       label: "invalid-json-string"

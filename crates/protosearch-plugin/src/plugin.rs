@@ -1,3 +1,5 @@
+use std::collections::BTreeMap;
+
 use protobuf::plugin::{
     CodeGeneratorRequest, CodeGeneratorResponse,
     code_generator_response::{Feature, File},
@@ -7,18 +9,20 @@ use protobuf::{Message, UnknownValueRef};
 use serde_json::Value;
 
 use crate::context::Context;
-use crate::diagnostic::{Diagnostic, DiagnosticKind};
+use crate::diagnostic::{Diagnostic, DiagnosticKind, Location};
 use crate::mapping::{InferredType, Mapping, Property};
-use crate::validator::validate;
+use crate::validator::{ValidationContext, validate};
 use crate::{Error, Result, proto};
 
 const EXTENSION_NUMBER: u32 = 50_000;
 
-pub fn process(request: CodeGeneratorRequest) -> Result<(CodeGeneratorResponse, Vec<Diagnostic>)> {
+pub fn process(
+    request: CodeGeneratorRequest,
+) -> Result<(CodeGeneratorResponse, Vec<Diagnostic<Location>>)> {
     let mut response = CodeGeneratorResponse::new();
     response.set_supported_features(Feature::FEATURE_PROTO3_OPTIONAL as u64);
     let ctx = Context::try_from(request)?;
-    let mut diagnostics = Vec::new();
+    let mut diagnostics: Vec<Diagnostic<Location>> = Vec::new();
     for filename in &ctx.files_to_generate {
         let file_descriptor =
             ctx.get_file_descriptor_by_name(filename)
@@ -26,9 +30,19 @@ pub fn process(request: CodeGeneratorRequest) -> Result<(CodeGeneratorResponse, 
                     "missing descriptor for {filename}"
                 )))?;
         for message_descriptor in file_descriptor.messages() {
-            let (mapping, mut mapping_diagnostics) = compile_message(&ctx, &message_descriptor)?;
-            diagnostics.append(&mut mapping_diagnostics);
-            diagnostics.append(&mut validate(&mapping));
+            let proto_names_by_mapping_name = proto_names_by_mapping_name(&message_descriptor);
+            let validation_ctx = ValidationContext::new(
+                filename,
+                message_descriptor.full_name(),
+                proto_names_by_mapping_name,
+            );
+            let (mapping, mapping_diagnostics) = compile_message(&ctx, &message_descriptor)?;
+            diagnostics.extend(
+                mapping_diagnostics
+                    .into_iter()
+                    .map(|d| d.locate(filename.as_str())),
+            );
+            diagnostics.extend(validate(&validation_ctx, &mapping));
             if mapping.properties.is_empty() {
                 continue;
             }
@@ -76,6 +90,7 @@ fn compile_field(
             Ok(Value::Object(params)) => Property::Leaf(params.into_iter().collect()),
             Ok(_) => {
                 diagnostics.push(Diagnostic::new(DiagnosticKind::InvalidTargetJsonType {
+                    message: field.containing_message().name().to_string(),
                     field: field.name().to_string(),
                     label: entry.label().to_string(),
                 }));
@@ -83,6 +98,7 @@ fn compile_field(
             }
             Err(_) => {
                 diagnostics.push(Diagnostic::new(DiagnosticKind::InvalidTargetJson {
+                    message: field.containing_message().name().to_string(),
                     field: field.name().to_string(),
                     label: entry.label().to_string(),
                 }));
@@ -150,4 +166,16 @@ fn get_mapping_options(field: &FieldDescriptor) -> Result<Option<proto::Mapping>
         }
     }
     Ok(if found { Some(mapping) } else { None })
+}
+
+fn proto_names_by_mapping_name(message: &MessageDescriptor) -> BTreeMap<String, String> {
+    message
+        .fields()
+        .filter_map(|f| {
+            get_mapping_options(&f).ok().flatten().map(|opts| {
+                let output = property_name(&f, &opts);
+                (output.to_string(), f.name().to_string())
+            })
+        })
+        .collect()
 }
