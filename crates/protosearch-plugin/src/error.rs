@@ -6,6 +6,7 @@ pub type Result<T> = std::result::Result<T, Error>;
 
 /// Errors returned by this crate.
 #[derive(Debug, thiserror::Error)]
+#[non_exhaustive]
 pub enum Error {
     /// An I/O error.
     #[error("I/O error: {0}")]
