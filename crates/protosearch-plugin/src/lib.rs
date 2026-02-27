@@ -26,7 +26,7 @@ mod tests {
             #[test]
             fn $name() {
                 let req = make_request("tests/tests.proto", $target);
-                let resp = crate::process(&req).unwrap();
+                let resp = crate::process(req).unwrap();
                 insta::assert_json_snapshot!(output_for(&resp, $test));
             }
         };
@@ -70,7 +70,7 @@ mod tests {
     fn test_invalid_json_target_string() {
         let req = make_request("tests/tests.proto", Some("invalid-json-string"));
         assert!(matches!(
-            crate::process(&req).unwrap_err(),
+            crate::process(req).unwrap_err(),
             crate::Error::InvalidJson { .. }
         ));
     }
@@ -79,7 +79,7 @@ mod tests {
     fn test_non_object_json_target() {
         let req = make_request("tests/tests.proto", Some("invalid-json-array"));
         assert!(matches!(
-            crate::process(&req).unwrap_err(),
+            crate::process(req).unwrap_err(),
             crate::Error::InvalidJsonObject(_)
         ));
     }
@@ -88,7 +88,7 @@ mod tests {
     fn test_missing_descriptor() {
         let req = make_request("missing.proto", None);
         assert!(matches!(
-            crate::process(&req).unwrap_err(),
+            crate::process(req).unwrap_err(),
             crate::Error::InvalidRequest(_)
         ));
     }

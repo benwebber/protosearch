@@ -12,12 +12,11 @@ use crate::{Error, Result, proto};
 
 const EXTENSION_NUMBER: u32 = 50_000;
 
-pub fn process(request: &CodeGeneratorRequest) -> Result<CodeGeneratorResponse> {
+pub fn process(request: CodeGeneratorRequest) -> Result<CodeGeneratorResponse> {
     let mut response = CodeGeneratorResponse::new();
     response.set_supported_features(Feature::FEATURE_PROTO3_OPTIONAL as u64);
-    let target = parse_target(request.parameter());
-    let ctx = Context::new(request.proto_file.clone(), target)?;
-    for filename in &request.file_to_generate {
+    let ctx = Context::try_from(request)?;
+    for filename in &ctx.files_to_generate {
         let file_descriptor =
             ctx.get_file_descriptor_by_name(filename)
                 .ok_or(Error::InvalidRequest(format!(
@@ -107,12 +106,6 @@ fn compile_field(ctx: &Context, field: &FieldDescriptor) -> Result<Option<(Strin
     Ok(Some((name.to_string(), property)))
 }
 
-fn parse_target(parameter: &str) -> Option<&str> {
-    parameter
-        .split(',')
-        .find_map(|kv| kv.strip_prefix("target="))
-}
-
 /// Return `name` if specified, otherwise the field name.
 fn property_name<'a>(field: &'a FieldDescriptor, options: &'a proto::Mapping) -> &'a str {
     let name = options.name();
@@ -150,25 +143,4 @@ fn infer_type(field: &FieldDescriptor) -> InferredType {
         RuntimeFieldType::Map(_, _) => return InferredType::Object,
     };
     InferredType::from(rt)
-}
-
-#[cfg(test)]
-mod tests {
-    macro_rules! test_parse_target {
-        ($name:ident, $param:expr, $expected:expr) => {
-            #[test]
-            fn $name() {
-                assert_eq!(super::parse_target($param), $expected);
-            }
-        };
-    }
-
-    test_parse_target!(parse_target, "target=elasticsearch", Some("elasticsearch"));
-    test_parse_target!(parse_target_missing, "foo=bar", None);
-    test_parse_target!(parse_target_empty, "", None);
-    test_parse_target!(
-        parse_target_multiple_parameters,
-        "foo=bar,target=elasticsearch",
-        Some("elasticsearch")
-    );
 }
