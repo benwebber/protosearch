@@ -18,12 +18,14 @@ repos:
 
       - id: buf-format
         name: buf format
-        entry: buf format -w --
+        entry: buf format -w
         language: system
         types: [proto]
+        pass_filenames: false
 
       - id: buf-lint
         name: buf lint
-        entry: buf lint --
+        entry: buf lint
         language: system
         types: [proto]
+        pass_filenames: false
