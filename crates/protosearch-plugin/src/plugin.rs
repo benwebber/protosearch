@@ -16,13 +16,11 @@ use crate::{Error, Result, proto};
 
 const EXTENSION_NUMBER: u32 = 50_000;
 
-pub fn process(
-    request: CodeGeneratorRequest,
-) -> Result<(CodeGeneratorResponse, Vec<Diagnostic<Location>>)> {
+pub fn process(request: CodeGeneratorRequest) -> Result<(CodeGeneratorResponse, Vec<Diagnostic>)> {
     let mut response = CodeGeneratorResponse::new();
     response.set_supported_features(Feature::FEATURE_PROTO3_OPTIONAL as u64);
     let ctx = Context::try_from(request)?;
-    let mut diagnostics: Vec<Diagnostic<Location>> = Vec::new();
+    let mut diagnostics: Vec<Diagnostic> = Vec::new();
     for filename in &ctx.files_to_generate {
         let file_descriptor =
             ctx.get_file_descriptor_by_name(filename)
@@ -37,11 +35,12 @@ pub fn process(
                 proto_names_by_mapping_name,
             );
             let (mapping, mapping_diagnostics) = compile_message(&ctx, &message_descriptor)?;
-            diagnostics.extend(
-                mapping_diagnostics
-                    .into_iter()
-                    .map(|d| d.locate(filename.as_str())),
-            );
+            diagnostics.extend(mapping_diagnostics.into_iter().map(|mut d| {
+                d.location = Some(Location {
+                    file: filename.clone(),
+                });
+                d
+            }));
             diagnostics.extend(validate(&validation_ctx, &mapping));
             if mapping.properties.is_empty() {
                 continue;

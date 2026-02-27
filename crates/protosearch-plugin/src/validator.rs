@@ -3,7 +3,7 @@ use std::sync::LazyLock;
 
 use regex::Regex;
 
-use crate::diagnostic::{Diagnostic, DiagnosticKind, Location};
+use crate::diagnostic::{Diagnostic, DiagnosticKind};
 use crate::mapping::{Mapping, Property};
 
 macro_rules! checks {
@@ -45,7 +45,7 @@ pub trait Check {
         ctx: &ValidationContext,
         name: &str,
         property: &Property,
-        diagnostics: &mut Vec<Diagnostic<Location>>,
+        diagnostics: &mut Vec<Diagnostic>,
     );
 }
 
@@ -54,11 +54,7 @@ pub struct Validator {
 }
 
 impl Validator {
-    pub fn validate(
-        &self,
-        ctx: &ValidationContext,
-        mapping: &Mapping,
-    ) -> Vec<Diagnostic<Location>> {
+    pub fn validate(&self, ctx: &ValidationContext, mapping: &Mapping) -> Vec<Diagnostic> {
         let mut diagnostics = Vec::new();
         for (name, property) in &mapping.properties {
             self.walk(ctx, name, property, &mut diagnostics);
@@ -71,7 +67,7 @@ impl Validator {
         ctx: &ValidationContext,
         name: &str,
         property: &Property,
-        diagnostics: &mut Vec<Diagnostic<Location>>,
+        diagnostics: &mut Vec<Diagnostic>,
     ) {
         for check in &self.checks {
             check.check_property(ctx, name, property, diagnostics);
@@ -92,7 +88,7 @@ impl Default for Validator {
     }
 }
 
-pub fn validate(ctx: &ValidationContext, mapping: &Mapping) -> Vec<Diagnostic<Location>> {
+pub fn validate(ctx: &ValidationContext, mapping: &Mapping) -> Vec<Diagnostic> {
     Validator::default().validate(ctx, mapping)
 }
 
@@ -104,7 +100,7 @@ impl Check for InvalidNameCheck {
         ctx: &ValidationContext,
         name: &str,
         _property: &Property,
-        diagnostics: &mut Vec<Diagnostic<Location>>,
+        diagnostics: &mut Vec<Diagnostic>,
     ) {
         let proto_name = ctx.proto_name(name);
         static RE: LazyLock<Regex> =

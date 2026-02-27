@@ -1,9 +1,9 @@
 use std::fmt;
 
 #[derive(Debug, Clone, PartialEq)]
-pub struct Diagnostic<L = ()> {
+pub struct Diagnostic {
     pub kind: DiagnosticKind,
-    pub location: Option<L>,
+    pub location: Option<Location>,
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -31,7 +31,7 @@ pub struct Location {
     pub file: String,
 }
 
-impl Diagnostic<()> {
+impl Diagnostic {
     pub fn new(kind: DiagnosticKind) -> Self {
         Self {
             kind,
@@ -39,17 +39,6 @@ impl Diagnostic<()> {
         }
     }
 
-    pub fn locate(self, file: &str) -> Diagnostic<Location> {
-        Diagnostic {
-            kind: self.kind,
-            location: Some(Location {
-                file: file.to_string(),
-            }),
-        }
-    }
-}
-
-impl Diagnostic<Location> {
     pub fn with_location(kind: DiagnosticKind, file: impl Into<String>) -> Self {
         Self {
             kind,
@@ -58,13 +47,7 @@ impl Diagnostic<Location> {
     }
 }
 
-impl fmt::Display for Diagnostic<()> {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}", self.kind)
-    }
-}
-
-impl fmt::Display for Diagnostic<Location> {
+impl fmt::Display for Diagnostic {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match &self.location {
             Some(loc) => write!(f, "{}: {}", loc.file, self.kind),
