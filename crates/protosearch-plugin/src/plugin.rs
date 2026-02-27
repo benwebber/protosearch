@@ -71,7 +71,7 @@ fn compile_field(ctx: &Context, field: &FieldDescriptor) -> Result<Option<(Strin
             Property::Leaf(params.into_iter().collect())
         }
         None => {
-            let mut property = Property::from(&*options.field);
+            let mut property = Property::try_from(&*options.field)?;
             if let Property::Leaf(ref mut parameters) = property {
                 parameters
                     .entry("type".into())

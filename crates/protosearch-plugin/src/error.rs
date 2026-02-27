@@ -25,4 +25,6 @@ pub enum Error {
     },
     #[error("field `{0}` must be a JSON object")]
     InvalidJsonObject(String),
+    #[error("enum values are not supported as mapping parameters")]
+    UnsupportedFieldValueType,
 }

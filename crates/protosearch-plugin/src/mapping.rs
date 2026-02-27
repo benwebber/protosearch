@@ -44,13 +44,15 @@ pub enum InferredType {
     Object,
 }
 
-impl From<&FieldMapping> for Property {
-    fn from(options: &FieldMapping) -> Self {
-        Self::Leaf(
-            other_to_json(options as &dyn MessageDyn)
+impl TryFrom<&FieldMapping> for Property {
+    type Error = crate::Error;
+
+    fn try_from(options: &FieldMapping) -> crate::Result<Self> {
+        Ok(Self::Leaf(
+            other_to_json(options as &dyn MessageDyn)?
                 .into_iter()
                 .collect(),
-        )
+        ))
     }
 }
 
@@ -97,34 +99,32 @@ impl From<&FieldDescriptor> for InferredType {
     }
 }
 
-fn to_json(message: &dyn MessageDyn) -> Value {
+fn to_json(message: &dyn MessageDyn) -> crate::Result<Value> {
     match message.descriptor_dyn().full_name() {
         "google.protobuf.Struct" => struct_to_json(message),
         "google.protobuf.Value" => wkt_value_to_json(message),
         "google.protobuf.ListValue" => list_value_to_json(message),
-        _ => Value::Object(other_to_json(message)),
+        _ => Ok(Value::Object(other_to_json(message)?)),
     }
 }
 
-fn reflect_value_to_json(v: ReflectValueRef) -> Value {
+fn reflect_value_to_json(v: ReflectValueRef) -> crate::Result<Value> {
     match v {
-        ReflectValueRef::Bool(b) => json!(b),
-        ReflectValueRef::I32(i) => json!(i),
-        ReflectValueRef::I64(i) => json!(i),
-        ReflectValueRef::U32(u) => json!(u),
-        ReflectValueRef::U64(u) => json!(u),
-        ReflectValueRef::F32(f) => json!(f),
-        ReflectValueRef::F64(f) => json!(f),
-        ReflectValueRef::String(s) => json!(s),
-        ReflectValueRef::Bytes(b) => json!(b),
-        ReflectValueRef::Enum(_, _) => {
-            unimplemented!("enum value mapping parameters are not supported")
-        }
+        ReflectValueRef::Bool(b) => Ok(json!(b)),
+        ReflectValueRef::I32(i) => Ok(json!(i)),
+        ReflectValueRef::I64(i) => Ok(json!(i)),
+        ReflectValueRef::U32(u) => Ok(json!(u)),
+        ReflectValueRef::U64(u) => Ok(json!(u)),
+        ReflectValueRef::F32(f) => Ok(json!(f)),
+        ReflectValueRef::F64(f) => Ok(json!(f)),
+        ReflectValueRef::String(s) => Ok(json!(s)),
+        ReflectValueRef::Bytes(b) => Ok(json!(b)),
+        ReflectValueRef::Enum(_, _) => Err(crate::Error::UnsupportedFieldValueType),
         ReflectValueRef::Message(m) => to_json(&*m),
     }
 }
 
-fn struct_to_json(msg: &dyn MessageDyn) -> Value {
+fn struct_to_json(msg: &dyn MessageDyn) -> crate::Result<Value> {
     let desc = msg.descriptor_dyn();
     let fields_field = desc
         .field_by_name("fields")
@@ -136,13 +136,13 @@ fn struct_to_json(msg: &dyn MessageDyn) -> Value {
                 ReflectValueRef::String(s) => s.to_string(),
                 _ => unreachable!("google.protobuf.Struct keys must be strings"),
             };
-            map.insert(key, reflect_value_to_json(v));
+            map.insert(key, reflect_value_to_json(v)?);
         }
     }
-    Value::Object(map)
+    Ok(Value::Object(map))
 }
 
-fn wkt_value_to_json(msg: &dyn MessageDyn) -> Value {
+fn wkt_value_to_json(msg: &dyn MessageDyn) -> crate::Result<Value> {
     let desc = msg.descriptor_dyn();
     let oneof = desc
         .oneof_by_name("kind")
@@ -152,40 +152,41 @@ fn wkt_value_to_json(msg: &dyn MessageDyn) -> Value {
             && let Some(rv) = v.value()
         {
             return match field.name() {
-                "null_value" => Value::Null,
+                "null_value" => Ok(Value::Null),
                 _ => reflect_value_to_json(rv),
             };
         }
     }
-    Value::Null
+    Ok(Value::Null)
 }
 
-fn list_value_to_json(msg: &dyn MessageDyn) -> Value {
+fn list_value_to_json(msg: &dyn MessageDyn) -> crate::Result<Value> {
     let desc = msg.descriptor_dyn();
     let values_field = desc
         .field_by_name("values")
         .expect("google.protobuf.ListValue must have a 'values' field");
     match values_field.get_reflect(msg) {
         ReflectFieldRef::Repeated(v) => {
-            Value::Array(v.into_iter().map(reflect_value_to_json).collect())
+            let items: crate::Result<Vec<_>> = v.into_iter().map(reflect_value_to_json).collect();
+            Ok(Value::Array(items?))
         }
         _ => unreachable!("google.protobuf.ListValue values are always repeated"),
     }
 }
 
-fn other_to_json(msg: &dyn MessageDyn) -> Map<String, Value> {
+fn other_to_json(msg: &dyn MessageDyn) -> crate::Result<Map<String, Value>> {
     let desc = msg.descriptor_dyn();
     let mut map = Map::new();
     for field in desc.fields() {
         match field.get_reflect(msg) {
             ReflectFieldRef::Optional(v) => {
                 if let Some(rv) = v.value() {
-                    map.insert(field.name().to_string(), reflect_value_to_json(rv));
+                    map.insert(field.name().to_string(), reflect_value_to_json(rv)?);
                 }
             }
             ReflectFieldRef::Repeated(v) if !v.is_empty() => {
-                let arr: Vec<_> = v.into_iter().map(reflect_value_to_json).collect();
-                map.insert(field.name().to_string(), Value::Array(arr));
+                let arr: crate::Result<Vec<_>> = v.into_iter().map(reflect_value_to_json).collect();
+                map.insert(field.name().to_string(), Value::Array(arr?));
             }
             ReflectFieldRef::Map(m) if !m.is_empty() => {
                 let mut obj = Map::new();
@@ -194,12 +195,12 @@ fn other_to_json(msg: &dyn MessageDyn) -> Map<String, Value> {
                         ReflectValueRef::String(s) => s.to_string(),
                         _ => unreachable!("all protosearch.FieldMapping maps have string keys"),
                     };
-                    obj.insert(key_str, reflect_value_to_json(v));
+                    obj.insert(key_str, reflect_value_to_json(v)?);
                 }
                 map.insert(field.name().to_string(), Value::Object(obj));
             }
             _ => {}
         }
     }
-    map
+    Ok(map)
 }
