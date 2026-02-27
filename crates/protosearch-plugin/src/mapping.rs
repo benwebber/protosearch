@@ -2,7 +2,9 @@ use std::collections::BTreeMap;
 use std::fmt;
 
 use protobuf::MessageDyn;
-use protobuf::reflect::{ReflectFieldRef, ReflectValueRef, RuntimeType};
+use protobuf::reflect::{
+    FieldDescriptor, ReflectFieldRef, ReflectValueRef, RuntimeFieldType, RuntimeType,
+};
 use serde::Serialize;
 use serde_json::{Map, Value, json};
 
@@ -19,17 +21,10 @@ pub struct Mapping {
 #[serde(untagged)]
 pub enum Property {
     /// A simple, scalar property.
-    Leaf {
-        #[serde(rename = "type")]
-        typ: String,
-        #[serde(default, flatten)]
-        parameters: BTreeMap<String, Value>,
-    },
+    Leaf(BTreeMap<String, Value>),
     /// A sub-document mapping, i.e., an `object` or `nested` field.
     Mapping {
-        #[serde(rename = "type")]
-        typ: String,
-        #[serde(default, flatten)]
+        #[serde(flatten)]
         parameters: BTreeMap<String, Value>,
         #[serde(flatten)]
         properties: Mapping,
@@ -49,14 +44,13 @@ pub enum InferredType {
     Object,
 }
 
-impl Property {
-    pub fn from_options(options: &FieldMapping, typ: String) -> Self {
-        let mut params = other_to_json(options as &dyn MessageDyn);
-        params.remove("type");
-        Self::Leaf {
-            typ,
-            parameters: params.into_iter().collect(),
-        }
+impl From<&FieldMapping> for Property {
+    fn from(options: &FieldMapping) -> Self {
+        Self::Leaf(
+            other_to_json(options as &dyn MessageDyn)
+                .into_iter()
+                .collect(),
+        )
     }
 }
 
@@ -90,6 +84,15 @@ impl From<RuntimeType> for InferredType {
             RuntimeType::VecU8 => Self::Binary,
             RuntimeType::Message(_) => Self::Object,
             RuntimeType::Enum(_) => Self::Keyword,
+        }
+    }
+}
+
+impl From<&FieldDescriptor> for InferredType {
+    fn from(field: &FieldDescriptor) -> Self {
+        match field.runtime_field_type() {
+            RuntimeFieldType::Singular(t) | RuntimeFieldType::Repeated(t) => Self::from(t),
+            RuntimeFieldType::Map(_, _) => Self::Object,
         }
     }
 }

@@ -65,25 +65,19 @@ fn compile_field(ctx: &Context, field: &FieldDescriptor) -> Result<Option<(Strin
                     field: field.name().to_string(),
                     source: e,
                 })?;
-            let Value::Object(mut params) = json else {
+            let Value::Object(params) = json else {
                 return Err(Error::InvalidJsonObject(field.name().into()));
             };
-            let typ = params
-                .remove("type")
-                .and_then(|v| v.as_str().map(str::to_string))
-                .unwrap_or_default();
-            Property::Leaf {
-                typ,
-                parameters: params.into_iter().collect(),
-            }
+            Property::Leaf(params.into_iter().collect())
         }
         None => {
-            let typ = if !options.field.type_().is_empty() {
-                options.field.type_().to_string()
-            } else {
-                infer_type(field).to_string()
-            };
-            Property::from_options(&options.field, typ)
+            let mut property = Property::from(&*options.field);
+            if let Property::Leaf(ref mut parameters) = property {
+                parameters
+                    .entry("type".into())
+                    .or_insert_with(|| Value::String(InferredType::from(field).to_string()));
+            }
+            property
         }
     };
     // A mapping type, as in an object or nested field.
@@ -96,8 +90,7 @@ fn compile_field(ctx: &Context, field: &FieldDescriptor) -> Result<Option<(Strin
     .transpose()?
     .unwrap_or_default();
     let property = match (mapping.properties.is_empty(), property) {
-        (false, Property::Leaf { typ, parameters }) => Property::Mapping {
-            typ,
+        (false, Property::Leaf(parameters)) => Property::Mapping {
             parameters,
             properties: mapping,
         },
@@ -132,12 +125,4 @@ fn get_mapping_options(field: &FieldDescriptor) -> Result<Option<proto::Mapping>
         }
     }
     Ok(if found { Some(mapping) } else { None })
-}
-
-fn infer_type(field: &FieldDescriptor) -> InferredType {
-    let rt = match field.runtime_field_type() {
-        RuntimeFieldType::Singular(t) | RuntimeFieldType::Repeated(t) => t,
-        RuntimeFieldType::Map(_, _) => return InferredType::Object,
-    };
-    InferredType::from(rt)
 }
