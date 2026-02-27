@@ -34,7 +34,7 @@ message TestCase {
     position_increment_gap: 100
     search_analyzer: "english"
     similarity: "BM25"
-    subobjects: false
+    subobjects: "false"
     store: true
     term_vector: "with_positions"
   }];

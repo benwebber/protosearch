@@ -150,7 +150,7 @@ message FieldMapping {
 
   // Whether dotted field names are interpreted as nested subobjects.
   // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/subobjects
-  optional bool subobjects = 24;
+  optional string subobjects = 24;
 
   // Whether to store term vectors.
   // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/term-vector

@@ -36,7 +36,7 @@ expression: "output_for(& resp, \"tests.TestCase\")"
         "search_analyzer": "english",
         "similarity": "BM25",
         "store": true,
-        "subobjects": false,
+        "subobjects": "false",
         "term_vector": "with_positions",
         "type": "text"
       },
