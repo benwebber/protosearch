@@ -473,6 +473,7 @@ dependencies = [
  "protobuf",
  "protobuf-codegen",
  "protoc-bin-vendored",
+ "regex",
  "serde",
  "serde_json",
  "thiserror 2.0.18",

@@ -9,6 +9,7 @@ use serde_json::Value;
 use crate::context::Context;
 use crate::diagnostic::{Diagnostic, DiagnosticKind};
 use crate::mapping::{InferredType, Mapping, Property};
+use crate::validator::validate;
 use crate::{Error, Result, proto};
 
 const EXTENSION_NUMBER: u32 = 50_000;
@@ -27,6 +28,7 @@ pub fn process(request: CodeGeneratorRequest) -> Result<(CodeGeneratorResponse, 
         for message_descriptor in file_descriptor.messages() {
             let (mapping, mut mapping_diagnostics) = compile_message(&ctx, &message_descriptor)?;
             diagnostics.append(&mut mapping_diagnostics);
+            diagnostics.append(&mut validate(&mapping));
             if mapping.properties.is_empty() {
                 continue;
             }
@@ -125,9 +127,8 @@ fn property(field: &FieldDescriptor, options: &proto::Mapping) -> Result<Propert
 
 /// Return `name` if specified, otherwise the field name.
 fn property_name<'a>(field: &'a FieldDescriptor, options: &'a proto::Mapping) -> &'a str {
-    let name = options.name();
-    if !name.is_empty() {
-        return name;
+    if options.has_name() {
+        return options.name();
     }
     field.name()
 }

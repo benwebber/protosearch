@@ -3,6 +3,7 @@ mod diagnostic;
 mod error;
 mod mapping;
 mod plugin;
+mod validator;
 
 #[allow(warnings, clippy::all)]
 mod proto {
@@ -12,6 +13,7 @@ mod proto {
 pub use diagnostic::{Diagnostic, DiagnosticKind};
 pub use error::{Error, Result};
 pub use plugin::process;
+pub use validator::validate;
 
 #[cfg(test)]
 mod tests {
