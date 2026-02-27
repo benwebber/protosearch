@@ -1,20 +1,16 @@
-use std::collections::BTreeMap;
-
 use protobuf::plugin::{
     CodeGeneratorRequest, CodeGeneratorResponse,
     code_generator_response::{Feature, File},
 };
 use protobuf::reflect::{FieldDescriptor, MessageDescriptor, RuntimeFieldType, RuntimeType};
-use protobuf::{Message, UnknownValueRef};
 use serde_json::Value;
 
 use crate::context::Context;
 use crate::diagnostic::{Diagnostic, DiagnosticKind};
 use crate::mapping::{InferredType, Mapping, Property};
+use crate::options::{get_mapping_options, property_name};
 use crate::validator::{ValidationContext, validate};
 use crate::{Error, Result, proto};
-
-const EXTENSION_NUMBER: u32 = 50_000;
 
 pub fn process(request: CodeGeneratorRequest) -> Result<(CodeGeneratorResponse, Vec<Diagnostic>)> {
     let mut response = CodeGeneratorResponse::new();
@@ -28,12 +24,7 @@ pub fn process(request: CodeGeneratorRequest) -> Result<(CodeGeneratorResponse, 
                     "missing descriptor for {filename}"
                 )))?;
         for message_descriptor in file_descriptor.messages() {
-            let proto_names_by_mapping_name = proto_names_by_mapping_name(&message_descriptor);
-            let validation_ctx = ValidationContext::new(
-                filename,
-                message_descriptor.full_name(),
-                proto_names_by_mapping_name,
-            );
+            let validation_ctx = ValidationContext::new(filename, &message_descriptor);
             let (mapping, mut mapping_diagnostics) =
                 compile_message(&ctx, &message_descriptor, filename)?;
             diagnostics.append(&mut mapping_diagnostics);
@@ -142,43 +133,4 @@ fn property(field: &FieldDescriptor, options: &proto::Mapping) -> Result<Propert
             .or_insert_with(|| Value::String(InferredType::from(field).to_string()));
     }
     Ok(property)
-}
-
-/// Return `name` if specified, otherwise the field name.
-fn property_name<'a>(field: &'a FieldDescriptor, options: &'a proto::Mapping) -> &'a str {
-    if options.has_name() {
-        return options.name();
-    }
-    field.name()
-}
-
-/// Extract the specified [`proto::Mapping`], if they exist.
-///
-/// This inspects unknown fields because `protobuf` 3.x does not support an extension registry.
-fn get_mapping_options(field: &FieldDescriptor) -> Result<Option<proto::Mapping>> {
-    let field_proto = field.proto();
-    let unknown_fields = field_proto.options.special_fields.unknown_fields();
-    let mut mapping = proto::Mapping::new();
-    let mut found = false;
-    for (number, val) in unknown_fields.iter() {
-        if number == EXTENSION_NUMBER
-            && let UnknownValueRef::LengthDelimited(b) = val
-        {
-            mapping.merge_from_bytes(b)?;
-            found = true;
-        }
-    }
-    Ok(if found { Some(mapping) } else { None })
-}
-
-fn proto_names_by_mapping_name(message: &MessageDescriptor) -> BTreeMap<String, String> {
-    message
-        .fields()
-        .filter_map(|f| {
-            get_mapping_options(&f).ok().flatten().map(|opts| {
-                let output = property_name(&f, &opts);
-                (output.to_string(), f.name().to_string())
-            })
-        })
-        .collect()
 }

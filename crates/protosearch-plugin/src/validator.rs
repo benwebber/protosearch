@@ -1,10 +1,12 @@
 use std::collections::BTreeMap;
 use std::sync::LazyLock;
 
+use protobuf::reflect::MessageDescriptor;
 use regex::Regex;
 
 use crate::diagnostic::{Diagnostic, DiagnosticKind};
 use crate::mapping::{Mapping, Property};
+use crate::options::{get_mapping_options, property_name};
 
 macro_rules! checks {
     ($($check:expr),* $(,)?) => {
@@ -14,25 +16,30 @@ macro_rules! checks {
 
 pub struct ValidationContext<'a> {
     pub file: &'a str,
-    pub message: &'a str,
-    proto_names_by_mapping_name: BTreeMap<String, String>,
+    pub message: &'a MessageDescriptor,
+    proto_names: BTreeMap<String, String>,
 }
 
 impl<'a> ValidationContext<'a> {
-    pub fn new(
-        file: &'a str,
-        message: &'a str,
-        proto_names_by_mapping_name: BTreeMap<String, String>,
-    ) -> Self {
+    pub fn new(file: &'a str, message: &'a MessageDescriptor) -> Self {
+        let proto_names = message
+            .fields()
+            .filter_map(|f| {
+                get_mapping_options(&f).ok().flatten().map(|opts| {
+                    let output = property_name(&f, &opts);
+                    (output.to_string(), f.name().to_string())
+                })
+            })
+            .collect();
         Self {
             file,
             message,
-            proto_names_by_mapping_name,
+            proto_names,
         }
     }
 
     pub fn proto_name<'b>(&'b self, mapping_name: &'b str) -> &'b str {
-        self.proto_names_by_mapping_name
+        self.proto_names
             .get(mapping_name)
             .map(String::as_str)
             .unwrap_or(mapping_name)
@@ -42,7 +49,7 @@ impl<'a> ValidationContext<'a> {
 pub trait Check {
     fn check_property(
         &self,
-        ctx: &ValidationContext,
+        ctx: &ValidationContext<'_>,
         name: &str,
         property: &Property,
         diagnostics: &mut Vec<Diagnostic>,
@@ -54,7 +61,7 @@ pub struct Validator {
 }
 
 impl Validator {
-    pub fn validate(&self, ctx: &ValidationContext, mapping: &Mapping) -> Vec<Diagnostic> {
+    pub fn validate(&self, ctx: &ValidationContext<'_>, mapping: &Mapping) -> Vec<Diagnostic> {
         let mut diagnostics = Vec::new();
         for (name, property) in &mapping.properties {
             self.walk(ctx, name, property, &mut diagnostics);
@@ -64,7 +71,7 @@ impl Validator {
 
     fn walk(
         &self,
-        ctx: &ValidationContext,
+        ctx: &ValidationContext<'_>,
         name: &str,
         property: &Property,
         diagnostics: &mut Vec<Diagnostic>,
@@ -88,7 +95,7 @@ impl Default for Validator {
     }
 }
 
-pub fn validate(ctx: &ValidationContext, mapping: &Mapping) -> Vec<Diagnostic> {
+pub fn validate(ctx: &ValidationContext<'_>, mapping: &Mapping) -> Vec<Diagnostic> {
     Validator::default().validate(ctx, mapping)
 }
 
@@ -97,7 +104,7 @@ struct InvalidNameCheck;
 impl Check for InvalidNameCheck {
     fn check_property(
         &self,
-        ctx: &ValidationContext,
+        ctx: &ValidationContext<'_>,
         name: &str,
         _property: &Property,
         diagnostics: &mut Vec<Diagnostic>,
@@ -108,7 +115,7 @@ impl Check for InvalidNameCheck {
         if !RE.is_match(name) {
             diagnostics.push(Diagnostic::with_location(
                 DiagnosticKind::InvalidFieldName {
-                    message: ctx.message.to_string(),
+                    message: ctx.message.full_name().to_string(),
                     field: proto_name.to_string(),
                     name: name.to_string(),
                 },

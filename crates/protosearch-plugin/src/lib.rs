@@ -2,6 +2,7 @@ mod context;
 mod diagnostic;
 mod error;
 mod mapping;
+mod options;
 mod plugin;
 mod validator;
 
