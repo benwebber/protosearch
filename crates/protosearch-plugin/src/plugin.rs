@@ -9,7 +9,7 @@ use protobuf::{Message, UnknownValueRef};
 use serde_json::Value;
 
 use crate::context::Context;
-use crate::diagnostic::{Diagnostic, DiagnosticKind, Location};
+use crate::diagnostic::{Diagnostic, DiagnosticKind};
 use crate::mapping::{InferredType, Mapping, Property};
 use crate::validator::{ValidationContext, validate};
 use crate::{Error, Result, proto};
@@ -34,13 +34,9 @@ pub fn process(request: CodeGeneratorRequest) -> Result<(CodeGeneratorResponse, 
                 message_descriptor.full_name(),
                 proto_names_by_mapping_name,
             );
-            let (mapping, mapping_diagnostics) = compile_message(&ctx, &message_descriptor)?;
-            diagnostics.extend(mapping_diagnostics.into_iter().map(|mut d| {
-                d.location = Some(Location {
-                    file: filename.clone(),
-                });
-                d
-            }));
+            let (mapping, mut mapping_diagnostics) =
+                compile_message(&ctx, &message_descriptor, filename)?;
+            diagnostics.append(&mut mapping_diagnostics);
             diagnostics.extend(validate(&validation_ctx, &mapping));
             if mapping.properties.is_empty() {
                 continue;
@@ -58,11 +54,12 @@ pub fn process(request: CodeGeneratorRequest) -> Result<(CodeGeneratorResponse, 
 fn compile_message(
     ctx: &Context,
     message: &MessageDescriptor,
+    file: &str,
 ) -> Result<(Mapping, Vec<Diagnostic>)> {
     let mut mapping = Mapping::default();
     let mut diagnostics = Vec::new();
     for field in message.fields() {
-        if let Some((name, property)) = compile_field(ctx, &field, &mut diagnostics)? {
+        if let Some((name, property)) = compile_field(ctx, &field, file, &mut diagnostics)? {
             mapping.properties.insert(name, property);
         }
     }
@@ -75,6 +72,7 @@ fn compile_message(
 fn compile_field(
     ctx: &Context,
     field: &FieldDescriptor,
+    file: &str,
     diagnostics: &mut Vec<Diagnostic>,
 ) -> Result<Option<(String, Property)>> {
     let Some(options) = get_mapping_options(field)? else {
@@ -88,19 +86,25 @@ fn compile_field(
         Some(entry) => match serde_json::from_str::<Value>(entry.json()) {
             Ok(Value::Object(params)) => Property::Leaf(params.into_iter().collect()),
             Ok(_) => {
-                diagnostics.push(Diagnostic::new(DiagnosticKind::InvalidTargetJsonType {
-                    message: field.containing_message().name().to_string(),
-                    field: field.name().to_string(),
-                    label: entry.label().to_string(),
-                }));
+                diagnostics.push(Diagnostic::with_location(
+                    DiagnosticKind::InvalidTargetJsonType {
+                        message: field.containing_message().name().to_string(),
+                        field: field.name().to_string(),
+                        label: entry.label().to_string(),
+                    },
+                    file,
+                ));
                 property(field, &options)?
             }
             Err(_) => {
-                diagnostics.push(Diagnostic::new(DiagnosticKind::InvalidTargetJson {
-                    message: field.containing_message().name().to_string(),
-                    field: field.name().to_string(),
-                    label: entry.label().to_string(),
-                }));
+                diagnostics.push(Diagnostic::with_location(
+                    DiagnosticKind::InvalidTargetJson {
+                        message: field.containing_message().name().to_string(),
+                        field: field.name().to_string(),
+                        label: entry.label().to_string(),
+                    },
+                    file,
+                ));
                 property(field, &options)?
             }
         },
@@ -112,7 +116,7 @@ fn compile_field(
         | RuntimeFieldType::Repeated(RuntimeType::Message(desc)) => Some(desc),
         _ => None,
     }
-    .map(|desc| compile_message(ctx, &desc))
+    .map(|desc| compile_message(ctx, &desc, file))
     .transpose()?
     .map(|(m, mut d)| {
         diagnostics.append(&mut d);
