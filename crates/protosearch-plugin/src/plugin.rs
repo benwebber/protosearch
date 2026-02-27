@@ -121,20 +121,17 @@ fn property_name<'a>(field: &'a FieldDescriptor, options: &'a proto::Mapping) ->
 fn get_mapping_options(field: &FieldDescriptor) -> Result<Option<proto::Mapping>> {
     let field_proto = field.proto();
     let unknown_fields = field_proto.options.special_fields.unknown_fields();
-    let mut bytes: Vec<u8> = Vec::new();
+    let mut mapping = proto::Mapping::new();
     let mut found = false;
     for (number, val) in unknown_fields.iter() {
         if number == EXTENSION_NUMBER
             && let UnknownValueRef::LengthDelimited(b) = val
         {
-            bytes.extend_from_slice(b);
+            mapping.merge_from_bytes(b)?;
             found = true;
         }
     }
-    if !found {
-        return Ok(None);
-    }
-    Ok(Some(proto::Mapping::parse_from_bytes(&bytes)?))
+    Ok(if found { Some(mapping) } else { None })
 }
 
 fn infer_type(field: &FieldDescriptor) -> InferredType {
