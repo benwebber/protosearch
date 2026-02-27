@@ -72,6 +72,42 @@ mod tests {
     test_snapshot!(test_enum, "tests.EnumTestCase", None);
     test_snapshot!(test_nested, "tests.MessageTestCase", None);
 
+    macro_rules! test_field_name {
+        ($test_name:ident, $name:literal, true) => {
+            #[test]
+            fn $test_name() {
+                let req = make_request("tests/tests.proto", None);
+                let (_resp, diagnostics) = crate::process(req).unwrap();
+                assert!(!diagnostics.iter().any(|d| matches!(
+                    &d.kind,
+                    DiagnosticKind::InvalidFieldName { name, .. } if name == $name
+                )));
+            }
+        };
+        ($test_name:ident, $name:literal, false) => {
+            #[test]
+            fn $test_name() {
+                let req = make_request("tests/tests.proto", None);
+                let (_resp, diagnostics) = crate::process(req).unwrap();
+                assert!(diagnostics.iter().any(|d| matches!(
+                    &d.kind,
+                    DiagnosticKind::InvalidFieldName { name, .. } if name == $name
+                )));
+            }
+        };
+    }
+
+    test_field_name!(test_field_name_valid, "valid", true);
+    test_field_name!(test_field_name_with_underscore, "valid_name", true);
+    test_field_name!(test_field_name_with_digit, "field1", true);
+    test_field_name!(test_field_name_at_prefix, "@timestamp", true);
+    test_field_name!(test_field_name_dotted, "object.field", true);
+
+    test_field_name!(test_field_name_empty, "", false);
+    test_field_name!(test_field_name_uppercase, "Title", false);
+    test_field_name!(test_field_name_leading_digit, "1field", false);
+    test_field_name!(test_field_name_hyphen, "field-name", false);
+
     #[test]
     fn test_invalid_json_target_string() {
         let req = make_request("tests/tests.proto", Some("invalid-json-string"));

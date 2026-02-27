@@ -103,7 +103,7 @@ message FieldDataTestcase {
   }];
 }
 
-message ErrorsTestCase {
+message InvalidJsonTestCase {
   string invalid_json = 1 [(protosearch.mapping) = {
     target: {
       label: "invalid-json-string"
@@ -114,6 +114,19 @@ message ErrorsTestCase {
       json: "[1, 2, 3]"
     }
   }];
+}
+
+message InvalidFieldNameTestCase {
+  string lowercase = 1 [(protosearch.mapping).name = "valid"];
+  string with_underscore = 2 [(protosearch.mapping).name = "valid_name"];
+  string with_digit = 3 [(protosearch.mapping).name = "field1"];
+  string at_prefix = 4 [(protosearch.mapping).name = "@timestamp"];
+  string dotted = 5 [(protosearch.mapping).name = "object.field"];
+
+  string empty = 100 [(protosearch.mapping).name = ""];
+  string uppercase = 101 [(protosearch.mapping).name = "Title"];
+  string leading_digit = 102 [(protosearch.mapping).name = "1field"];
+  string hyphen = 103 [(protosearch.mapping).name = "field-name"];
 }
 
 message EnumTestCase {
