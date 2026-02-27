@@ -1,4 +1,5 @@
 mod context;
+mod diagnostic;
 mod error;
 mod mapping;
 mod plugin;
@@ -26,7 +27,7 @@ mod tests {
             #[test]
             fn $name() {
                 let req = make_request("tests/tests.proto", $target);
-                let resp = crate::process(req).unwrap();
+                let (resp, _diagnostics) = crate::process(req).unwrap();
                 insta::assert_json_snapshot!(output_for(&resp, $test));
             }
         };

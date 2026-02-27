@@ -7,15 +7,17 @@ use protobuf::{Message, UnknownValueRef};
 use serde_json::Value;
 
 use crate::context::Context;
+use crate::diagnostic::Diagnostic;
 use crate::mapping::{InferredType, Mapping, Property};
 use crate::{Error, Result, proto};
 
 const EXTENSION_NUMBER: u32 = 50_000;
 
-pub fn process(request: CodeGeneratorRequest) -> Result<CodeGeneratorResponse> {
+pub fn process(request: CodeGeneratorRequest) -> Result<(CodeGeneratorResponse, Vec<Diagnostic>)> {
     let mut response = CodeGeneratorResponse::new();
     response.set_supported_features(Feature::FEATURE_PROTO3_OPTIONAL as u64);
     let ctx = Context::try_from(request)?;
+    let mut diagnostics = Vec::new();
     for filename in &ctx.files_to_generate {
         let file_descriptor =
             ctx.get_file_descriptor_by_name(filename)
@@ -23,7 +25,8 @@ pub fn process(request: CodeGeneratorRequest) -> Result<CodeGeneratorResponse> {
                     "missing descriptor for {filename}"
                 )))?;
         for message_descriptor in file_descriptor.messages() {
-            let mapping = compile_message(&ctx, &message_descriptor)?;
+            let (mapping, mut mapping_diagnostics) = compile_message(&ctx, &message_descriptor)?;
+            diagnostics.append(&mut mapping_diagnostics);
             if mapping.properties.is_empty() {
                 continue;
             }
@@ -33,24 +36,32 @@ pub fn process(request: CodeGeneratorRequest) -> Result<CodeGeneratorResponse> {
             response.file.push(file);
         }
     }
-    Ok(response)
+    Ok((response, diagnostics))
 }
 
 /// Compile a message as a document mapping.
-fn compile_message(ctx: &Context, message: &MessageDescriptor) -> Result<Mapping> {
+fn compile_message(
+    ctx: &Context,
+    message: &MessageDescriptor,
+) -> Result<(Mapping, Vec<Diagnostic>)> {
     let mut mapping = Mapping::default();
+    let mut diagnostics = Vec::new();
     for field in message.fields() {
-        if let Some((name, property)) = compile_field(ctx, &field)? {
+        if let Some((name, property)) = compile_field(ctx, &field, &mut diagnostics)? {
             mapping.properties.insert(name, property);
         }
     }
-    Ok(mapping)
+    Ok((mapping, diagnostics))
 }
 
 /// Compile a field as a [`Property`].
 ///
 /// Returns `(name, property)`.
-fn compile_field(ctx: &Context, field: &FieldDescriptor) -> Result<Option<(String, Property)>> {
+fn compile_field(
+    ctx: &Context,
+    field: &FieldDescriptor,
+    diagnostics: &mut Vec<Diagnostic>,
+) -> Result<Option<(String, Property)>> {
     let Some(options) = get_mapping_options(field)? else {
         return Ok(None);
     };
@@ -88,6 +99,10 @@ fn compile_field(ctx: &Context, field: &FieldDescriptor) -> Result<Option<(Strin
     }
     .map(|desc| compile_message(ctx, &desc))
     .transpose()?
+    .map(|(m, mut d)| {
+        diagnostics.append(&mut d);
+        m
+    })
     .unwrap_or_default();
     let property = match (mapping.properties.is_empty(), property) {
         (false, Property::Leaf(parameters)) => Property::Mapping {
