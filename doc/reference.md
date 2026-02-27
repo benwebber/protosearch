@@ -59,7 +59,7 @@ If you need to generate a parameter that is not in this list, see [`target`](#ta
 |[`type`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/type)|`string`|The field type. If omitted, the plugin infers the type from the protobuf field type.|
 |[`analyzer`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/analyzer)|`string`|Analyzer used at index time. Applies to `text` fields.|
 |[`coerce`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/coerce)|`bool`|Whether to coerce values to the declared mapping type. Applies to numeric and date fields.|
-|[`copy_to`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/copy-to)|`string`|Copy this field's value to the named field.|
+|[`copy_to`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/copy-to)|`repeated string`|Copy this field's value to the named field.|
 |[`doc_values`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/doc-values)|`bool`|Whether to store doc values for sorting and aggregation.|
 |[`dynamic`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dynamic)|`string`|How to handle unknown subfields. Applies to `object` fields.|
 |[`eager_global_ordinals`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/eager-global-ordinals)|`bool`|Whether to load global ordinals at refresh time.|
