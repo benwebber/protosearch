@@ -5,7 +5,7 @@ package tests;
 import "protosearch/protosearch.proto";
 
 message TestCase {
-  string basic = 1 [(protosearch.field) = {
+  string basic = 1 [(protosearch.mapping).field = {
     type: "text"
     analyzer: "english"
     coerce: true
@@ -39,17 +39,11 @@ message TestCase {
     term_vector: "with_positions"
   }];
 
-  string output_name = 2 [(protosearch.field) = {
-    output: {name: "foo"}
-  }];
+  string output_name = 2 [(protosearch.mapping).name = "foo"];
 
-  string output_target = 3 [(protosearch.field) = {
-    output: {
-      target: {
-        label: "foo"
-        json: '{"type": "keyword"}'
-      }
-    }
+  string output_target = 3 [(protosearch.mapping).target = {
+    label: "foo"
+    json: '{"type": "keyword"}'
   }];
 }
 
@@ -60,27 +54,27 @@ message InferTypeTestCase {
     ENUM_UNSPECIFIED = 0;
   }
 
-  string keyword_string = 1 [(protosearch.field) = {}];
-  Enum keyword_enum = 2 [(protosearch.field) = {}];
-  bool boolean = 3 [(protosearch.field) = {}];
-  int32 integer_int32 = 4 [(protosearch.field) = {}];
-  sint32 integer_sint32 = 5 [(protosearch.field) = {}];
-  sfixed32 integer_sfixed32 = 6 [(protosearch.field) = {}];
-  uint32 long_uint32 = 7 [(protosearch.field) = {}];
-  fixed32 long_fixed32 = 8 [(protosearch.field) = {}];
-  int64 long_int64 = 9 [(protosearch.field) = {}];
-  sint64 long_sint64 = 10 [(protosearch.field) = {}];
-  sfixed64 long_sfixed64 = 11 [(protosearch.field) = {}];
-  uint64 unsigned_long_uint64 = 12 [(protosearch.field) = {}];
-  fixed64 unsigned_long_fixed64 = 13 [(protosearch.field) = {}];
-  float float = 14 [(protosearch.field) = {}];
-  double double = 15 [(protosearch.field) = {}];
-  bytes binary = 16 [(protosearch.field) = {}];
-  Message object = 17 [(protosearch.field) = {}];
+  string keyword_string = 1 [(protosearch.mapping) = {}];
+  Enum keyword_enum = 2 [(protosearch.mapping) = {}];
+  bool boolean = 3 [(protosearch.mapping) = {}];
+  int32 integer_int32 = 4 [(protosearch.mapping) = {}];
+  sint32 integer_sint32 = 5 [(protosearch.mapping) = {}];
+  sfixed32 integer_sfixed32 = 6 [(protosearch.mapping) = {}];
+  uint32 long_uint32 = 7 [(protosearch.mapping) = {}];
+  fixed32 long_fixed32 = 8 [(protosearch.mapping) = {}];
+  int64 long_int64 = 9 [(protosearch.mapping) = {}];
+  sint64 long_sint64 = 10 [(protosearch.mapping) = {}];
+  sfixed64 long_sfixed64 = 11 [(protosearch.mapping) = {}];
+  uint64 unsigned_long_uint64 = 12 [(protosearch.mapping) = {}];
+  fixed64 unsigned_long_fixed64 = 13 [(protosearch.mapping) = {}];
+  float float = 14 [(protosearch.mapping) = {}];
+  double double = 15 [(protosearch.mapping) = {}];
+  bytes binary = 16 [(protosearch.mapping) = {}];
+  Message object = 17 [(protosearch.mapping) = {}];
 }
 
 message FieldDataTestcase {
-  string struct_value = 1 [(protosearch.field) = {
+  string struct_value = 1 [(protosearch.mapping).field = {
     type: "text"
     fielddata: {
       struct_value: {
@@ -92,7 +86,7 @@ message FieldDataTestcase {
     }
   }];
 
-  string list_value = 2 [(protosearch.field) = {
+  string list_value = 2 [(protosearch.mapping).field = {
     type: "text"
     fielddata: {
       list_value: {
@@ -103,23 +97,21 @@ message FieldDataTestcase {
     }
   }];
 
-  string null_value = 3 [(protosearch.field) = {
+  string null_value = 3 [(protosearch.mapping).field = {
     type: "text"
     fielddata: {null_value: NULL_VALUE}
   }];
 }
 
 message ErrorsTestCase {
-  string invalid_json = 1 [(protosearch.field) = {
-    output: {
-      target: {
-        label: "invalid-json-string"
-        json: "foo"
-      }
-      target: {
-        label: "invalid-json-array"
-        json: "[1, 2, 3]"
-      }
+  string invalid_json = 1 [(protosearch.mapping) = {
+    target: {
+      label: "invalid-json-string"
+      json: "foo"
+    }
+    target: {
+      label: "invalid-json-array"
+      json: "[1, 2, 3]"
     }
   }];
 }
@@ -130,25 +122,25 @@ message EnumTestCase {
     ENUM_ACTIVE = 1;
   }
 
-  Enum status_inferred = 1 [(protosearch.field) = {}];
-  Enum status_keyword = 2 [(protosearch.field).type = "keyword"];
-  Enum status_integer = 3 [(protosearch.field).type = "integer"];
+  Enum status_inferred = 1 [(protosearch.mapping).field = {}];
+  Enum status_keyword = 2 [(protosearch.mapping).field.type = "keyword"];
+  Enum status_integer = 3 [(protosearch.mapping).field.type = "integer"];
 }
 
 message MessageTestCase {
   message Message {
-    string uid = 1 [(protosearch.field) = {}];
+    string uid = 1 [(protosearch.mapping).field = {}];
   }
 
-  Message message_object_singular = 1 [(protosearch.field) = {type: "object"}];
-  Message message_nested_singular = 2 [(protosearch.field) = {type: "nested"}];
-  repeated Message message_object_repeated = 3 [(protosearch.field) = {type: "object"}];
-  repeated Message message_nested_repeated = 4 [(protosearch.field) = {type: "nested"}];
-  Message message_object_with_parameters = 5 [(protosearch.field) = {
+  Message message_object_singular = 1 [(protosearch.mapping).field = {type: "object"}];
+  Message message_nested_singular = 2 [(protosearch.mapping).field = {type: "nested"}];
+  repeated Message message_object_repeated = 3 [(protosearch.mapping).field = {type: "object"}];
+  repeated Message message_nested_repeated = 4 [(protosearch.mapping).field = {type: "nested"}];
+  Message message_object_with_parameters = 5 [(protosearch.mapping).field = {
     type: "object"
     dynamic: "strict"
   }];
-  Message message_nested_with_parameters = 6 [(protosearch.field) = {
+  Message message_nested_with_parameters = 6 [(protosearch.mapping).field = {
     type: "nested"
     dynamic: "strict"
   }];

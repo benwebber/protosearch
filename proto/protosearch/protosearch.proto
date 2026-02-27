@@ -6,8 +6,30 @@ import "google/protobuf/descriptor.proto";
 import "google/protobuf/struct.proto";
 
 extend google.protobuf.FieldOptions {
-  optional FieldMapping field = 50000;
+  optional Mapping mapping = 50000;
 }
+
+message Mapping {
+  // Rename this field in the mapping.
+  optional string name = 1 [targets = TARGET_TYPE_FIELD];
+
+  // Configure a literal mapping for a specific target.
+  //
+  // This does not target a specific type because it will apply to complete
+  // mappings as well.
+  repeated Target target = 2;
+
+  // Field options.
+  optional FieldMapping field = 3 [targets = TARGET_TYPE_FIELD];
+
+  // Reserved for document options.
+  optional DocumentMapping doc = 4 [targets = TARGET_TYPE_MESSAGE];
+
+  // Reserved for future use.
+  extensions 1000 to max;
+}
+
+message DocumentMapping {}
 
 /**
  * FieldMapping represents common mapping parameters.
@@ -133,29 +155,12 @@ message FieldMapping {
   // Whether to store term vectors.
   // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/term-vector
   optional string term_vector = 25;
-
-  // Plugin-specific output options.
-  optional Output output = 100;
-
-  // Reserved for future use.
-  extensions 1000 to max;
-}
-
-/**
- * Field output options.
- */
-message Output {
-  // Rename this field in the mapping.
-  optional string name = 1;
-
-  // Configure a literal mapping for a specific target.
-  repeated OutputTarget target = 2;
 }
 
 /**
  * A labelled, literal field mapping.
  */
-message OutputTarget {
+message Target {
   // The label that identifies this target.
   optional string label = 1;
 

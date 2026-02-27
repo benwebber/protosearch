@@ -8,8 +8,6 @@ use serde_json::{Map, Value, json};
 
 use crate::proto::FieldMapping;
 
-const OUTPUT_FIELD_NAME: &str = "output";
-
 /// A document mapping.
 #[derive(Debug, Clone, PartialEq, Default, Serialize)]
 pub struct Mapping {
@@ -55,7 +53,6 @@ impl Property {
     pub fn from_options(options: &FieldMapping, typ: String) -> Self {
         let mut params = other_to_json(options as &dyn MessageDyn);
         params.remove("type");
-        params.remove(OUTPUT_FIELD_NAME);
         Self::Leaf {
             typ,
             parameters: params.into_iter().collect(),

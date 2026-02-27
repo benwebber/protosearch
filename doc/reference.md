@@ -4,22 +4,55 @@ This document describes the complete `protosearch` API.
 
 ## API
 
-`protosearch` exposes a single field extension, `protosearch.field`.
+`protosearch` exposes a single field extension, `protosearch.mapping`.
 
-This extension is a protobuf message (`protosearch.FieldMapping`).
+This extension is a protobuf message (`protosearch.Mapping`) that wraps the extension options.
+
+|Field|Type|Description|
+|---|---|---|
+|`name`|`string`|Rename a field in the mapping.|
+|`field`|`protosearch.FieldMapping`|Define mapping field parameters.|
+|`target`|`repeated protosearch.Target`|Configure a literal mapping for a specific target.|
+
 The `protoc-gen-protosearch` plugin compiles these message options to a JSON file containing the document mapping.
 
-### Basic mappings
+The simplest way to annotate a field is:
 
-In most cases, you can use the top-level extension fields to define fields.
+```protobuf
+string uid = 1 [(protosearch.mapping) = {}];
+```
 
+This will generate a basic field mapping with no parameters except for `type`. See [type inference](#type-inference) below.
+
+If you do not annotate a protobuf field with `(protosearch.mapping)` options, it will be excluded from the mapping.
+
+### `name`
+
+The `name` field lets you rename a protobuf field in the compiled mapping.
+
+```
+string uid = 1 [(protosearch.mapping).name = "user_uid"];
+```
+
+```json
+{
+  "properties": {
+    "user_uid": {
+      "type": "keyword"
+    }
+  }
+}
+```
+
+### `field`
+
+In most cases, you will need to use `field` to define field parameters.
 `FieldMapping` supports the [most common mapping parameters](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-parameters) with three important differences:
 
 * It does not support `index_phrases` and `index_prefixes` because those are specific to the `text` field type.
 * It does not support `properties`, because the plugin supports defining `object` and `nested` fields as protobuf message fields.
-* It includes a special `output` field that controls how the plugin renders the mapping.
 
-If you do not annotate a protobuf field with `(protosearch.field)` options, it will be excluded from the mapping.
+If you need to generate a parameter that is not in this list, see [`target`](#target) below.
 
 |Field|Type|Description|
 |---|---|---|
@@ -49,28 +82,18 @@ If you do not annotate a protobuf field with `(protosearch.field)` options, it w
 |[`subobjects`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/subobjects)|`bool`|Whether dotted field names are interpreted as nested subobjects.|
 |[`term_vector`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/term-vector)|`string`|Whether to store term vectors.|
 
-### Advanced mappings
+### `target`
 
-The special `output` field gives you complete control over how a protobuf field compiles to a mapping property.
+The `target` field gives you complete control over how a protobuf field compiles to a mapping property.
 
 It is a message with the following fields:
-
-|Field|Type|Description|
-|---|---|---|
-|`name`|`string`|Rename this protobuf field in the mapping.|
-|`target`|`repeated protosearch.OutputTarget`|Configure a literal mapping for a specific target.|
-
-#### `target`
-
-If you need to define a more complex mapping type, you can use `output.target` to define the mapping as a JSON string.
-
-`output.target` is a repeated message with the following fields.
 
 |Field|Type|Description|
 |---|---|---|
 |`label`|`string`|A human-readable label used to target that particular mapping with `--protosearch_opt=target=<label>`.|
 |`json`|`string`|A literal JSON string containing the mapping.|
 
+Use this to define more complex mapping types, or specify parameters that are not supported in `FieldMapping`.
 You can also use this to define mappings for different clusters or vendors.
 You can specify this field more than once.
 
@@ -78,16 +101,14 @@ For example, you might want to represent a `Point` object as a `geo_point` in El
 You can create targets for both mappings:
 
 ```protobuf
-Point origin = 1 [(protosearch.field) = {
-  output: {
-    target: {
-      label: "elasticsearch"
-      json: '{"type": "point"}'
-    }
-    target: {
-      label: "opensearch"
-      json: '{"type": "xy_point"}'
-    }
+Point origin = 1 [(protosearch.mapping) = {
+  target: {
+    label: "elasticsearch"
+    json: '{"type": "point"}'
+  }
+  target: {
+    label: "opensearch"
+    json: '{"type": "xy_point"}'
   }
 }];
 ```
@@ -96,8 +117,10 @@ With `--protosearch_opt=target=elasticsearch`:
 
 ```json
 {
-  "origin": {
-    "type": "point"
+  "properties": {
+    "origin": {
+      "type": "point"
+    }
   }
 }
 ```
@@ -106,8 +129,10 @@ With `--protosearch_opt=target=opensearch`:
 
 ```json
 {
-  "origin": {
-    "type": "xy_point"
+  "properties": {
+    "origin": {
+      "type": "xy_point"
+    }
   }
 }
 ```

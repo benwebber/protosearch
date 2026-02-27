@@ -19,7 +19,7 @@ message Article {
 }
 ```
 
-Annotate the message with `protosearch.field` options to map its fields to [mapping field types](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/field-data-types).
+Annotate the message with `protosearch.mapping` options to map its fields to [mapping field types](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/field-data-types).
 
 
 ```protobuf
@@ -27,12 +27,12 @@ import "protosearch/protosearch.proto";
 
 message Article {
   message Author {
-    string uid = 1 [(protosearch.field) = {}];
-    string name = 2 [(protosearch.field).type = "text"];
+    string uid = 1 [(protosearch.mapping) = {}];
+    string name = 2 [(protosearch.mapping).field.type = "text"];
   }
 
-  string uid = 1 [(protosearch.field) = {}];
-  string title = 2 [(protosearch.field) = {
+  string uid = 1 [(protosearch.mapping) = {}];
+  string title = 2 [(protosearch.mapping).field = {
     type: "text"
     fields: {
       key: "en"
@@ -42,10 +42,10 @@ message Article {
       }
     }
   }];
-  repeated Author authors = 3 [(protosearch.field) = {
-    output: {name: "author"}
-    type: "nested"
-  }];
+  repeated Author authors = 3 [
+    (protosearch.mapping).name = "author",
+    (protosearch.mapping).field.type = "nested",
+  ];
 }
 ```
 

@@ -52,13 +52,13 @@ fn compile_message(ctx: &Context, message: &MessageDescriptor) -> Result<Mapping
 ///
 /// Returns `(name, property)`.
 fn compile_field(ctx: &Context, field: &FieldDescriptor) -> Result<Option<(String, Property)>> {
-    let Some(options) = get_field_mapping_options(field)? else {
+    let Some(options) = get_mapping_options(field)? else {
         return Ok(None);
     };
     let name = property_name(field, &options);
     let property = match ctx
         .target()
-        .and_then(|label| options.output.target.iter().find(|t| t.label() == label))
+        .and_then(|label| options.target.iter().find(|t| t.label() == label))
     {
         Some(entry) => {
             let json: Value =
@@ -79,12 +79,12 @@ fn compile_field(ctx: &Context, field: &FieldDescriptor) -> Result<Option<(Strin
             }
         }
         None => {
-            let typ = if !options.type_().is_empty() {
-                options.type_().to_string()
+            let typ = if !options.field.type_().is_empty() {
+                options.field.type_().to_string()
             } else {
                 infer_type(field).to_string()
             };
-            Property::from_options(&options, typ)
+            Property::from_options(&options.field, typ)
         }
     };
     // A mapping type, as in an object or nested field.
@@ -113,19 +113,19 @@ fn parse_target(parameter: &str) -> Option<&str> {
         .find_map(|kv| kv.strip_prefix("target="))
 }
 
-/// Return `output.name` if specified, otherwise the field name.
-fn property_name<'a>(field: &'a FieldDescriptor, options: &'a proto::FieldMapping) -> &'a str {
-    let name = options.output.name();
+/// Return `name` if specified, otherwise the field name.
+fn property_name<'a>(field: &'a FieldDescriptor, options: &'a proto::Mapping) -> &'a str {
+    let name = options.name();
     if !name.is_empty() {
         return name;
     }
     field.name()
 }
 
-/// Extract the specified [`proto::FieldMapping`], if they exist.
+/// Extract the specified [`proto::Mapping`], if they exist.
 ///
 /// This inspects unknown fields because `protobuf` 3.x does not support an extension registry.
-fn get_field_mapping_options(field: &FieldDescriptor) -> Result<Option<proto::FieldMapping>> {
+fn get_mapping_options(field: &FieldDescriptor) -> Result<Option<proto::Mapping>> {
     let field_proto = field.proto();
     let unknown_fields = field_proto.options.special_fields.unknown_fields();
     let mut bytes: Vec<u8> = Vec::new();
@@ -141,7 +141,7 @@ fn get_field_mapping_options(field: &FieldDescriptor) -> Result<Option<proto::Fi
     if !found {
         return Ok(None);
     }
-    Ok(Some(proto::FieldMapping::parse_from_bytes(&bytes)?))
+    Ok(Some(proto::Mapping::parse_from_bytes(&bytes)?))
 }
 
 fn infer_type(field: &FieldDescriptor) -> InferredType {
