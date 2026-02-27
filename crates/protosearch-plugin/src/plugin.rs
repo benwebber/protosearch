@@ -7,7 +7,7 @@ use protobuf::{Message, UnknownValueRef};
 use serde_json::Value;
 
 use crate::context::Context;
-use crate::diagnostic::Diagnostic;
+use crate::diagnostic::{Diagnostic, DiagnosticKind};
 use crate::mapping::{InferredType, Mapping, Property};
 use crate::{Error, Result, proto};
 
@@ -70,26 +70,24 @@ fn compile_field(
         .target()
         .and_then(|label| options.target.iter().find(|t| t.label() == label))
     {
-        Some(entry) => {
-            let json: Value =
-                serde_json::from_str(entry.json()).map_err(|e| Error::InvalidJson {
+        Some(entry) => match serde_json::from_str::<Value>(entry.json()) {
+            Ok(Value::Object(params)) => Property::Leaf(params.into_iter().collect()),
+            Ok(_) => {
+                diagnostics.push(Diagnostic::new(DiagnosticKind::InvalidTargetJsonType {
                     field: field.name().to_string(),
-                    source: e,
-                })?;
-            let Value::Object(params) = json else {
-                return Err(Error::InvalidJsonObject(field.name().into()));
-            };
-            Property::Leaf(params.into_iter().collect())
-        }
-        None => {
-            let mut property = Property::try_from(&*options.field)?;
-            if let Property::Leaf(ref mut parameters) = property {
-                parameters
-                    .entry("type".into())
-                    .or_insert_with(|| Value::String(InferredType::from(field).to_string()));
+                    label: entry.label().to_string(),
+                }));
+                property(field, &options)?
             }
-            property
-        }
+            Err(_) => {
+                diagnostics.push(Diagnostic::new(DiagnosticKind::InvalidTargetJson {
+                    field: field.name().to_string(),
+                    label: entry.label().to_string(),
+                }));
+                property(field, &options)?
+            }
+        },
+        None => property(field, &options)?,
     };
     // A mapping type, as in an object or nested field.
     let mapping = match field.runtime_field_type() {
@@ -112,6 +110,17 @@ fn compile_field(
         (_, property) => property,
     };
     Ok(Some((name.to_string(), property)))
+}
+
+/// Build a [`Property`] from `FieldMapping`, inferring `type` if absent.
+fn property(field: &FieldDescriptor, options: &proto::Mapping) -> Result<Property> {
+    let mut property = Property::try_from(&*options.field)?;
+    if let Property::Leaf(ref mut parameters) = property {
+        parameters
+            .entry("type".into())
+            .or_insert_with(|| Value::String(InferredType::from(field).to_string()));
+    }
+    Ok(property)
 }
 
 /// Return `name` if specified, otherwise the field name.

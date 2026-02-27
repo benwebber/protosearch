@@ -17,14 +17,6 @@ pub enum Error {
     Protobuf(#[from] protobuf::Error),
     #[error("serialization error: {0}")]
     Serializer(#[from] serde_json::Error),
-    #[error("invalid JSON for field `{field}`: {source}")]
-    InvalidJson {
-        field: String,
-        #[source]
-        source: serde_json::Error,
-    },
-    #[error("field `{0}` must be a JSON object")]
-    InvalidJsonObject(String),
     #[error("enum values are not supported as mapping parameters")]
     UnsupportedFieldValueType,
 }

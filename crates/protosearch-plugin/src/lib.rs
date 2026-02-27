@@ -9,6 +9,7 @@ mod proto {
     include!(concat!(env!("OUT_DIR"), "/protosearch.rs"));
 }
 
+pub use diagnostic::{Diagnostic, DiagnosticKind};
 pub use error::{Error, Result};
 pub use plugin::process;
 
@@ -21,6 +22,8 @@ mod tests {
     use protobuf::descriptor::FileDescriptorSet;
     use protobuf::plugin::CodeGeneratorRequest;
     use serde_json::Value;
+
+    use crate::diagnostic::{Diagnostic, DiagnosticKind};
 
     macro_rules! test_snapshot {
         ($name:ident, $test:expr, $target:expr) => {
@@ -70,19 +73,23 @@ mod tests {
     #[test]
     fn test_invalid_json_target_string() {
         let req = make_request("tests/tests.proto", Some("invalid-json-string"));
-        assert!(matches!(
-            crate::process(req).unwrap_err(),
-            crate::Error::InvalidJson { .. }
-        ));
+        let (_resp, diagnostics) = crate::process(req).unwrap();
+        let expected = Diagnostic::new(DiagnosticKind::InvalidTargetJson {
+            field: "invalid_json".to_string(),
+            label: "invalid-json-string".to_string(),
+        });
+        assert!(diagnostics.contains(&expected));
     }
 
     #[test]
     fn test_non_object_json_target() {
         let req = make_request("tests/tests.proto", Some("invalid-json-array"));
-        assert!(matches!(
-            crate::process(req).unwrap_err(),
-            crate::Error::InvalidJsonObject(_)
-        ));
+        let (_resp, diagnostics) = crate::process(req).unwrap();
+        let expected = Diagnostic::new(DiagnosticKind::InvalidTargetJsonType {
+            field: "invalid_json".to_string(),
+            label: "invalid-json-array".to_string(),
+        });
+        assert!(diagnostics.contains(&expected));
     }
 
     #[test]
