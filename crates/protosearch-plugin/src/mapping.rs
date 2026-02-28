@@ -201,6 +201,7 @@ fn other_to_json(msg: &dyn MessageDyn) -> Result<Map<String, Value>> {
         match field.get_reflect(msg) {
             ReflectFieldRef::Optional(v) => {
                 if let Some(rv) = v.value() {
+                    // Always ignore the conventional default/zero value (UNSPECIFIED).
                     const UNSPECIFIED: i32 = 0;
                     if let ReflectValueRef::Enum(_, UNSPECIFIED) = rv {
                         continue;
