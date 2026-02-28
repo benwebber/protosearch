@@ -36,7 +36,7 @@ message TestCase {
     similarity: "BM25"
     subobjects: "false"
     store: true
-    term_vector: "with_positions"
+    term_vector: TERM_VECTOR_WITH_POSITIONS
   }];
 
   string output_name = 2 [(protosearch.mapping).name = "foo"];
@@ -79,6 +79,17 @@ message DynamicTestCase {
   string false = 3 [(protosearch.mapping).field.dynamic = DYNAMIC_FALSE];
   string strict = 4 [(protosearch.mapping).field.dynamic = DYNAMIC_STRICT];
   string runtime = 5 [(protosearch.mapping).field.dynamic = DYNAMIC_RUNTIME];
+}
+
+message TermVectorTestCase {
+  string unspecified = 1 [(protosearch.mapping).field.term_vector = TERM_VECTOR_UNSPECIFIED];
+  string no = 2 [(protosearch.mapping).field.term_vector = TERM_VECTOR_NO];
+  string yes = 3 [(protosearch.mapping).field.term_vector = TERM_VECTOR_YES];
+  string with_positions = 4 [(protosearch.mapping).field.term_vector = TERM_VECTOR_WITH_POSITIONS];
+  string with_offsets = 5 [(protosearch.mapping).field.term_vector = TERM_VECTOR_WITH_OFFSETS];
+  string with_positions_offsets = 6 [(protosearch.mapping).field.term_vector = TERM_VECTOR_WITH_POSITIONS_OFFSETS];
+  string with_positions_payloads = 7 [(protosearch.mapping).field.term_vector = TERM_VECTOR_WITH_POSITIONS_PAYLOADS];
+  string with_positions_offsets_payloads = 8 [(protosearch.mapping).field.term_vector = TERM_VECTOR_WITH_POSITIONS_OFFSETS_PAYLOADS];
 }
 
 message IndexOptionsTestCase {

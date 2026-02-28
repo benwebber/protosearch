@@ -76,6 +76,7 @@ mod tests {
     test_snapshot!(test_nested, "tests.MessageTestCase", None);
     test_snapshot!(test_dynamic, "tests.DynamicTestCase", None);
     test_snapshot!(test_index_options, "tests.IndexOptionsTestCase", None);
+    test_snapshot!(test_term_vector, "tests.TermVectorTestCase", None);
 
     macro_rules! test_field_name {
         ($test_name:ident, $name:literal, true) => {

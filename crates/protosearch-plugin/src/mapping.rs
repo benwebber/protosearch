@@ -8,7 +8,7 @@ use protobuf::{Enum, MessageDyn};
 use serde::Serialize;
 use serde_json::{Map, Value, json};
 
-use crate::proto::{Dynamic, FieldMapping, IndexOptions};
+use crate::proto::{Dynamic, FieldMapping, IndexOptions, TermVector};
 
 /// A document mapping.
 #[derive(Debug, Clone, PartialEq, Default, Serialize)]
@@ -123,6 +123,21 @@ impl fmt::Display for IndexOptions {
     }
 }
 
+impl fmt::Display for TermVector {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.write_str(match self {
+            Self::TERM_VECTOR_UNSPECIFIED => "",
+            Self::TERM_VECTOR_NO => "no",
+            Self::TERM_VECTOR_YES => "yes",
+            Self::TERM_VECTOR_WITH_POSITIONS => "with_positions",
+            Self::TERM_VECTOR_WITH_OFFSETS => "with_offsets",
+            Self::TERM_VECTOR_WITH_POSITIONS_OFFSETS => "with_positions_offsets",
+            Self::TERM_VECTOR_WITH_POSITIONS_PAYLOADS => "with_positions_payloads",
+            Self::TERM_VECTOR_WITH_POSITIONS_OFFSETS_PAYLOADS => "with_positions_offsets_payloads",
+        })
+    }
+}
+
 fn to_json(message: &dyn MessageDyn) -> crate::Result<Value> {
     match message.descriptor_dyn().full_name() {
         "google.protobuf.Struct" => struct_to_json(message),
@@ -153,6 +168,11 @@ fn reflect_value_to_json(v: ReflectValueRef) -> crate::Result<Value> {
                 let index_options =
                     IndexOptions::from_i32(i).ok_or(crate::Error::UnsupportedFieldValueType)?;
                 Ok(Value::String(index_options.to_string()))
+            }
+            "protosearch.TermVector" => {
+                let term_vector =
+                    TermVector::from_i32(i).ok_or(crate::Error::UnsupportedFieldValueType)?;
+                Ok(Value::String(term_vector.to_string()))
             }
             _ => Err(crate::Error::UnsupportedFieldValueType),
         },

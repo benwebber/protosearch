@@ -25,6 +25,17 @@ enum IndexOptions {
   INDEX_OPTIONS_OFFSETS = 4;
 }
 
+enum TermVector {
+  TERM_VECTOR_UNSPECIFIED = 0;
+  TERM_VECTOR_NO = 1;
+  TERM_VECTOR_YES = 2;
+  TERM_VECTOR_WITH_POSITIONS = 3;
+  TERM_VECTOR_WITH_OFFSETS = 4;
+  TERM_VECTOR_WITH_POSITIONS_OFFSETS = 5;
+  TERM_VECTOR_WITH_POSITIONS_PAYLOADS = 6;
+  TERM_VECTOR_WITH_POSITIONS_OFFSETS_PAYLOADS = 7;
+}
+
 message Mapping {
   // Rename this field in the mapping.
   optional string name = 1 [targets = TARGET_TYPE_FIELD];
@@ -170,7 +181,7 @@ message FieldMapping {
 
   // Whether to store term vectors.
   // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/term-vector
-  optional string term_vector = 25;
+  optional TermVector term_vector = 25;
 }
 
 /**

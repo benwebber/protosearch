@@ -1,0 +1,41 @@
+---
+source: crates/protosearch-plugin/src/lib.rs
+expression: "output_for(& resp, \"tests.TermVectorTestCase\")"
+---
+{
+  "tests.TermVectorTestCase.json": {
+    "properties": {
+      "no": {
+        "term_vector": "no",
+        "type": "keyword"
+      },
+      "unspecified": {
+        "type": "keyword"
+      },
+      "with_offsets": {
+        "term_vector": "with_offsets",
+        "type": "keyword"
+      },
+      "with_positions": {
+        "term_vector": "with_positions",
+        "type": "keyword"
+      },
+      "with_positions_offsets": {
+        "term_vector": "with_positions_offsets",
+        "type": "keyword"
+      },
+      "with_positions_offsets_payloads": {
+        "term_vector": "with_positions_offsets_payloads",
+        "type": "keyword"
+      },
+      "with_positions_payloads": {
+        "term_vector": "with_positions_payloads",
+        "type": "keyword"
+      },
+      "yes": {
+        "term_vector": "yes",
+        "type": "keyword"
+      }
+    }
+  }
+}
