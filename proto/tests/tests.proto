@@ -11,7 +11,7 @@ message TestCase {
     coerce: true
     copy_to: "copy_field"
     doc_values: true
-    dynamic: "strict"
+    dynamic: DYNAMIC_STRICT
     eager_global_ordinals: true
     enabled: true
     fielddata: {bool_value: true}
@@ -71,6 +71,14 @@ message InferTypeTestCase {
   double double = 15 [(protosearch.mapping) = {}];
   bytes binary = 16 [(protosearch.mapping) = {}];
   Message object = 17 [(protosearch.mapping) = {}];
+}
+
+message DynamicTestCase {
+  string unspecified = 1 [(protosearch.mapping).field.dynamic = DYNAMIC_UNSPECIFIED];
+  string true = 2 [(protosearch.mapping).field.dynamic = DYNAMIC_TRUE];
+  string false = 3 [(protosearch.mapping).field.dynamic = DYNAMIC_FALSE];
+  string strict = 4 [(protosearch.mapping).field.dynamic = DYNAMIC_STRICT];
+  string runtime = 5 [(protosearch.mapping).field.dynamic = DYNAMIC_RUNTIME];
 }
 
 message FieldDataTestcase {
@@ -178,10 +186,10 @@ message MessageTestCase {
   repeated Message message_nested_repeated = 4 [(protosearch.mapping).field = {type: "nested"}];
   Message message_object_with_parameters = 5 [(protosearch.mapping).field = {
     type: "object"
-    dynamic: "strict"
+    dynamic: DYNAMIC_STRICT
   }];
   Message message_nested_with_parameters = 6 [(protosearch.mapping).field = {
     type: "nested"
-    dynamic: "strict"
+    dynamic: DYNAMIC_STRICT
   }];
 }

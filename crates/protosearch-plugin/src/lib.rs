@@ -74,6 +74,7 @@ mod tests {
     test_snapshot!(test_fielddata, "tests.FieldDataTestCase", None);
     test_snapshot!(test_enum, "tests.EnumTestCase", None);
     test_snapshot!(test_nested, "tests.MessageTestCase", None);
+    test_snapshot!(test_dynamic, "tests.DynamicTestCase", None);
 
     macro_rules! test_field_name {
         ($test_name:ident, $name:literal, true) => {

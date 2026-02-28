@@ -1,14 +1,14 @@
 use std::collections::BTreeMap;
 use std::fmt;
 
-use protobuf::MessageDyn;
 use protobuf::reflect::{
     FieldDescriptor, ReflectFieldRef, ReflectValueRef, RuntimeFieldType, RuntimeType,
 };
+use protobuf::{Enum, MessageDyn};
 use serde::Serialize;
 use serde_json::{Map, Value, json};
 
-use crate::proto::FieldMapping;
+use crate::proto::{Dynamic, FieldMapping};
 
 /// A document mapping.
 #[derive(Debug, Clone, PartialEq, Default, Serialize)]
@@ -99,6 +99,18 @@ impl From<&FieldDescriptor> for InferredType {
     }
 }
 
+impl fmt::Display for Dynamic {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.write_str(match self {
+            Dynamic::DYNAMIC_UNSPECIFIED => "",
+            Dynamic::DYNAMIC_TRUE => "true",
+            Dynamic::DYNAMIC_FALSE => "false",
+            Dynamic::DYNAMIC_STRICT => "strict",
+            Dynamic::DYNAMIC_RUNTIME => "runtime",
+        })
+    }
+}
+
 fn to_json(message: &dyn MessageDyn) -> crate::Result<Value> {
     match message.descriptor_dyn().full_name() {
         "google.protobuf.Struct" => struct_to_json(message),
@@ -119,7 +131,14 @@ fn reflect_value_to_json(v: ReflectValueRef) -> crate::Result<Value> {
         ReflectValueRef::F64(f) => Ok(json!(f)),
         ReflectValueRef::String(s) => Ok(json!(s)),
         ReflectValueRef::Bytes(b) => Ok(json!(b)),
-        ReflectValueRef::Enum(_, _) => Err(crate::Error::UnsupportedFieldValueType),
+        ReflectValueRef::Enum(desc, i) => match desc.full_name() {
+            "protosearch.Dynamic" => {
+                let dynamic =
+                    Dynamic::from_i32(i).ok_or(crate::Error::UnsupportedFieldValueType)?;
+                Ok(Value::String(dynamic.to_string()))
+            }
+            _ => Err(crate::Error::UnsupportedFieldValueType),
+        },
         ReflectValueRef::Message(m) => to_json(&*m),
     }
 }
@@ -181,6 +200,10 @@ fn other_to_json(msg: &dyn MessageDyn) -> crate::Result<Map<String, Value>> {
         match field.get_reflect(msg) {
             ReflectFieldRef::Optional(v) => {
                 if let Some(rv) = v.value() {
+                    const UNSPECIFIED: i32 = 0;
+                    if let ReflectValueRef::Enum(_, UNSPECIFIED) = rv {
+                        continue;
+                    }
                     map.insert(field.name().to_string(), reflect_value_to_json(rv)?);
                 }
             }

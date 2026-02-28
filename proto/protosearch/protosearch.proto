@@ -9,6 +9,14 @@ extend google.protobuf.FieldOptions {
   optional Mapping mapping = 50000;
 }
 
+enum Dynamic {
+  DYNAMIC_UNSPECIFIED = 0;
+  DYNAMIC_TRUE = 1;
+  DYNAMIC_FALSE = 2;
+  DYNAMIC_STRICT = 3;
+  DYNAMIC_RUNTIME = 4;
+}
+
 message Mapping {
   // Rename this field in the mapping.
   optional string name = 1 [targets = TARGET_TYPE_FIELD];
@@ -72,7 +80,7 @@ message FieldMapping {
 
   // How to handle unknown subfields. Applies to `object` fields.
   // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dynamic
-  optional string dynamic = 6;
+  optional Dynamic dynamic = 6;
 
   // Whether to load global ordinals at refresh time.
   // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/eager-global-ordinals

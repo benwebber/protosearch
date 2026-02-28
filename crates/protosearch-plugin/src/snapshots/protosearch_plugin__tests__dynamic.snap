@@ -1,0 +1,29 @@
+---
+source: crates/protosearch-plugin/src/lib.rs
+expression: "output_for(& resp, \"tests.DynamicTestCase\")"
+---
+{
+  "tests.DynamicTestCase.json": {
+    "properties": {
+      "false": {
+        "dynamic": "false",
+        "type": "keyword"
+      },
+      "runtime": {
+        "dynamic": "runtime",
+        "type": "keyword"
+      },
+      "strict": {
+        "dynamic": "strict",
+        "type": "keyword"
+      },
+      "true": {
+        "dynamic": "true",
+        "type": "keyword"
+      },
+      "unspecified": {
+        "type": "keyword"
+      }
+    }
+  }
+}
