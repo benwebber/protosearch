@@ -7,7 +7,7 @@ use serde_json::Value;
 
 use crate::context::Context;
 use crate::diagnostic::{Diagnostic, DiagnosticKind, Location};
-use crate::mapping::{InferredType, Mapping, Property};
+use crate::mapping::{Mapping, Property};
 use crate::options::{get_mapping_options, property_name};
 use crate::validator::{ValidationContext, validate};
 use crate::{Error, Result, Span, proto};
@@ -132,9 +132,30 @@ fn compile_field(
 fn property(field: &FieldDescriptor, options: &proto::Mapping) -> Result<Property> {
     let mut property = Property::try_from(&*options.field)?;
     if let Property::Leaf(ref mut parameters) = property {
-        parameters
-            .entry("type".into())
-            .or_insert_with(|| Value::String(InferredType::from(field).to_string()));
+        parameters.entry("type".into()).or_insert_with(|| {
+            Value::String(match field.runtime_field_type() {
+                RuntimeFieldType::Singular(t) | RuntimeFieldType::Repeated(t) => {
+                    infer_type(&t).to_string()
+                }
+                RuntimeFieldType::Map(_, _) => "object".to_string(),
+            })
+        });
     }
     Ok(property)
+}
+
+fn infer_type(t: &RuntimeType) -> &str {
+    match t {
+        RuntimeType::I32 => "integer",
+        RuntimeType::I64 => "long",
+        RuntimeType::U32 => "long",
+        RuntimeType::U64 => "unsigned_long",
+        RuntimeType::F32 => "float",
+        RuntimeType::F64 => "double",
+        RuntimeType::Bool => "boolean",
+        RuntimeType::String => "keyword",
+        RuntimeType::VecU8 => "binary",
+        RuntimeType::Message(_) => "object",
+        RuntimeType::Enum(_) => "keyword",
+    }
 }

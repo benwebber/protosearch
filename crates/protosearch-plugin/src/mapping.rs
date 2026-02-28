@@ -1,9 +1,7 @@
 use std::collections::BTreeMap;
 use std::fmt;
 
-use protobuf::reflect::{
-    FieldDescriptor, ReflectFieldRef, ReflectValueRef, RuntimeFieldType, RuntimeType,
-};
+use protobuf::reflect::{ReflectFieldRef, ReflectValueRef};
 use protobuf::{Enum, MessageDyn};
 use serde::Serialize;
 use serde_json::{Map, Value, json};
@@ -32,19 +30,6 @@ pub enum Property {
     },
 }
 
-#[derive(Debug, Clone, PartialEq)]
-pub enum InferredType {
-    Keyword,
-    Boolean,
-    Integer,
-    Long,
-    UnsignedLong,
-    Float,
-    Double,
-    Binary,
-    Object,
-}
-
 impl TryFrom<&FieldMapping> for Property {
     type Error = Error;
 
@@ -54,49 +39,6 @@ impl TryFrom<&FieldMapping> for Property {
                 .into_iter()
                 .collect(),
         ))
-    }
-}
-
-impl fmt::Display for InferredType {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        f.write_str(match self {
-            Self::Keyword => "keyword",
-            Self::Boolean => "boolean",
-            Self::Integer => "integer",
-            Self::Long => "long",
-            Self::UnsignedLong => "unsigned_long",
-            Self::Float => "float",
-            Self::Double => "double",
-            Self::Binary => "binary",
-            Self::Object => "object",
-        })
-    }
-}
-
-impl From<RuntimeType> for InferredType {
-    fn from(t: RuntimeType) -> Self {
-        match t {
-            RuntimeType::I32 => Self::Integer,
-            RuntimeType::I64 => Self::Long,
-            RuntimeType::U32 => Self::Long,
-            RuntimeType::U64 => Self::UnsignedLong,
-            RuntimeType::F32 => Self::Float,
-            RuntimeType::F64 => Self::Double,
-            RuntimeType::Bool => Self::Boolean,
-            RuntimeType::String => Self::Keyword,
-            RuntimeType::VecU8 => Self::Binary,
-            RuntimeType::Message(_) => Self::Object,
-            RuntimeType::Enum(_) => Self::Keyword,
-        }
-    }
-}
-
-impl From<&FieldDescriptor> for InferredType {
-    fn from(field: &FieldDescriptor) -> Self {
-        match field.runtime_field_type() {
-            RuntimeFieldType::Singular(t) | RuntimeFieldType::Repeated(t) => Self::from(t),
-            RuntimeFieldType::Map(_, _) => Self::Object,
-        }
     }
 }
 
