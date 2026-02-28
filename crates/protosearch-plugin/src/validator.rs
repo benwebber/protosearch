@@ -166,9 +166,10 @@ impl Check for InvalidIgnoreAboveCheck {
             && v <= 0
         {
             diagnostics.push(Diagnostic::with_location(
-                DiagnosticKind::ValueError {
+                DiagnosticKind::InvalidParameterValue {
                     message: ctx.message.full_name().to_string(),
                     field: proto_name.to_string(),
+                    parameter: "ignore_above".to_string(),
                     reason: "'ignore_above' must be greater than 0".to_string(),
                 },
                 ctx.location(proto_name),
@@ -193,11 +194,11 @@ impl Check for InvalidPositionIncrementGapCheck {
             && v < 0
         {
             diagnostics.push(Diagnostic::with_location(
-                DiagnosticKind::ValueError {
+                DiagnosticKind::InvalidParameterValue {
                     message: ctx.message.full_name().to_string(),
                     field: proto_name.to_string(),
-                    reason: "'position_increment_gap' must be greater than or equal to 0"
-                        .to_string(),
+                    parameter: "position_increment_gap".to_string(),
+                    reason: "must be greater than or equal to 0".to_string(),
                 },
                 ctx.location(proto_name),
             ));

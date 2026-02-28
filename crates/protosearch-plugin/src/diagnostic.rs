@@ -26,9 +26,10 @@ pub enum DiagnosticKind {
         field: String,
         name: String,
     },
-    ValueError {
+    InvalidParameterValue {
         message: String,
         field: String,
+        parameter: String,
         reason: String,
     },
 }
@@ -55,6 +56,17 @@ impl Diagnostic {
     }
 }
 
+impl DiagnosticKind {
+    pub fn code(&self) -> &str {
+        match self {
+            Self::InvalidFieldName { .. } => "E001",
+            Self::InvalidTargetJson { .. } => "E002",
+            Self::InvalidTargetJsonType { .. } => "E003",
+            Self::InvalidParameterValue { .. } => "E100",
+        }
+    }
+}
+
 impl fmt::Display for Location {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match &self.span {
@@ -67,8 +79,8 @@ impl fmt::Display for Location {
 impl fmt::Display for Diagnostic {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match &self.location {
-            Some(loc) => write!(f, "{}: {}", loc, self.kind),
-            None => write!(f, "{}", self.kind),
+            Some(loc) => write!(f, "{}: {} {}", loc, self.kind.code(), self.kind),
+            None => write!(f, "{} {}", self.kind.code(), self.kind),
         }
     }
 }
@@ -103,11 +115,12 @@ impl fmt::Display for DiagnosticKind {
                     "{message}.{field}: name '{name}' is not a valid field name"
                 )
             }
-            Self::ValueError {
+            Self::InvalidParameterValue {
                 message,
                 field,
+                parameter,
                 reason,
-            } => write!(f, "{message}.{field}: {reason}"),
+            } => write!(f, "{message}.{field}: '{parameter}' {reason}"),
         }
     }
 }
