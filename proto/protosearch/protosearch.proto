@@ -66,13 +66,13 @@ message DocumentMapping {}
  *    https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-parameters
  *    https://docs.opensearch.org/latest/mappings/mapping-parameters/index/
  *
- * We deliberately ignore the following fields that only apply to text types:
+ * This is the union of common parameters for both vendors.
  *
- *    index_phrases
- *    index_prefixes
+ * Some of these parameters are specific to certain types. However they are
+ * common enough to warrant convenient top-level fields.
  *
- * We also deliberately omit the `properties` field because we represent
- * `object` and `nested` fields as messages.
+ * We deliberately omit the `properties` field because we represent `object` and
+ * `nested` fields as messages.
  */
 message FieldMapping {
   // The field type.
@@ -83,6 +83,14 @@ message FieldMapping {
   // Analyzer used at index time. Applies to `text` fields.
   // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/analyzer
   optional string analyzer = 2;
+
+  // Boost a field's score at index time.
+  //
+  // Elasticsearch: 7.x and earlier
+  // OpenSearch: all
+  //
+  // https://docs.opensearch.org/latest/mappings/mapping-parameters/boost/
+  optional double boost = 26;
 
   // Whether to coerce values to the declared mapping type. Applies to numeric
   // and date fields.
@@ -111,7 +119,7 @@ message FieldMapping {
 
   // Fielddata configuration for in-memory aggregations. Applies to `text` fields.
   // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/fielddata
-  optional google.protobuf.Value fielddata = 9;
+  optional bool fielddata = 9;
 
   // A multi-field mapping.
   // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/fields
@@ -133,8 +141,13 @@ message FieldMapping {
   // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/index-options
   optional IndexOptions index_options = 14;
 
-  // index_phrases
-  // index_prefixes
+  // Whether to index bigrams separately.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/index-phrases
+  optional bool index_phrases = 27;
+
+  // Index term prefixes.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/index-prefixes
+  optional IndexPrefixes index_prefixes = 28;
 
   // Whether to index the field.
   // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/index
@@ -177,11 +190,19 @@ message FieldMapping {
 
   // Whether dotted field names are interpreted as nested subobjects.
   // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/subobjects
-  optional string subobjects = 24;
+  optional bool subobjects = 24;
 
   // Whether to store term vectors.
   // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/term-vector
   optional TermVector term_vector = 25;
+}
+
+message IndexPrefixes {
+  // Minimum prefix length to index.
+  optional int32 min_chars = 1;
+
+  // Maximum prefix length to index.
+  optional int32 max_chars = 2;
 }
 
 /**

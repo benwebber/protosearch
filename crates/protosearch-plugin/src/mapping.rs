@@ -83,7 +83,6 @@ impl fmt::Display for TermVector {
 
 fn to_json(message: &dyn MessageDyn) -> Result<Value> {
     match message.descriptor_dyn().full_name() {
-        "google.protobuf.Struct" => struct_to_json(message),
         "google.protobuf.Value" => wkt_value_to_json(message),
         "google.protobuf.ListValue" => list_value_to_json(message),
         _ => Ok(Value::Object(other_to_json(message)?)),
@@ -109,24 +108,6 @@ fn reflect_value_to_json(v: ReflectValueRef) -> Result<Value> {
         },
         ReflectValueRef::Message(m) => to_json(&*m),
     }
-}
-
-fn struct_to_json(msg: &dyn MessageDyn) -> Result<Value> {
-    let desc = msg.descriptor_dyn();
-    let fields_field = desc
-        .field_by_name("fields")
-        .expect("google.protobuf.Struct must have a 'fields' field");
-    let mut map = Map::new();
-    if let ReflectFieldRef::Map(m) = fields_field.get_reflect(msg) {
-        for (k, v) in m.into_iter() {
-            let key = match k {
-                ReflectValueRef::String(s) => s.to_string(),
-                _ => unreachable!("google.protobuf.Struct keys must be strings"),
-            };
-            map.insert(key, reflect_value_to_json(v)?);
-        }
-    }
-    Ok(Value::Object(map))
 }
 
 fn wkt_value_to_json(msg: &dyn MessageDyn) -> Result<Value> {

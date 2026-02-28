@@ -8,13 +8,14 @@ message TestCase {
   string basic = 1 [(protosearch.mapping).field = {
     type: "text"
     analyzer: "english"
+    boost: 3.14
     coerce: true
     copy_to: "copy_field"
     doc_values: true
     dynamic: DYNAMIC_STRICT
     eager_global_ordinals: true
     enabled: true
-    fielddata: {bool_value: true}
+    fielddata: true
     fields: {
       key: "raw"
       value: {type: "keyword"}
@@ -23,6 +24,11 @@ message TestCase {
     ignore_above: 256
     ignore_malformed: false
     index_options: INDEX_OPTIONS_POSITIONS
+    index_phrases: true
+    index_prefixes: {
+      min_chars: 5
+      max_chars: 15
+    }
     index: true
     meta: {
       key: "unit"
@@ -34,7 +40,7 @@ message TestCase {
     position_increment_gap: 100
     search_analyzer: "english"
     similarity: "BM25"
-    subobjects: "false"
+    subobjects: false
     store: true
     term_vector: TERM_VECTOR_WITH_POSITIONS
   }];
@@ -100,36 +106,6 @@ message IndexOptionsTestCase {
   string offsets = 5 [(protosearch.mapping).field.index_options = INDEX_OPTIONS_OFFSETS];
 }
 
-message FieldDataTestcase {
-  string struct_value = 1 [(protosearch.mapping).field = {
-    type: "text"
-    fielddata: {
-      struct_value: {
-        fields: {
-          key: "setting"
-          value: {string_value: "value"}
-        }
-      }
-    }
-  }];
-
-  string list_value = 2 [(protosearch.mapping).field = {
-    type: "text"
-    fielddata: {
-      list_value: {
-        values: [
-          {string_value: "a"},
-          {bool_value: true}]
-      }
-    }
-  }];
-
-  string null_value = 3 [(protosearch.mapping).field = {
-    type: "text"
-    fielddata: {null_value: NULL_VALUE}
-  }];
-}
-
 message InvalidTargetJsonTestCase {
   string invalid_json = 1 [(protosearch.mapping) = {
     target: {
@@ -156,30 +132,57 @@ message InvalidFieldNameTestCase {
   string hyphen = 103 [(protosearch.mapping).name = "field-name"];
 }
 
-message ValueErrorTestCase {
-  string ignore_above_valid = 1 [(protosearch.mapping).field = {
+message IgnoreAboveTestCase {
+  string valid = 1 [(protosearch.mapping).field = {
     type: "keyword"
     ignore_above: 256
   }];
-  string ignore_above_zero = 2 [(protosearch.mapping).field = {
+  string zero = 2 [(protosearch.mapping).field = {
     type: "keyword"
     ignore_above: 0
   }];
-  string ignore_above_negative = 3 [(protosearch.mapping).field = {
+  string negative = 3 [(protosearch.mapping).field = {
     type: "keyword"
     ignore_above: -1
   }];
-  string position_increment_gap_zero = 4 [(protosearch.mapping).field = {
+}
+
+message PositionIncrementGapTestCase {
+  string zero = 1 [(protosearch.mapping).field = {
     type: "text"
     position_increment_gap: 0
   }];
-  string position_increment_gap_valid = 5 [(protosearch.mapping).field = {
+  string valid = 2 [(protosearch.mapping).field = {
     type: "text"
     position_increment_gap: 100
   }];
-  string position_increment_gap_negative = 6 [(protosearch.mapping).field = {
+  string negative = 3 [(protosearch.mapping).field = {
     type: "text"
     position_increment_gap: -1
+  }];
+}
+
+message IndexPrefixesTestCase {
+  string valid = 1 [(protosearch.mapping).field = {
+    type: "text"
+    index_prefixes: {
+      min_chars: 1
+      max_chars: 10
+    }
+  }];
+  string min_chars_negative = 2 [(protosearch.mapping).field = {
+    type: "text"
+    index_prefixes: {
+      min_chars: -1
+      max_chars: 10
+    }
+  }];
+  string max_chars_negative = 3 [(protosearch.mapping).field = {
+    type: "text"
+    index_prefixes: {
+      min_chars: 1
+      max_chars: -1
+    }
   }];
 }
 

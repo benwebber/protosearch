@@ -7,6 +7,7 @@ expression: "output_for(& resp, \"tests.TestCase\")"
     "properties": {
       "basic": {
         "analyzer": "english",
+        "boost": 3.14,
         "coerce": true,
         "copy_to": [
           "copy_field"
@@ -26,6 +27,11 @@ expression: "output_for(& resp, \"tests.TestCase\")"
         "ignore_malformed": false,
         "index": true,
         "index_options": "positions",
+        "index_phrases": true,
+        "index_prefixes": {
+          "max_chars": 15,
+          "min_chars": 5
+        },
         "meta": {
           "unit": "ms"
         },
@@ -36,7 +42,7 @@ expression: "output_for(& resp, \"tests.TestCase\")"
         "search_analyzer": "english",
         "similarity": "BM25",
         "store": true,
-        "subobjects": "false",
+        "subobjects": false,
         "term_vector": "with_positions",
         "type": "text"
       },

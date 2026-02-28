@@ -47,9 +47,8 @@ string uid = 1 [(protosearch.mapping).name = "user_uid"];
 ### `field`
 
 In most cases, you will need to use `field` to define field parameters.
-`FieldMapping` supports the [most common mapping parameters](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-parameters) with three important differences:
+`FieldMapping` supports the [most common mapping parameters](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-parameters) with one important difference:
 
-* It does not support `index_phrases` and `index_prefixes` because those are specific to the `text` field type.
 * It does not support `properties`, because the plugin supports defining `object` and `nested` fields as protobuf message fields.
 
 Certain fields, namely `dynamic`, `index_options`, and `term_vector`, are enums.
@@ -62,18 +61,21 @@ If you need to generate a parameter that is not in this list, see [`target`](#ta
 |---|---|---|
 |[`type`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/type)|`string`|The field type. If omitted, the plugin infers the type from the protobuf field type.|
 |[`analyzer`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/analyzer)|`string`|Analyzer used at index time. Applies to `text` fields.|
+|[`boost`](https://docs.opensearch.org/latest/mappings/mapping-parameters/boost/)|`double`|Boost a field's score at index time.|
 |[`coerce`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/coerce)|`bool`|Whether to coerce values to the declared mapping type. Applies to numeric and date fields.|
 |[`copy_to`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/copy-to)|`repeated string`|Copy this field's value to the named field.|
 |[`doc_values`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/doc-values)|`bool`|Whether to store doc values for sorting and aggregation.|
 |[`dynamic`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dynamic)|`protosearch.Dynamic`|How to handle unknown subfields. Applies to `object` fields.|
 |[`eager_global_ordinals`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/eager-global-ordinals)|`bool`|Whether to load global ordinals at refresh time.|
 |[`enabled`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/enabled)|`bool`|Whether to parse and index the field.|
-|[`fielddata`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/fielddata)|[`google.protobuf.Value`](https://protobuf.dev/reference/protobuf/google.protobuf/#value)|Fielddata configuration for in-memory aggregations. Applies to `text` fields.|
+|[`fielddata`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/fielddata)|`bool`|Whether to use in-memory fielddata for sorting and aggregations. Applies to `text` fields.|
 |[`fields`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/fields)|`map<string, FieldMapping>`|A multi-field mapping.|
 |[`format`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/format)|`string`|The date format. Applies to `date` and `date_nanos` fields.|
 |[`ignore_above`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/ignore-above)|`int32`|Do not index strings longer than this length. Applies to `keyword` fields.|
 |[`ignore_malformed`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/ignore-malformed)|`bool`|Ignore invalid values instead of rejecting the document.|
 |[`index_options`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/index-options)|`protosearch.IndexOptions`|Which information to store in the index. Applies to `text` fields.|
+|[`index_phrases`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/index-phrases)|`bool`|Whether to index bigrams separately. Applies to `text` fields.|
+|[`index_prefixes`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/index-prefixes)|`protosearch.IndexPrefixes`|Index term prefixes to speed up prefix queries. Applies to `text` fields.|
 |[`index`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/index)|`bool`|Whether to index the field.|
 |[`meta`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/meta)|`map<string, string>`|Metadata about the field.|
 |[`normalizer`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/normalizer)|`string`|Normalize `keyword` fields with this normalizer.|
@@ -83,7 +85,7 @@ If you need to generate a parameter that is not in this list, see [`target`](#ta
 |[`search_analyzer`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/search-analyzer)|`string`|Analyzer used at search time.|
 |[`similarity`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/similarity)|`string`|The scoring algorithm.|
 |[`store`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/store)|`bool`|Whether to store this field separately from `_source`.|
-|[`subobjects`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/subobjects)|`string`|Whether dotted field names are interpreted as nested subobjects.|
+|[`subobjects`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/subobjects)|`bool`|Whether dotted field names are interpreted as nested subobjects.|
 |[`term_vector`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/term-vector)|`protosearch.TermVector`|Whether to store term vectors.|
 
 #### `dynamic`
@@ -103,6 +105,15 @@ If you need to generate a parameter that is not in this list, see [`target`](#ta
 * `INDEX_OPTIONS_FREQS`
 * `INDEX_OPTIONS_POSITIONS`
 * `INDEX_OPTIONS_OFFSETS`
+
+#### `index_prefixes`
+
+`protosearch.IndexPrefixes` is a message with the following fields:
+
+|Field|Type|Description|
+|---|---|---|
+|`min_chars`|`int32`|Minimum prefix length to index.|
+|`max_chars`|`int32`|Maximum prefix length to index.|
 
 #### `term_vector`
 

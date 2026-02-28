@@ -71,7 +71,6 @@ mod tests {
     test_snapshot!(test_no_target, "tests.TestCase", None);
     test_snapshot!(test_infer_type, "tests.InferTypeTestCase", None);
     test_snapshot!(test_target, "tests.TestCase", Some("foo"));
-    test_snapshot!(test_fielddata, "tests.FieldDataTestCase", None);
     test_snapshot!(test_enum, "tests.EnumTestCase", None);
     test_snapshot!(test_nested, "tests.MessageTestCase", None);
     test_snapshot!(test_dynamic, "tests.DynamicTestCase", None);
@@ -139,41 +138,56 @@ mod tests {
         };
     }
 
-    test_parameter_value!(
-        test_ignore_above_valid,
-        "ignore_above_valid",
-        "ignore_above",
-        true
-    );
-    test_parameter_value!(
-        test_ignore_above_zero,
-        "ignore_above_zero",
-        "ignore_above",
-        false
-    );
+    test_parameter_value!(test_ignore_above_valid, "valid", "ignore_above", true);
+    test_parameter_value!(test_ignore_above_zero, "zero", "ignore_above", false);
     test_parameter_value!(
         test_ignore_above_negative,
-        "ignore_above_negative",
+        "negative",
         "ignore_above",
         false
     );
 
     test_parameter_value!(
         test_position_increment_gap_zero,
-        "position_increment_gap_zero",
+        "zero",
         "position_increment_gap",
         true
     );
     test_parameter_value!(
         test_position_increment_gap_valid,
-        "position_increment_gap_valid",
+        "valid",
         "position_increment_gap",
         true
     );
     test_parameter_value!(
         test_position_increment_gap_negative,
-        "position_increment_gap_negative",
+        "negative",
         "position_increment_gap",
+        false
+    );
+
+    test_parameter_value!(
+        test_index_prefixes_valid_min_chars,
+        "valid",
+        "index_prefixes.min_chars",
+        true
+    );
+    test_parameter_value!(
+        test_index_prefixes_valid_max_chars,
+        "valid",
+        "index_prefixes.max_chars",
+        true
+    );
+    test_parameter_value!(
+        test_index_prefixes_min_chars_negative,
+        "min_chars_negative",
+        "index_prefixes.min_chars",
+        false
+    );
+    test_parameter_value!(
+        test_index_prefixes_max_chars_negative,
+        "max_chars_negative",
+        "index_prefixes.max_chars",
         false
     );
 

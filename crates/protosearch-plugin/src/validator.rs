@@ -14,6 +14,7 @@ static CHECKS: &[&dyn Check] = &[
     &InvalidNameCheck,
     &InvalidIgnoreAboveCheck,
     &InvalidPositionIncrementGapCheck,
+    &InvalidIndexPrefixesCheck,
 ];
 
 pub struct ValidationContext<'a> {
@@ -174,6 +175,52 @@ impl Check for InvalidPositionIncrementGapCheck {
                     field: proto_name.to_string(),
                     parameter: "position_increment_gap".to_string(),
                     reason: "must be greater than or equal to 0".to_string(),
+                },
+                ctx.location(proto_name),
+            ));
+        }
+    }
+}
+
+struct InvalidIndexPrefixesCheck;
+
+impl Check for InvalidIndexPrefixesCheck {
+    fn check_property(
+        &self,
+        ctx: &ValidationContext<'_>,
+        name: &str,
+        property: &Property,
+        diagnostics: &mut Vec<Diagnostic>,
+    ) {
+        let proto_name = ctx.proto_name(name);
+        let Some(prefixes) = parameters(property)
+            .get("index_prefixes")
+            .and_then(Value::as_object)
+        else {
+            return;
+        };
+        if let Some(v) = prefixes.get("min_chars").and_then(Value::as_i64)
+            && v < 0
+        {
+            diagnostics.push(Diagnostic::with_location(
+                DiagnosticKind::InvalidParameterValue {
+                    message: ctx.message.full_name().to_string(),
+                    field: proto_name.to_string(),
+                    parameter: "index_prefixes.min_chars".to_string(),
+                    reason: "must be greater than or equal to 0".to_string(),
+                },
+                ctx.location(proto_name),
+            ));
+        }
+        if let Some(v) = prefixes.get("max_chars").and_then(Value::as_i64)
+            && (!(0..=20).contains(&v))
+        {
+            diagnostics.push(Diagnostic::with_location(
+                DiagnosticKind::InvalidParameterValue {
+                    message: ctx.message.full_name().to_string(),
+                    field: proto_name.to_string(),
+                    parameter: "index_prefixes.max_chars".to_string(),
+                    reason: "must be less than or equal to 20".to_string(),
                 },
                 ctx.location(proto_name),
             ));
