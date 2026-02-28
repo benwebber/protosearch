@@ -1,7 +1,7 @@
 use std::collections::BTreeMap;
 use std::fmt;
 
-use protobuf::reflect::{ReflectFieldRef, ReflectValueRef};
+use protobuf::reflect::{MessageDescriptor, ReflectFieldRef, ReflectValueRef};
 use protobuf::{Enum, MessageDyn};
 use serde::Serialize;
 use serde::ser::{Error, Serializer};
@@ -11,13 +11,15 @@ use crate::Result;
 use crate::proto::{Dynamic, FieldMapping, IndexOptions, TermVector};
 
 /// A document mapping.
-#[derive(Debug, Clone, PartialEq, Default, Serialize)]
+#[derive(Debug, Default, Serialize)]
 pub struct Mapping {
+    #[serde(skip)]
+    pub descriptor: Option<MessageDescriptor>,
     pub properties: BTreeMap<String, Property>,
 }
 
 /// A mapping property.
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug)]
 pub enum Property {
     /// A simple, scalar property.
     Leaf(Parameters),
@@ -28,13 +30,22 @@ pub enum Property {
     },
 }
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug)]
 pub enum Parameters {
     Typed {
         field_mapping: Box<FieldMapping>,
         inferred_type: Option<String>,
     },
     Raw(Map<String, Value>),
+}
+
+impl Mapping {
+    pub fn with_descriptor(descriptor: MessageDescriptor) -> Self {
+        Self {
+            descriptor: Some(descriptor),
+            properties: Default::default(),
+        }
+    }
 }
 
 impl Serialize for Property {

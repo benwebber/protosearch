@@ -53,7 +53,7 @@ fn compile_message(
     file: &str,
     diagnostics: &mut Vec<Diagnostic>,
 ) -> Result<Mapping> {
-    let mut mapping = Mapping::default();
+    let mut mapping = Mapping::with_descriptor(message.clone());
     for field in message.fields() {
         if let Some((name, property)) = compile_field(ctx, &field, file, diagnostics)? {
             mapping.properties.insert(name, property);

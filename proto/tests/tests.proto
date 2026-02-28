@@ -197,6 +197,13 @@ message EnumTestCase {
   Enum status_integer = 3 [(protosearch.mapping).field.type = "integer"];
 }
 
+message NestedValidationTestCase {
+  message Inner {
+    string bad_field = 1 [(protosearch.mapping).name = "BadField"];
+  }
+  Inner inner = 1 [(protosearch.mapping).field = {}];
+}
+
 message MessageTestCase {
   message Message {
     string uid = 1 [(protosearch.mapping).field = {}];

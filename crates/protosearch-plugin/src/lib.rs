@@ -228,6 +228,32 @@ mod tests {
     }
 
     #[test]
+    fn test_nested_field_location() {
+        let req = make_request("tests/tests.proto", None);
+        let (_resp, diagnostics) = crate::process(req).unwrap();
+        let diagnostic = diagnostics.iter().find(|d| {
+            matches!(
+                &d.kind,
+                DiagnosticKind::InvalidFieldName { message, name, .. }
+                    if message == "tests.NestedValidationTestCase.Inner" && name == "BadField"
+            )
+        });
+        assert!(
+            diagnostic.is_some(),
+            "expected InvalidFieldName for nested field"
+        );
+        assert!(
+            diagnostic
+                .unwrap()
+                .location
+                .as_ref()
+                .and_then(|l| l.span.as_ref())
+                .is_some(),
+            "diagnostic has no span",
+        );
+    }
+
+    #[test]
     fn test_missing_descriptor() {
         let req = make_request("missing.proto", None);
         assert!(matches!(

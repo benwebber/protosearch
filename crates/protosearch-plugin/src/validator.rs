@@ -89,6 +89,13 @@ fn walk(
         check.check_property(ctx, name, property, diagnostics);
     }
     if let Property::Object { properties, .. } = property {
+        let nested_ctx;
+        let ctx = if let Some(desc) = &properties.descriptor {
+            nested_ctx = ValidationContext::new(ctx.file, desc);
+            &nested_ctx
+        } else {
+            ctx
+        };
         for (name, prop) in &properties.properties {
             walk(ctx, name, prop, diagnostics);
         }
