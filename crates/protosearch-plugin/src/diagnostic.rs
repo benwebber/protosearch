@@ -39,6 +39,11 @@ pub enum DiagnosticKind {
         parameter: String,
         reason: String,
     },
+    UnknownTarget {
+        message: String,
+        field: String,
+        label: String,
+    },
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -97,6 +102,7 @@ impl DiagnosticKind {
             Self::InvalidTargetJson { .. } => 2,
             Self::InvalidTargetJsonType { .. } => 3,
             Self::InvalidParameterValue { .. } => 100,
+            Self::UnknownTarget { .. } => 2,
         }
     }
 }
@@ -165,6 +171,11 @@ impl fmt::Display for DiagnosticKind {
                 parameter,
                 reason,
             } => write!(f, "{message}.{field}: '{parameter}' {reason}"),
+            Self::UnknownTarget {
+                message,
+                field,
+                label,
+            } => write!(f, "{message}.{field}: unknown target '{label}'"),
         }
     }
 }

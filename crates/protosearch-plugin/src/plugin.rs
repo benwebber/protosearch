@@ -108,6 +108,22 @@ fn compile_field(
                 return Ok(None);
             }
         },
+        None if ctx.target().is_some() => {
+            if !options.target.is_empty() {
+                // If the field has any targets defined, emit a warning if the provided label does
+                // not match any known targets.
+                diagnostics.push(
+                    Diagnostic::warning(DiagnosticKind::UnknownTarget {
+                        message: field.containing_message().name().to_string(),
+                        field: field.name().to_string(),
+                        label: ctx.target().unwrap().to_string(),
+                    })
+                    .at(location.clone()),
+                );
+            }
+            // Always return the default mapping.
+            property(field, &options)
+        }
         None => property(field, &options),
     };
     // A mapping type, as in an object or nested field.

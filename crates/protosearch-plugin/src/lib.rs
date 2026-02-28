@@ -216,6 +216,18 @@ mod tests {
     }
 
     #[test]
+    fn test_unknown_target() {
+        let req = make_request("tests/tests.proto", Some("bar"));
+        let (_resp, diagnostics) = crate::process(req).unwrap();
+        let expected = DiagnosticKind::UnknownTarget {
+            message: "TestCase".to_string(),
+            field: "output_target".to_string(),
+            label: "bar".to_string(),
+        };
+        assert!(diagnostics.iter().any(|d| d.kind == expected));
+    }
+
+    #[test]
     fn test_missing_descriptor() {
         let req = make_request("missing.proto", None);
         assert!(matches!(
