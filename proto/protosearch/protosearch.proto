@@ -17,6 +17,14 @@ enum Dynamic {
   DYNAMIC_RUNTIME = 4;
 }
 
+enum IndexOptions {
+  INDEX_OPTIONS_UNSPECIFIED = 0;
+  INDEX_OPTIONS_DOCS = 1;
+  INDEX_OPTIONS_FREQS = 2;
+  INDEX_OPTIONS_POSITIONS = 3;
+  INDEX_OPTIONS_OFFSETS = 4;
+}
+
 message Mapping {
   // Rename this field in the mapping.
   optional string name = 1 [targets = TARGET_TYPE_FIELD];
@@ -112,7 +120,7 @@ message FieldMapping {
 
   // Which information to store in the index. Applies to `text` fields.
   // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/index-options
-  optional string index_options = 14;
+  optional IndexOptions index_options = 14;
 
   // index_phrases
   // index_prefixes

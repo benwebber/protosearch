@@ -8,7 +8,7 @@ use protobuf::{Enum, MessageDyn};
 use serde::Serialize;
 use serde_json::{Map, Value, json};
 
-use crate::proto::{Dynamic, FieldMapping};
+use crate::proto::{Dynamic, FieldMapping, IndexOptions};
 
 /// A document mapping.
 #[derive(Debug, Clone, PartialEq, Default, Serialize)]
@@ -111,6 +111,18 @@ impl fmt::Display for Dynamic {
     }
 }
 
+impl fmt::Display for IndexOptions {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.write_str(match self {
+            IndexOptions::INDEX_OPTIONS_UNSPECIFIED => "",
+            IndexOptions::INDEX_OPTIONS_DOCS => "docs",
+            IndexOptions::INDEX_OPTIONS_FREQS => "freqs",
+            IndexOptions::INDEX_OPTIONS_POSITIONS => "positions",
+            IndexOptions::INDEX_OPTIONS_OFFSETS => "offsets",
+        })
+    }
+}
+
 fn to_json(message: &dyn MessageDyn) -> crate::Result<Value> {
     match message.descriptor_dyn().full_name() {
         "google.protobuf.Struct" => struct_to_json(message),
@@ -136,6 +148,11 @@ fn reflect_value_to_json(v: ReflectValueRef) -> crate::Result<Value> {
                 let dynamic =
                     Dynamic::from_i32(i).ok_or(crate::Error::UnsupportedFieldValueType)?;
                 Ok(Value::String(dynamic.to_string()))
+            }
+            "protosearch.IndexOptions" => {
+                let index_options =
+                    IndexOptions::from_i32(i).ok_or(crate::Error::UnsupportedFieldValueType)?;
+                Ok(Value::String(index_options.to_string()))
             }
             _ => Err(crate::Error::UnsupportedFieldValueType),
         },

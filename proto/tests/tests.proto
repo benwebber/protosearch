@@ -22,7 +22,7 @@ message TestCase {
     format: "yyyy-MM-dd"
     ignore_above: 256
     ignore_malformed: false
-    index_options: "positions"
+    index_options: INDEX_OPTIONS_POSITIONS
     index: true
     meta: {
       key: "unit"
@@ -79,6 +79,14 @@ message DynamicTestCase {
   string false = 3 [(protosearch.mapping).field.dynamic = DYNAMIC_FALSE];
   string strict = 4 [(protosearch.mapping).field.dynamic = DYNAMIC_STRICT];
   string runtime = 5 [(protosearch.mapping).field.dynamic = DYNAMIC_RUNTIME];
+}
+
+message IndexOptionsTestCase {
+  string unspecified = 1 [(protosearch.mapping).field.index_options = INDEX_OPTIONS_UNSPECIFIED];
+  string docs = 2 [(protosearch.mapping).field.index_options = INDEX_OPTIONS_DOCS];
+  string freqs = 3 [(protosearch.mapping).field.index_options = INDEX_OPTIONS_FREQS];
+  string positions = 4 [(protosearch.mapping).field.index_options = INDEX_OPTIONS_POSITIONS];
+  string offsets = 5 [(protosearch.mapping).field.index_options = INDEX_OPTIONS_OFFSETS];
 }
 
 message FieldDataTestcase {

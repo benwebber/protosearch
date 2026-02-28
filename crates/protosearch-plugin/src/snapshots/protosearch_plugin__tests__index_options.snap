@@ -1,0 +1,29 @@
+---
+source: crates/protosearch-plugin/src/lib.rs
+expression: "output_for(& resp, \"tests.IndexOptionsTestCase\")"
+---
+{
+  "tests.IndexOptionsTestCase.json": {
+    "properties": {
+      "docs": {
+        "index_options": "docs",
+        "type": "keyword"
+      },
+      "freqs": {
+        "index_options": "freqs",
+        "type": "keyword"
+      },
+      "offsets": {
+        "index_options": "offsets",
+        "type": "keyword"
+      },
+      "positions": {
+        "index_options": "positions",
+        "type": "keyword"
+      },
+      "unspecified": {
+        "type": "keyword"
+      }
+    }
+  }
+}
