@@ -6,11 +6,11 @@ use protobuf::reflect::{FieldDescriptor, MessageDescriptor, RuntimeFieldType, Ru
 use serde_json::Value;
 
 use crate::context::Context;
-use crate::diagnostic::{Diagnostic, DiagnosticKind};
+use crate::diagnostic::{Diagnostic, DiagnosticKind, Location};
 use crate::mapping::{InferredType, Mapping, Property};
 use crate::options::{get_mapping_options, property_name};
 use crate::validator::{ValidationContext, validate};
-use crate::{Error, Result, proto};
+use crate::{Error, Result, Span, proto};
 
 pub fn process(request: CodeGeneratorRequest) -> Result<(CodeGeneratorResponse, Vec<Diagnostic>)> {
     let mut response = CodeGeneratorResponse::new();
@@ -70,6 +70,10 @@ fn compile_field(
         return Ok(None);
     };
     let name = property_name(field, &options);
+    let location = Location {
+        file: file.to_string(),
+        span: Span::from_field(field),
+    };
     let property = match ctx
         .target()
         .and_then(|label| options.target.iter().find(|t| t.label() == label))
@@ -83,7 +87,7 @@ fn compile_field(
                         field: field.name().to_string(),
                         label: entry.label().to_string(),
                     },
-                    file,
+                    location.clone(),
                 ));
                 property(field, &options)?
             }
@@ -94,7 +98,7 @@ fn compile_field(
                         field: field.name().to_string(),
                         label: entry.label().to_string(),
                     },
-                    file,
+                    location.clone(),
                 ));
                 property(field, &options)?
             }

@@ -1,5 +1,7 @@
 use std::fmt;
 
+use crate::span::Span;
+
 #[derive(Debug, Clone, PartialEq)]
 pub struct Diagnostic {
     pub kind: DiagnosticKind,
@@ -29,6 +31,7 @@ pub enum DiagnosticKind {
 #[derive(Debug, Clone, PartialEq)]
 pub struct Location {
     pub file: String,
+    pub span: Option<Span>,
 }
 
 impl Diagnostic {
@@ -39,10 +42,19 @@ impl Diagnostic {
         }
     }
 
-    pub fn with_location(kind: DiagnosticKind, file: impl Into<String>) -> Self {
+    pub fn with_location(kind: DiagnosticKind, location: Location) -> Self {
         Self {
             kind,
-            location: Some(Location { file: file.into() }),
+            location: Some(location),
+        }
+    }
+}
+
+impl fmt::Display for Location {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match &self.span {
+            Some(span) => write!(f, "{}:{}:{}", self.file, span.start.line, span.start.column,),
+            None => write!(f, "{}", self.file),
         }
     }
 }
@@ -50,7 +62,7 @@ impl Diagnostic {
 impl fmt::Display for Diagnostic {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match &self.location {
-            Some(loc) => write!(f, "{}: {}", loc.file, self.kind),
+            Some(loc) => write!(f, "{}: {}", loc, self.kind),
             None => write!(f, "{}", self.kind),
         }
     }

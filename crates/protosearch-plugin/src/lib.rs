@@ -4,6 +4,7 @@ mod error;
 mod mapping;
 mod options;
 mod plugin;
+mod span;
 mod validator;
 
 #[allow(warnings, clippy::all)]
@@ -14,6 +15,7 @@ mod proto {
 pub use diagnostic::{Diagnostic, DiagnosticKind, Location};
 pub use error::{Error, Result};
 pub use plugin::process;
+pub use span::{Point, Span};
 pub use validator::validate;
 
 #[cfg(test)]

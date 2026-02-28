@@ -4,9 +4,10 @@ use std::sync::LazyLock;
 use protobuf::reflect::MessageDescriptor;
 use regex::Regex;
 
-use crate::diagnostic::{Diagnostic, DiagnosticKind};
+use crate::diagnostic::{Diagnostic, DiagnosticKind, Location};
 use crate::mapping::{Mapping, Property};
 use crate::options::{get_mapping_options, property_name};
+use crate::span::Span;
 
 macro_rules! checks {
     ($($check:expr),* $(,)?) => {
@@ -43,6 +44,12 @@ impl<'a> ValidationContext<'a> {
             .get(mapping_name)
             .map(String::as_str)
             .unwrap_or(mapping_name)
+    }
+
+    pub fn field_span(&self, proto_name: &str) -> Option<Span> {
+        self.message
+            .field_by_name(proto_name)
+            .and_then(|f| Span::from_field(&f))
     }
 }
 
@@ -113,13 +120,17 @@ impl Check for InvalidNameCheck {
         static RE: LazyLock<Regex> =
             LazyLock::new(|| Regex::new(r"^[@a-z][a-z0-9_]*(\.[a-z0-9_]+)*$").unwrap());
         if !RE.is_match(name) {
+            let location = Location {
+                file: ctx.file.to_string(),
+                span: ctx.field_span(proto_name),
+            };
             diagnostics.push(Diagnostic::with_location(
                 DiagnosticKind::InvalidFieldName {
                     message: ctx.message.full_name().to_string(),
                     field: proto_name.to_string(),
                     name: name.to_string(),
                 },
-                ctx.file,
+                location,
             ));
         }
     }
