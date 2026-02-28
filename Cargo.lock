@@ -467,7 +467,7 @@ checksum = "95067976aca6421a523e491fce939a3e65249bac4b977adee0ee9771568e8aa3"
 
 [[package]]
 name = "protosearch-plugin"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "insta",
  "protobuf",
@@ -481,7 +481,7 @@ dependencies = [
 
 [[package]]
 name = "protosearch-vendor"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "clap",
  "clap-stdin",
