@@ -4,6 +4,7 @@ use std::fmt;
 use protobuf::reflect::{ReflectFieldRef, ReflectValueRef};
 use protobuf::{Enum, MessageDyn};
 use serde::Serialize;
+use serde::ser::Error as SerdeError;
 use serde_json::{Map, Value, json};
 
 use crate::proto::{Dynamic, FieldMapping, IndexOptions, TermVector};
@@ -16,29 +17,101 @@ pub struct Mapping {
 }
 
 /// A mapping property.
-#[derive(Debug, Clone, PartialEq, Serialize)]
-#[serde(untagged)]
+#[derive(Debug, Clone, PartialEq)]
 pub enum Property {
     /// A simple, scalar property.
-    Leaf(BTreeMap<String, Value>),
+    Leaf(Parameters),
     /// A sub-document mapping, i.e., an `object` or `nested` field.
-    Mapping {
-        #[serde(flatten)]
-        parameters: BTreeMap<String, Value>,
-        #[serde(flatten)]
+    Object {
+        parameters: Parameters,
         properties: Mapping,
     },
 }
 
-impl TryFrom<&FieldMapping> for Property {
-    type Error = Error;
+#[derive(Debug, Clone, PartialEq)]
+pub enum Parameters {
+    Typed {
+        field_mapping: Box<FieldMapping>,
+        inferred_type: Option<String>,
+    },
+    Raw(Map<String, Value>),
+}
 
-    fn try_from(options: &FieldMapping) -> Result<Self> {
-        Ok(Self::Leaf(
-            other_to_json(options as &dyn MessageDyn)?
-                .into_iter()
-                .collect(),
-        ))
+impl Property {
+    pub fn parameters(&self) -> &Parameters {
+        match self {
+            Self::Leaf(p) => p,
+            Self::Object { parameters: p, .. } => p,
+        }
+    }
+}
+
+impl Serialize for Property {
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        match self {
+            Self::Leaf(p) => p.serialize(serializer),
+            Self::Object {
+                parameters,
+                properties,
+            } => {
+                let mut map: BTreeMap<String, Value> = match parameters {
+                    Parameters::Typed {
+                        field_mapping: mapping,
+                        inferred_type,
+                    } => {
+                        let mut m: BTreeMap<String, Value> =
+                            other_to_json(mapping.as_ref() as &dyn MessageDyn)
+                                .map_err(S::Error::custom)?
+                                .into_iter()
+                                .collect();
+                        if let Some(t) = inferred_type {
+                            m.entry("type".to_string())
+                                .or_insert_with(|| Value::String((*t).to_string()));
+                        }
+                        m
+                    }
+                    Parameters::Raw(m) => m.iter().map(|(k, v)| (k.clone(), v.clone())).collect(),
+                };
+                map.insert(
+                    "properties".to_string(),
+                    serde_json::to_value(&properties.properties).map_err(S::Error::custom)?,
+                );
+                map.serialize(serializer)
+            }
+        }
+    }
+}
+
+impl Serialize for Parameters {
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        match self {
+            Parameters::Raw(map) => {
+                let btree: BTreeMap<_, _> =
+                    map.iter().map(|(k, v)| (k.clone(), v.clone())).collect();
+                btree.serialize(serializer)
+            }
+            Parameters::Typed {
+                field_mapping: mapping,
+                inferred_type,
+            } => {
+                let mut map: BTreeMap<String, Value> =
+                    other_to_json(mapping.as_ref() as &dyn MessageDyn)
+                        .map_err(S::Error::custom)?
+                        .into_iter()
+                        .collect();
+                if let Some(t) = inferred_type {
+                    map.entry("type".to_string())
+                        .or_insert_with(|| Value::String((*t).to_string()));
+                }
+                map.serialize(serializer)
+            }
+        }
     }
 }
 

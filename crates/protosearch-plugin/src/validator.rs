@@ -1,14 +1,13 @@
 use std::collections::BTreeMap;
 use std::sync::LazyLock;
 
+use crate::diagnostic::{Diagnostic, DiagnosticKind, Location};
+use crate::mapping::{Mapping, Parameters, Property};
+use crate::options::{get_mapping_options, property_name};
+use crate::proto::FieldMapping;
+use crate::span::Span;
 use protobuf::reflect::MessageDescriptor;
 use regex::Regex;
-use serde_json::Value;
-
-use crate::diagnostic::{Diagnostic, DiagnosticKind, Location};
-use crate::mapping::{Mapping, Property};
-use crate::options::{get_mapping_options, property_name};
-use crate::span::Span;
 
 static CHECKS: &[&dyn Check] = &[
     &InvalidNameCheck,
@@ -89,16 +88,10 @@ fn walk(
     for check in CHECKS {
         check.check_property(ctx, name, property, diagnostics);
     }
-    if let Property::Mapping { properties, .. } = property {
+    if let Property::Object { properties, .. } = property {
         for (name, prop) in &properties.properties {
             walk(ctx, name, prop, diagnostics);
         }
-    }
-}
-
-fn parameters(property: &Property) -> &BTreeMap<String, Value> {
-    match property {
-        Property::Leaf(p) | Property::Mapping { parameters: p, .. } => p,
     }
 }
 
@@ -139,9 +132,10 @@ impl Check for InvalidIgnoreAboveCheck {
         diagnostics: &mut Vec<Diagnostic>,
     ) {
         let proto_name = ctx.proto_name(name);
-        if let Some(v) = get_i64(property, "ignore_above")
-            && v <= 0
-        {
+        let Some(field_mapping) = field_mapping(property) else {
+            return;
+        };
+        if field_mapping.has_ignore_above() && field_mapping.ignore_above() <= 0 {
             diagnostics.push(Diagnostic::with_location(
                 DiagnosticKind::InvalidParameterValue {
                     message: ctx.message.full_name().to_string(),
@@ -166,8 +160,10 @@ impl Check for InvalidPositionIncrementGapCheck {
         diagnostics: &mut Vec<Diagnostic>,
     ) {
         let proto_name = ctx.proto_name(name);
-        if let Some(v) = get_i64(property, "position_increment_gap")
-            && v < 0
+        let Some(field_mapping) = field_mapping(property) else {
+            return;
+        };
+        if field_mapping.has_position_increment_gap() && field_mapping.position_increment_gap() < 0
         {
             diagnostics.push(Diagnostic::with_location(
                 DiagnosticKind::InvalidParameterValue {
@@ -193,15 +189,13 @@ impl Check for InvalidIndexPrefixesCheck {
         diagnostics: &mut Vec<Diagnostic>,
     ) {
         let proto_name = ctx.proto_name(name);
-        let Some(prefixes) = parameters(property)
-            .get("index_prefixes")
-            .and_then(Value::as_object)
-        else {
+        let Some(field_mapping) = field_mapping(property) else {
             return;
         };
-        if let Some(v) = prefixes.get("min_chars").and_then(Value::as_i64)
-            && v < 0
-        {
+        let Some(prefixes) = field_mapping.index_prefixes.as_ref() else {
+            return;
+        };
+        if prefixes.has_min_chars() && prefixes.min_chars() < 0 {
             diagnostics.push(Diagnostic::with_location(
                 DiagnosticKind::InvalidParameterValue {
                     message: ctx.message.full_name().to_string(),
@@ -212,9 +206,7 @@ impl Check for InvalidIndexPrefixesCheck {
                 ctx.location(proto_name),
             ));
         }
-        if let Some(v) = prefixes.get("max_chars").and_then(Value::as_i64)
-            && (!(0..=20).contains(&v))
-        {
+        if prefixes.has_max_chars() && !(0..=20).contains(&prefixes.max_chars()) {
             diagnostics.push(Diagnostic::with_location(
                 DiagnosticKind::InvalidParameterValue {
                     message: ctx.message.full_name().to_string(),
@@ -228,6 +220,13 @@ impl Check for InvalidIndexPrefixesCheck {
     }
 }
 
-fn get_i64(property: &Property, key: &str) -> Option<i64> {
-    parameters(property).get(key)?.as_i64()
+fn field_mapping(property: &Property) -> Option<&FieldMapping> {
+    match property {
+        Property::Leaf(Parameters::Typed { field_mapping, .. })
+        | Property::Object {
+            parameters: Parameters::Typed { field_mapping, .. },
+            ..
+        } => Some(field_mapping),
+        _ => None,
+    }
 }

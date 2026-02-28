@@ -45,17 +45,15 @@ Finally, it outputs the document mapping to a file named `{package}.{message}.js
 
 #### Validation and intermediate representation
 
-Internally, the plugin a "stringly-typed" intermediate representation to build the mapping.
-The plugin generally passes declared values through to the mapping without validation.
+The plugin passes most field values through to the mapping without validation.
+It does validate certain fields.
+Refer to the [reference documentation](doc/reference.md) for details.
 
 This means it is possible to declare invalid mappings:
 
 ```protobuf
 string uuid = 1 [(protosearch.mapping).field.type = "long"];
 ```
-
-The plugin does validate certain protobuf field values.
-Refer to the [reference documentation](doc/reference.md) for details.
 
 ## API
 

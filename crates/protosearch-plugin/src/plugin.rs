@@ -7,7 +7,7 @@ use serde_json::Value;
 
 use crate::context::Context;
 use crate::diagnostic::{Diagnostic, DiagnosticKind, Location};
-use crate::mapping::{Mapping, Property};
+use crate::mapping::{Mapping, Parameters, Property};
 use crate::options::{get_mapping_options, property_name};
 use crate::validator::{ValidationContext, validate};
 use crate::{Error, Result, Span, proto};
@@ -77,7 +77,7 @@ fn compile_field(
         .and_then(|label| options.target.iter().find(|t| t.label() == label))
     {
         Some(entry) => match serde_json::from_str::<Value>(entry.json()) {
-            Ok(Value::Object(params)) => Property::Leaf(params.into_iter().collect()),
+            Ok(Value::Object(params)) => Property::Leaf(Parameters::Raw(params)),
             Ok(_) => {
                 diagnostics.push(Diagnostic::with_location(
                     DiagnosticKind::InvalidTargetJsonType {
@@ -87,7 +87,7 @@ fn compile_field(
                     },
                     location.clone(),
                 ));
-                property(field, &options)?
+                property(field, &options)
             }
             Err(_) => {
                 diagnostics.push(Diagnostic::with_location(
@@ -98,10 +98,10 @@ fn compile_field(
                     },
                     location.clone(),
                 ));
-                property(field, &options)?
+                property(field, &options)
             }
         },
-        None => property(field, &options)?,
+        None => property(field, &options),
     };
     // A mapping type, as in an object or nested field.
     let mapping = match field.runtime_field_type() {
@@ -113,7 +113,7 @@ fn compile_field(
     .transpose()?
     .unwrap_or_default();
     let property = match (mapping.properties.is_empty(), property) {
-        (false, Property::Leaf(parameters)) => Property::Mapping {
+        (false, Property::Leaf(parameters)) => Property::Object {
             parameters,
             properties: mapping,
         },
@@ -123,19 +123,22 @@ fn compile_field(
 }
 
 /// Build a [`Property`] from `FieldMapping`, inferring `type` if absent.
-fn property(field: &FieldDescriptor, options: &proto::Mapping) -> Result<Property> {
-    let mut property = Property::try_from(&*options.field)?;
-    if let Property::Leaf(ref mut parameters) = property {
-        parameters.entry("type".into()).or_insert_with(|| {
-            Value::String(match field.runtime_field_type() {
-                RuntimeFieldType::Singular(t) | RuntimeFieldType::Repeated(t) => {
-                    infer_type(&t).to_string()
-                }
-                RuntimeFieldType::Map(_, _) => "object".to_string(),
-            })
-        });
-    }
-    Ok(property)
+fn property(field: &FieldDescriptor, options: &proto::Mapping) -> Property {
+    let field_mapping = options.field.clone().unwrap_or_default();
+    let inferred_type = if field_mapping.has_type() {
+        None
+    } else {
+        Some(match field.runtime_field_type() {
+            RuntimeFieldType::Singular(t) | RuntimeFieldType::Repeated(t) => {
+                infer_type(&t).to_string()
+            }
+            RuntimeFieldType::Map(_, _) => "object".to_string(),
+        })
+    };
+    Property::Leaf(Parameters::Typed {
+        field_mapping: Box::new(field_mapping),
+        inferred_type,
+    })
 }
 
 fn infer_type(t: &RuntimeType) -> &str {
