@@ -9,6 +9,7 @@ use serde::Serialize;
 use serde_json::{Map, Value, json};
 
 use crate::proto::{Dynamic, FieldMapping, IndexOptions, TermVector};
+use crate::{Error, Result};
 
 /// A document mapping.
 #[derive(Debug, Clone, PartialEq, Default, Serialize)]
@@ -45,9 +46,9 @@ pub enum InferredType {
 }
 
 impl TryFrom<&FieldMapping> for Property {
-    type Error = crate::Error;
+    type Error = Error;
 
-    fn try_from(options: &FieldMapping) -> crate::Result<Self> {
+    fn try_from(options: &FieldMapping) -> Result<Self> {
         Ok(Self::Leaf(
             other_to_json(options as &dyn MessageDyn)?
                 .into_iter()
@@ -138,7 +139,7 @@ impl fmt::Display for TermVector {
     }
 }
 
-fn to_json(message: &dyn MessageDyn) -> crate::Result<Value> {
+fn to_json(message: &dyn MessageDyn) -> Result<Value> {
     match message.descriptor_dyn().full_name() {
         "google.protobuf.Struct" => struct_to_json(message),
         "google.protobuf.Value" => wkt_value_to_json(message),
@@ -147,7 +148,7 @@ fn to_json(message: &dyn MessageDyn) -> crate::Result<Value> {
     }
 }
 
-fn reflect_value_to_json(v: ReflectValueRef) -> crate::Result<Value> {
+fn reflect_value_to_json(v: ReflectValueRef) -> Result<Value> {
     match v {
         ReflectValueRef::Bool(b) => Ok(json!(b)),
         ReflectValueRef::I32(i) => Ok(json!(i)),
@@ -159,28 +160,16 @@ fn reflect_value_to_json(v: ReflectValueRef) -> crate::Result<Value> {
         ReflectValueRef::String(s) => Ok(json!(s)),
         ReflectValueRef::Bytes(b) => Ok(json!(b)),
         ReflectValueRef::Enum(desc, i) => match desc.full_name() {
-            "protosearch.Dynamic" => {
-                let dynamic =
-                    Dynamic::from_i32(i).ok_or(crate::Error::UnsupportedFieldValueType)?;
-                Ok(Value::String(dynamic.to_string()))
-            }
-            "protosearch.IndexOptions" => {
-                let index_options =
-                    IndexOptions::from_i32(i).ok_or(crate::Error::UnsupportedFieldValueType)?;
-                Ok(Value::String(index_options.to_string()))
-            }
-            "protosearch.TermVector" => {
-                let term_vector =
-                    TermVector::from_i32(i).ok_or(crate::Error::UnsupportedFieldValueType)?;
-                Ok(Value::String(term_vector.to_string()))
-            }
-            _ => Err(crate::Error::UnsupportedFieldValueType),
+            "protosearch.Dynamic" => proto_enum_to_json::<Dynamic>(i),
+            "protosearch.IndexOptions" => proto_enum_to_json::<IndexOptions>(i),
+            "protosearch.TermVector" => proto_enum_to_json::<TermVector>(i),
+            _ => Err(Error::UnsupportedFieldValueType),
         },
         ReflectValueRef::Message(m) => to_json(&*m),
     }
 }
 
-fn struct_to_json(msg: &dyn MessageDyn) -> crate::Result<Value> {
+fn struct_to_json(msg: &dyn MessageDyn) -> Result<Value> {
     let desc = msg.descriptor_dyn();
     let fields_field = desc
         .field_by_name("fields")
@@ -198,7 +187,7 @@ fn struct_to_json(msg: &dyn MessageDyn) -> crate::Result<Value> {
     Ok(Value::Object(map))
 }
 
-fn wkt_value_to_json(msg: &dyn MessageDyn) -> crate::Result<Value> {
+fn wkt_value_to_json(msg: &dyn MessageDyn) -> Result<Value> {
     let desc = msg.descriptor_dyn();
     let oneof = desc
         .oneof_by_name("kind")
@@ -216,21 +205,21 @@ fn wkt_value_to_json(msg: &dyn MessageDyn) -> crate::Result<Value> {
     Ok(Value::Null)
 }
 
-fn list_value_to_json(msg: &dyn MessageDyn) -> crate::Result<Value> {
+fn list_value_to_json(msg: &dyn MessageDyn) -> Result<Value> {
     let desc = msg.descriptor_dyn();
     let values_field = desc
         .field_by_name("values")
         .expect("google.protobuf.ListValue must have a 'values' field");
     match values_field.get_reflect(msg) {
         ReflectFieldRef::Repeated(v) => {
-            let items: crate::Result<Vec<_>> = v.into_iter().map(reflect_value_to_json).collect();
+            let items: Result<Vec<_>> = v.into_iter().map(reflect_value_to_json).collect();
             Ok(Value::Array(items?))
         }
         _ => unreachable!("google.protobuf.ListValue values are always repeated"),
     }
 }
 
-fn other_to_json(msg: &dyn MessageDyn) -> crate::Result<Map<String, Value>> {
+fn other_to_json(msg: &dyn MessageDyn) -> Result<Map<String, Value>> {
     let desc = msg.descriptor_dyn();
     let mut map = Map::new();
     for field in desc.fields() {
@@ -245,7 +234,7 @@ fn other_to_json(msg: &dyn MessageDyn) -> crate::Result<Map<String, Value>> {
                 }
             }
             ReflectFieldRef::Repeated(v) if !v.is_empty() => {
-                let arr: crate::Result<Vec<_>> = v.into_iter().map(reflect_value_to_json).collect();
+                let arr: Result<Vec<_>> = v.into_iter().map(reflect_value_to_json).collect();
                 map.insert(field.name().to_string(), Value::Array(arr?));
             }
             ReflectFieldRef::Map(m) if !m.is_empty() => {
@@ -263,4 +252,10 @@ fn other_to_json(msg: &dyn MessageDyn) -> crate::Result<Map<String, Value>> {
         }
     }
     Ok(map)
+}
+
+fn proto_enum_to_json<T: Enum + fmt::Display>(i: i32) -> Result<Value> {
+    T::from_i32(i)
+        .ok_or(Error::UnsupportedFieldValueType)
+        .map(|v| Value::String(v.to_string()))
 }
