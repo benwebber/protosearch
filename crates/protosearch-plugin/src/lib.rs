@@ -1,3 +1,4 @@
+mod config;
 mod context;
 mod diagnostic;
 mod error;
