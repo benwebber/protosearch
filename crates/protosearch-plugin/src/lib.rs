@@ -122,7 +122,7 @@ mod tests {
                 let (_resp, diagnostics) = crate::process(req).unwrap();
                 assert!(!diagnostics.iter().any(|d| matches!(
                     &d.kind,
-                    DiagnosticKind::InvalidParameterValue { field, parameter, .. } if field == $field
+                    DiagnosticKind::InvalidParameterValue { field, parameter, .. } if field == $field && parameter == $parameter
                 )));
             }
         };
@@ -133,7 +133,7 @@ mod tests {
                 let (_resp, diagnostics) = crate::process(req).unwrap();
                 assert!(diagnostics.iter().any(|d| matches!(
                     &d.kind,
-                    DiagnosticKind::InvalidParameterValue { field, parameter, .. } if field == $field
+                    DiagnosticKind::InvalidParameterValue { field, parameter, .. } if field == $field && parameter == $parameter
                 )));
             }
         };
