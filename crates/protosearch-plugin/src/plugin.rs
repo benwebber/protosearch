@@ -25,9 +25,7 @@ pub fn process(request: CodeGeneratorRequest) -> Result<(CodeGeneratorResponse, 
                 )))?;
         for message_descriptor in file_descriptor.messages() {
             let validation_ctx = ValidationContext::new(filename, &message_descriptor);
-            let (mapping, mut mapping_diagnostics) =
-                compile_message(&ctx, &message_descriptor, filename)?;
-            diagnostics.append(&mut mapping_diagnostics);
+            let mapping = compile_message(&ctx, &message_descriptor, filename, &mut diagnostics)?;
             diagnostics.extend(validate(&validation_ctx, &mapping));
             if mapping.properties.is_empty() {
                 continue;
@@ -46,15 +44,15 @@ fn compile_message(
     ctx: &Context,
     message: &MessageDescriptor,
     file: &str,
-) -> Result<(Mapping, Vec<Diagnostic>)> {
+    diagnostics: &mut Vec<Diagnostic>,
+) -> Result<Mapping> {
     let mut mapping = Mapping::default();
-    let mut diagnostics = Vec::new();
     for field in message.fields() {
-        if let Some((name, property)) = compile_field(ctx, &field, file, &mut diagnostics)? {
+        if let Some((name, property)) = compile_field(ctx, &field, file, diagnostics)? {
             mapping.properties.insert(name, property);
         }
     }
-    Ok((mapping, diagnostics))
+    Ok(mapping)
 }
 
 /// Compile a field as a [`Property`].
@@ -111,12 +109,8 @@ fn compile_field(
         | RuntimeFieldType::Repeated(RuntimeType::Message(desc)) => Some(desc),
         _ => None,
     }
-    .map(|desc| compile_message(ctx, &desc, file))
+    .map(|desc| compile_message(ctx, &desc, file, diagnostics))
     .transpose()?
-    .map(|(m, mut d)| {
-        diagnostics.append(&mut d);
-        m
-    })
     .unwrap_or_default();
     let property = match (mapping.properties.is_empty(), property) {
         (false, Property::Leaf(parameters)) => Property::Mapping {
