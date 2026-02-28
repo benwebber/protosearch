@@ -10,11 +10,11 @@ use crate::mapping::{Mapping, Property};
 use crate::options::{get_mapping_options, property_name};
 use crate::span::Span;
 
-macro_rules! checks {
-    ($($check:expr),* $(,)?) => {
-            vec![$(Box::new($check)),*]
-        }
-}
+static CHECKS: &[&dyn Check] = &[
+    &InvalidNameCheck,
+    &InvalidIgnoreAboveCheck,
+    &InvalidPositionIncrementGapCheck,
+];
 
 pub struct ValidationContext<'a> {
     pub file: &'a str,
@@ -61,7 +61,7 @@ impl<'a> ValidationContext<'a> {
     }
 }
 
-pub trait Check {
+pub trait Check: Sync {
     fn check_property(
         &self,
         ctx: &ValidationContext<'_>,
@@ -71,51 +71,28 @@ pub trait Check {
     );
 }
 
-pub struct Validator {
-    checks: Vec<Box<dyn Check>>,
-}
-
-impl Validator {
-    pub fn validate(&self, ctx: &ValidationContext<'_>, mapping: &Mapping) -> Vec<Diagnostic> {
-        let mut diagnostics = Vec::new();
-        for (name, property) in &mapping.properties {
-            self.walk(ctx, name, property, &mut diagnostics);
-        }
-        diagnostics
-    }
-
-    fn walk(
-        &self,
-        ctx: &ValidationContext<'_>,
-        name: &str,
-        property: &Property,
-        diagnostics: &mut Vec<Diagnostic>,
-    ) {
-        for check in &self.checks {
-            check.check_property(ctx, name, property, diagnostics);
-        }
-        if let Property::Mapping { properties, .. } = property {
-            for (name, prop) in &properties.properties {
-                self.walk(ctx, name, prop, diagnostics);
-            }
-        }
-    }
-}
-
-impl Default for Validator {
-    fn default() -> Self {
-        Self {
-            checks: checks![
-                InvalidNameCheck,
-                InvalidIgnoreAboveCheck,
-                InvalidPositionIncrementGapCheck,
-            ],
-        }
-    }
-}
-
 pub fn validate(ctx: &ValidationContext<'_>, mapping: &Mapping) -> Vec<Diagnostic> {
-    Validator::default().validate(ctx, mapping)
+    let mut diagnostics = Vec::new();
+    for (name, property) in &mapping.properties {
+        walk(ctx, name, property, &mut diagnostics);
+    }
+    diagnostics
+}
+
+fn walk(
+    ctx: &ValidationContext<'_>,
+    name: &str,
+    property: &Property,
+    diagnostics: &mut Vec<Diagnostic>,
+) {
+    for check in CHECKS {
+        check.check_property(ctx, name, property, diagnostics);
+    }
+    if let Property::Mapping { properties, .. } = property {
+        for (name, prop) in &properties.properties {
+            walk(ctx, name, prop, diagnostics);
+        }
+    }
 }
 
 fn parameters(property: &Property) -> &BTreeMap<String, Value> {
