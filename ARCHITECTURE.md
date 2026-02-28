@@ -45,8 +45,8 @@ Finally, it outputs the document mapping to a file named `{package}.{message}.js
 
 #### Validation and intermediate representation
 
-The plugin **does not** validate user input.
-Internally, it uses a "stringly-typed" intermediate representation to build the mapping.
+Internally, the plugin a "stringly-typed" intermediate representation to build the mapping.
+The plugin generally passes declared values through to the mapping without validation.
 
 This means it is possible to declare invalid mappings:
 
@@ -54,8 +54,8 @@ This means it is possible to declare invalid mappings:
 string uuid = 1 [(protosearch.mapping).field.type = "long"];
 ```
 
-Validation is not the plugin's responsibility.
-Elasticsearch or OpenSearch will validate the mapping syntax and reject invalid documents.
+The plugin does validate certain protobuf field values.
+Refer to the [reference documentation](doc/reference.md) for details.
 
 ## API
 
