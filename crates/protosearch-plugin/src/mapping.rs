@@ -4,7 +4,7 @@ use std::fmt;
 use protobuf::reflect::{ReflectFieldRef, ReflectValueRef};
 use protobuf::{Enum, MessageDyn};
 use serde::Serialize;
-use serde::ser::Error as SerdeError;
+use serde::ser::{Error as SerdeError, Serializer};
 use serde_json::{Map, Value, json};
 
 use crate::proto::{Dynamic, FieldMapping, IndexOptions, TermVector};
@@ -37,19 +37,10 @@ pub enum Parameters {
     Raw(Map<String, Value>),
 }
 
-impl Property {
-    pub fn parameters(&self) -> &Parameters {
-        match self {
-            Self::Leaf(p) => p,
-            Self::Object { parameters: p, .. } => p,
-        }
-    }
-}
-
 impl Serialize for Property {
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
-        S: serde::Serializer,
+        S: Serializer,
     {
         match self {
             Self::Leaf(p) => p.serialize(serializer),
@@ -57,24 +48,7 @@ impl Serialize for Property {
                 parameters,
                 properties,
             } => {
-                let mut map: BTreeMap<String, Value> = match parameters {
-                    Parameters::Typed {
-                        field_mapping: mapping,
-                        inferred_type,
-                    } => {
-                        let mut m: BTreeMap<String, Value> =
-                            other_to_json(mapping.as_ref() as &dyn MessageDyn)
-                                .map_err(S::Error::custom)?
-                                .into_iter()
-                                .collect();
-                        if let Some(t) = inferred_type {
-                            m.entry("type".to_string())
-                                .or_insert_with(|| Value::String((*t).to_string()));
-                        }
-                        m
-                    }
-                    Parameters::Raw(m) => m.iter().map(|(k, v)| (k.clone(), v.clone())).collect(),
-                };
+                let mut map = parameters_to_map(parameters).map_err(S::Error::custom)?;
                 map.insert(
                     "properties".to_string(),
                     serde_json::to_value(&properties.properties).map_err(S::Error::custom)?,
@@ -88,29 +62,30 @@ impl Serialize for Property {
 impl Serialize for Parameters {
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
-        S: serde::Serializer,
+        S: Serializer,
     {
-        match self {
-            Parameters::Raw(map) => {
-                let btree: BTreeMap<_, _> =
-                    map.iter().map(|(k, v)| (k.clone(), v.clone())).collect();
-                btree.serialize(serializer)
+        parameters_to_map(self)
+            .map_err(S::Error::custom)?
+            .serialize(serializer)
+    }
+}
+
+fn parameters_to_map(parameters: &Parameters) -> Result<BTreeMap<String, Value>> {
+    match parameters {
+        Parameters::Raw(m) => Ok(m.clone().into_iter().collect()),
+        Parameters::Typed {
+            field_mapping,
+            inferred_type,
+        } => {
+            let mut map: BTreeMap<String, Value> =
+                other_to_json(field_mapping.as_ref() as &dyn MessageDyn)?
+                    .into_iter()
+                    .collect();
+            if let Some(t) = inferred_type {
+                map.entry("type".to_string())
+                    .or_insert_with(|| Value::String(t.clone()));
             }
-            Parameters::Typed {
-                field_mapping: mapping,
-                inferred_type,
-            } => {
-                let mut map: BTreeMap<String, Value> =
-                    other_to_json(mapping.as_ref() as &dyn MessageDyn)
-                        .map_err(S::Error::custom)?
-                        .into_iter()
-                        .collect();
-                if let Some(t) = inferred_type {
-                    map.entry("type".to_string())
-                        .or_insert_with(|| Value::String((*t).to_string()));
-                }
-                map.serialize(serializer)
-            }
+            Ok(map)
         }
     }
 }
@@ -118,11 +93,11 @@ impl Serialize for Parameters {
 impl fmt::Display for Dynamic {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         f.write_str(match self {
-            Dynamic::DYNAMIC_UNSPECIFIED => "",
-            Dynamic::DYNAMIC_TRUE => "true",
-            Dynamic::DYNAMIC_FALSE => "false",
-            Dynamic::DYNAMIC_STRICT => "strict",
-            Dynamic::DYNAMIC_RUNTIME => "runtime",
+            Self::DYNAMIC_UNSPECIFIED => "",
+            Self::DYNAMIC_TRUE => "true",
+            Self::DYNAMIC_FALSE => "false",
+            Self::DYNAMIC_STRICT => "strict",
+            Self::DYNAMIC_RUNTIME => "runtime",
         })
     }
 }
@@ -130,11 +105,11 @@ impl fmt::Display for Dynamic {
 impl fmt::Display for IndexOptions {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         f.write_str(match self {
-            IndexOptions::INDEX_OPTIONS_UNSPECIFIED => "",
-            IndexOptions::INDEX_OPTIONS_DOCS => "docs",
-            IndexOptions::INDEX_OPTIONS_FREQS => "freqs",
-            IndexOptions::INDEX_OPTIONS_POSITIONS => "positions",
-            IndexOptions::INDEX_OPTIONS_OFFSETS => "offsets",
+            Self::INDEX_OPTIONS_UNSPECIFIED => "",
+            Self::INDEX_OPTIONS_DOCS => "docs",
+            Self::INDEX_OPTIONS_FREQS => "freqs",
+            Self::INDEX_OPTIONS_POSITIONS => "positions",
+            Self::INDEX_OPTIONS_OFFSETS => "offsets",
         })
     }
 }
@@ -207,10 +182,11 @@ fn list_value_to_json(msg: &dyn MessageDyn) -> Result<Value> {
         .field_by_name("values")
         .expect("google.protobuf.ListValue must have a 'values' field");
     match values_field.get_reflect(msg) {
-        ReflectFieldRef::Repeated(v) => {
-            let items: Result<Vec<_>> = v.into_iter().map(reflect_value_to_json).collect();
-            Ok(Value::Array(items?))
-        }
+        ReflectFieldRef::Repeated(v) => Ok(Value::Array(
+            v.into_iter()
+                .map(reflect_value_to_json)
+                .collect::<Result<_>>()?,
+        )),
         _ => unreachable!("google.protobuf.ListValue values are always repeated"),
     }
 }
@@ -236,11 +212,10 @@ fn other_to_json(msg: &dyn MessageDyn) -> Result<Map<String, Value>> {
             ReflectFieldRef::Map(m) if !m.is_empty() => {
                 let mut obj = Map::new();
                 for (k, v) in m.into_iter() {
-                    let key_str = match k {
-                        ReflectValueRef::String(s) => s.to_string(),
-                        _ => unreachable!("all protosearch.FieldMapping maps have string keys"),
+                    let ReflectValueRef::String(s) = k else {
+                        unreachable!("all protosearch.FieldMapping maps have string keys")
                     };
-                    obj.insert(key_str, reflect_value_to_json(v)?);
+                    obj.insert(s.to_string(), reflect_value_to_json(v)?);
                 }
                 map.insert(field.name().to_string(), Value::Object(obj));
             }
