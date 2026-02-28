@@ -4,11 +4,11 @@ use std::fmt;
 use protobuf::reflect::{ReflectFieldRef, ReflectValueRef};
 use protobuf::{Enum, MessageDyn};
 use serde::Serialize;
-use serde::ser::{Error as SerdeError, Serializer};
+use serde::ser::{Error, Serializer};
 use serde_json::{Map, Value, json};
 
+use crate::Result;
 use crate::proto::{Dynamic, FieldMapping, IndexOptions, TermVector};
-use crate::{Error, Result};
 
 /// A document mapping.
 #[derive(Debug, Clone, PartialEq, Default, Serialize)]
@@ -152,7 +152,10 @@ fn reflect_value_to_json(v: ReflectValueRef) -> Result<Value> {
             "protosearch.Dynamic" => proto_enum_to_json::<Dynamic>(i),
             "protosearch.IndexOptions" => proto_enum_to_json::<IndexOptions>(i),
             "protosearch.TermVector" => proto_enum_to_json::<TermVector>(i),
-            _ => Err(Error::UnsupportedFieldValueType),
+            _ => unreachable!(
+                "unknown enum type '{}': implement Display and add match arm",
+                desc.full_name()
+            ),
         },
         ReflectValueRef::Message(m) => to_json(&*m),
     }
@@ -226,7 +229,5 @@ fn other_to_json(msg: &dyn MessageDyn) -> Result<Map<String, Value>> {
 }
 
 fn proto_enum_to_json<T: Enum + fmt::Display>(i: i32) -> Result<Value> {
-    T::from_i32(i)
-        .ok_or(Error::UnsupportedFieldValueType)
-        .map(|v| Value::String(v.to_string()))
+    Ok(Value::String(T::from_i32(i).unwrap().to_string()))
 }

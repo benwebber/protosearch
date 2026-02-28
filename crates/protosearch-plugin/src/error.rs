@@ -17,6 +17,4 @@ pub enum Error {
     Protobuf(#[from] protobuf::Error),
     #[error("serialization error: {0}")]
     Serializer(#[from] serde_json::Error),
-    #[error("enum values are not supported as mapping parameters")]
-    UnsupportedFieldValueType,
 }
