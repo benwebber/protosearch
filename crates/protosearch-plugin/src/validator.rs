@@ -161,8 +161,7 @@ impl Check for InvalidIgnoreAboveCheck {
         diagnostics: &mut Vec<Diagnostic>,
     ) {
         let proto_name = ctx.proto_name(name);
-        if let Some(Value::Number(n)) = parameters(property).get("ignore_above")
-            && let Some(v) = n.as_i64()
+        if let Some(v) = get_i64(property, "ignore_above")
             && v <= 0
         {
             diagnostics.push(Diagnostic::with_location(
@@ -189,8 +188,7 @@ impl Check for InvalidPositionIncrementGapCheck {
         diagnostics: &mut Vec<Diagnostic>,
     ) {
         let proto_name = ctx.proto_name(name);
-        if let Some(Value::Number(n)) = parameters(property).get("position_increment_gap")
-            && let Some(v) = n.as_i64()
+        if let Some(v) = get_i64(property, "position_increment_gap")
             && v < 0
         {
             diagnostics.push(Diagnostic::with_location(
@@ -204,4 +202,8 @@ impl Check for InvalidPositionIncrementGapCheck {
             ));
         }
     }
+}
+
+fn get_i64(property: &Property, key: &str) -> Option<i64> {
+    parameters(property).get(key)?.as_i64()
 }
