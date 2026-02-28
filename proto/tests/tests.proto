@@ -129,6 +129,33 @@ message InvalidFieldNameTestCase {
   string hyphen = 103 [(protosearch.mapping).name = "field-name"];
 }
 
+message ValueErrorTestCase {
+  string ignore_above_valid = 1 [(protosearch.mapping).field = {
+    type: "keyword"
+    ignore_above: 256
+  }];
+  string ignore_above_zero = 2 [(protosearch.mapping).field = {
+    type: "keyword"
+    ignore_above: 0
+  }];
+  string ignore_above_negative = 3 [(protosearch.mapping).field = {
+    type: "keyword"
+    ignore_above: -1
+  }];
+  string position_increment_gap_zero = 4 [(protosearch.mapping).field = {
+    type: "text"
+    position_increment_gap: 0
+  }];
+  string position_increment_gap_valid = 5 [(protosearch.mapping).field = {
+    type: "text"
+    position_increment_gap: 100
+  }];
+  string position_increment_gap_negative = 6 [(protosearch.mapping).field = {
+    type: "text"
+    position_increment_gap: -1
+  }];
+}
+
 message EnumTestCase {
   enum Enum {
     ENUM_UNSPECIFIED = 0;

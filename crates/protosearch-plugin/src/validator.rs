@@ -3,6 +3,7 @@ use std::sync::LazyLock;
 
 use protobuf::reflect::MessageDescriptor;
 use regex::Regex;
+use serde_json::Value;
 
 use crate::diagnostic::{Diagnostic, DiagnosticKind, Location};
 use crate::mapping::{Mapping, Property};
@@ -51,6 +52,13 @@ impl<'a> ValidationContext<'a> {
             .field_by_name(proto_name)
             .and_then(|f| Span::from_field(&f))
     }
+
+    pub fn location(&self, proto_name: &str) -> Location {
+        Location {
+            file: self.file.to_string(),
+            span: self.field_span(proto_name),
+        }
+    }
 }
 
 pub trait Check {
@@ -97,13 +105,23 @@ impl Validator {
 impl Default for Validator {
     fn default() -> Self {
         Self {
-            checks: checks![InvalidNameCheck,],
+            checks: checks![
+                InvalidNameCheck,
+                InvalidIgnoreAboveCheck,
+                InvalidPositionIncrementGapCheck,
+            ],
         }
     }
 }
 
 pub fn validate(ctx: &ValidationContext<'_>, mapping: &Mapping) -> Vec<Diagnostic> {
     Validator::default().validate(ctx, mapping)
+}
+
+fn parameters(property: &Property) -> &BTreeMap<String, Value> {
+    match property {
+        Property::Leaf(p) | Property::Mapping { parameters: p, .. } => p,
+    }
 }
 
 struct InvalidNameCheck;
@@ -120,17 +138,68 @@ impl Check for InvalidNameCheck {
         static RE: LazyLock<Regex> =
             LazyLock::new(|| Regex::new(r"^[@a-z][a-z0-9_]*(\.[a-z0-9_]+)*$").unwrap());
         if !RE.is_match(name) {
-            let location = Location {
-                file: ctx.file.to_string(),
-                span: ctx.field_span(proto_name),
-            };
             diagnostics.push(Diagnostic::with_location(
                 DiagnosticKind::InvalidFieldName {
                     message: ctx.message.full_name().to_string(),
                     field: proto_name.to_string(),
                     name: name.to_string(),
                 },
-                location,
+                ctx.location(proto_name),
+            ));
+        }
+    }
+}
+
+struct InvalidIgnoreAboveCheck;
+
+impl Check for InvalidIgnoreAboveCheck {
+    fn check_property(
+        &self,
+        ctx: &ValidationContext<'_>,
+        name: &str,
+        property: &Property,
+        diagnostics: &mut Vec<Diagnostic>,
+    ) {
+        let proto_name = ctx.proto_name(name);
+        if let Some(Value::Number(n)) = parameters(property).get("ignore_above")
+            && let Some(v) = n.as_i64()
+            && v <= 0
+        {
+            diagnostics.push(Diagnostic::with_location(
+                DiagnosticKind::ValueError {
+                    message: ctx.message.full_name().to_string(),
+                    field: proto_name.to_string(),
+                    reason: "'ignore_above' must be greater than 0".to_string(),
+                },
+                ctx.location(proto_name),
+            ));
+        }
+    }
+}
+
+struct InvalidPositionIncrementGapCheck;
+
+impl Check for InvalidPositionIncrementGapCheck {
+    fn check_property(
+        &self,
+        ctx: &ValidationContext<'_>,
+        name: &str,
+        property: &Property,
+        diagnostics: &mut Vec<Diagnostic>,
+    ) {
+        let proto_name = ctx.proto_name(name);
+        if let Some(Value::Number(n)) = parameters(property).get("position_increment_gap")
+            && let Some(v) = n.as_i64()
+            && v < 0
+        {
+            diagnostics.push(Diagnostic::with_location(
+                DiagnosticKind::ValueError {
+                    message: ctx.message.full_name().to_string(),
+                    field: proto_name.to_string(),
+                    reason: "'position_increment_gap' must be greater than or equal to 0"
+                        .to_string(),
+                },
+                ctx.location(proto_name),
             ));
         }
     }

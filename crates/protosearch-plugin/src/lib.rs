@@ -111,6 +111,51 @@ mod tests {
     test_field_name!(test_field_name_leading_digit, "1field", false);
     test_field_name!(test_field_name_hyphen, "field-name", false);
 
+    macro_rules! test_value_error {
+        ($test_name:ident, $field:literal, true) => {
+            #[test]
+            fn $test_name() {
+                let req = make_request("tests/tests.proto", None);
+                let (_resp, diagnostics) = crate::process(req).unwrap();
+                assert!(!diagnostics.iter().any(|d| matches!(
+                    &d.kind,
+                    DiagnosticKind::ValueError { field, .. } if field == $field
+                )));
+            }
+        };
+        ($test_name:ident, $field:literal, false) => {
+            #[test]
+            fn $test_name() {
+                let req = make_request("tests/tests.proto", None);
+                let (_resp, diagnostics) = crate::process(req).unwrap();
+                assert!(diagnostics.iter().any(|d| matches!(
+                    &d.kind,
+                    DiagnosticKind::ValueError { field, .. } if field == $field
+                )));
+            }
+        };
+    }
+
+    test_value_error!(test_ignore_above_valid, "ignore_above_valid", true);
+    test_value_error!(test_ignore_above_zero, "ignore_above_zero", false);
+    test_value_error!(test_ignore_above_negative, "ignore_above_negative", false);
+
+    test_value_error!(
+        test_position_increment_gap_zero,
+        "position_increment_gap_zero",
+        true
+    );
+    test_value_error!(
+        test_position_increment_gap_valid,
+        "position_increment_gap_valid",
+        true
+    );
+    test_value_error!(
+        test_position_increment_gap_negative,
+        "position_increment_gap_negative",
+        false
+    );
+
     #[test]
     fn test_invalid_json_target_string() {
         let req = make_request("tests/tests.proto", Some("invalid-json-string"));

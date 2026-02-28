@@ -26,6 +26,11 @@ pub enum DiagnosticKind {
         field: String,
         name: String,
     },
+    ValueError {
+        message: String,
+        field: String,
+        reason: String,
+    },
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -98,6 +103,11 @@ impl fmt::Display for DiagnosticKind {
                     "{message}.{field}: name '{name}' is not a valid field name"
                 )
             }
+            Self::ValueError {
+                message,
+                field,
+                reason,
+            } => write!(f, "{message}.{field}: {reason}"),
         }
     }
 }
