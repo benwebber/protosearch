@@ -25,15 +25,22 @@ pub fn process(request: CodeGeneratorRequest) -> Result<(CodeGeneratorResponse, 
                 )))?;
         for message_descriptor in file_descriptor.messages() {
             let validation_ctx = ValidationContext::new(filename, &message_descriptor);
-            let mapping = compile_message(&ctx, &message_descriptor, filename, &mut diagnostics)?;
-            diagnostics.extend(validate(&validation_ctx, &mapping));
-            if mapping.properties.is_empty() {
-                continue;
+            let mut message_diagnostics: Vec<Diagnostic> = Vec::new();
+            let mapping = compile_message(
+                &ctx,
+                &message_descriptor,
+                filename,
+                &mut message_diagnostics,
+            )?;
+            message_diagnostics.extend(validate(&validation_ctx, &mapping));
+            let has_errors = message_diagnostics.iter().any(|d| d.is_error());
+            if !mapping.properties.is_empty() && !has_errors {
+                let mut file = File::new();
+                file.set_name(format!("{}.json", message_descriptor.full_name()));
+                file.set_content(serde_json::to_string(&mapping)?);
+                response.file.push(file);
             }
-            let mut file = File::new();
-            file.set_name(format!("{}.json", message_descriptor.full_name()));
-            file.set_content(serde_json::to_string(&mapping)?);
-            response.file.push(file);
+            diagnostics.extend(message_diagnostics);
         }
     }
     Ok((response, diagnostics))
@@ -79,26 +86,26 @@ fn compile_field(
         Some(entry) => match serde_json::from_str::<Value>(entry.json()) {
             Ok(Value::Object(params)) => Property::Leaf(Parameters::Raw(params)),
             Ok(_) => {
-                diagnostics.push(Diagnostic::with_location(
-                    DiagnosticKind::InvalidTargetJsonType {
+                diagnostics.push(
+                    Diagnostic::error(DiagnosticKind::InvalidTargetJsonType {
                         message: field.containing_message().name().to_string(),
                         field: field.name().to_string(),
                         label: entry.label().to_string(),
-                    },
-                    location.clone(),
-                ));
-                property(field, &options)
+                    })
+                    .at(location.clone()),
+                );
+                return Ok(None);
             }
             Err(_) => {
-                diagnostics.push(Diagnostic::with_location(
-                    DiagnosticKind::InvalidTargetJson {
+                diagnostics.push(
+                    Diagnostic::error(DiagnosticKind::InvalidTargetJson {
                         message: field.containing_message().name().to_string(),
                         field: field.name().to_string(),
                         label: entry.label().to_string(),
-                    },
-                    location.clone(),
-                ));
-                property(field, &options)
+                    })
+                    .at(location.clone()),
+                );
+                return Ok(None);
             }
         },
         None => property(field, &options),

@@ -7,7 +7,8 @@ fn main() -> protosearch_plugin::Result<()> {
     std::io::stdin().read_to_end(&mut buf)?;
     let req = protobuf::plugin::CodeGeneratorRequest::parse_from_bytes(&buf)?;
     let (mut resp, diagnostics) = protosearch_plugin::process(req)?;
-    if !diagnostics.is_empty() {
+    let (errors, warnings): (Vec<_>, Vec<_>) = diagnostics.iter().partition(|d| d.is_error());
+    if !errors.is_empty() {
         resp.set_error(
             diagnostics
                 .iter()
@@ -15,6 +16,9 @@ fn main() -> protosearch_plugin::Result<()> {
                 .collect::<Vec<_>>()
                 .join("\n"),
         );
+    }
+    for w in &warnings {
+        eprintln!("{w}");
     }
     let out = resp.write_to_bytes()?;
     std::io::stdout().write_all(&out)?;

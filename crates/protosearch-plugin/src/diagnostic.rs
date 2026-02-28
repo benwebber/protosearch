@@ -4,8 +4,15 @@ use crate::span::Span;
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct Diagnostic {
+    pub severity: Severity,
     pub kind: DiagnosticKind,
     pub location: Option<Location>,
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub enum Severity {
+    Warning,
+    Error,
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -41,28 +48,55 @@ pub struct Location {
 }
 
 impl Diagnostic {
-    pub fn new(kind: DiagnosticKind) -> Self {
+    pub fn error(kind: DiagnosticKind) -> Self {
         Self {
+            severity: Severity::Error,
             kind,
             location: None,
         }
     }
 
-    pub fn with_location(kind: DiagnosticKind, location: Location) -> Self {
+    pub fn warning(kind: DiagnosticKind) -> Self {
         Self {
+            severity: Severity::Warning,
             kind,
+            location: None,
+        }
+    }
+
+    pub fn at(self, location: Location) -> Self {
+        Self {
+            severity: self.severity,
+            kind: self.kind,
             location: Some(location),
+        }
+    }
+
+    pub fn is_error(&self) -> bool {
+        matches!(self.severity, Severity::Error)
+    }
+
+    pub fn is_warning(&self) -> bool {
+        matches!(self.severity, Severity::Warning)
+    }
+}
+
+impl Severity {
+    pub fn prefix(&self) -> char {
+        match self {
+            Self::Warning => 'W',
+            Self::Error => 'E',
         }
     }
 }
 
 impl DiagnosticKind {
-    pub fn code(&self) -> &str {
+    pub fn number(&self) -> u32 {
         match self {
-            Self::InvalidFieldName { .. } => "E001",
-            Self::InvalidTargetJson { .. } => "E002",
-            Self::InvalidTargetJsonType { .. } => "E003",
-            Self::InvalidParameterValue { .. } => "E100",
+            Self::InvalidFieldName { .. } => 1,
+            Self::InvalidTargetJson { .. } => 2,
+            Self::InvalidTargetJsonType { .. } => 3,
+            Self::InvalidParameterValue { .. } => 100,
         }
     }
 }
@@ -79,8 +113,21 @@ impl fmt::Display for Location {
 impl fmt::Display for Diagnostic {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match &self.location {
-            Some(loc) => write!(f, "{}: {} {}", loc, self.kind.code(), self.kind),
-            None => write!(f, "{} {}", self.kind.code(), self.kind),
+            Some(loc) => write!(
+                f,
+                "{}: {}{:0>3} {}",
+                loc,
+                self.severity.prefix(),
+                self.kind.number(),
+                self.kind
+            ),
+            None => write!(
+                f,
+                "{}{:0>3} {}",
+                self.severity.prefix(),
+                self.kind.number(),
+                self.kind
+            ),
         }
     }
 }
@@ -110,10 +157,7 @@ impl fmt::Display for DiagnosticKind {
                 field,
                 name,
             } => {
-                write!(
-                    f,
-                    "{message}.{field}: name '{name}' is not a valid field name"
-                )
+                write!(f, "{message}.{field}: '{name}' is not a valid field name")
             }
             Self::InvalidParameterValue {
                 message,

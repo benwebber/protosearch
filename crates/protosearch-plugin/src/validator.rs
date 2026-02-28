@@ -109,14 +109,14 @@ impl Check for InvalidNameCheck {
         static RE: LazyLock<Regex> =
             LazyLock::new(|| Regex::new(r"^[@a-z][a-z0-9_]*(\.[a-z0-9_]+)*$").unwrap());
         if !RE.is_match(name) {
-            diagnostics.push(Diagnostic::with_location(
-                DiagnosticKind::InvalidFieldName {
+            diagnostics.push(
+                Diagnostic::warning(DiagnosticKind::InvalidFieldName {
                     message: ctx.message.full_name().to_string(),
                     field: proto_name.to_string(),
                     name: name.to_string(),
-                },
-                ctx.location(proto_name),
-            ));
+                })
+                .at(ctx.location(proto_name)),
+            );
         }
     }
 }
@@ -136,15 +136,15 @@ impl Check for InvalidIgnoreAboveCheck {
             return;
         };
         if field_mapping.has_ignore_above() && field_mapping.ignore_above() <= 0 {
-            diagnostics.push(Diagnostic::with_location(
-                DiagnosticKind::InvalidParameterValue {
+            diagnostics.push(
+                Diagnostic::error(DiagnosticKind::InvalidParameterValue {
                     message: ctx.message.full_name().to_string(),
                     field: proto_name.to_string(),
                     parameter: "ignore_above".to_string(),
-                    reason: "'ignore_above' must be greater than 0".to_string(),
-                },
-                ctx.location(proto_name),
-            ));
+                    reason: "must be greater than 0".to_string(),
+                })
+                .at(ctx.location(proto_name)),
+            );
         }
     }
 }
@@ -165,15 +165,15 @@ impl Check for InvalidPositionIncrementGapCheck {
         };
         if field_mapping.has_position_increment_gap() && field_mapping.position_increment_gap() < 0
         {
-            diagnostics.push(Diagnostic::with_location(
-                DiagnosticKind::InvalidParameterValue {
+            diagnostics.push(
+                Diagnostic::error(DiagnosticKind::InvalidParameterValue {
                     message: ctx.message.full_name().to_string(),
                     field: proto_name.to_string(),
                     parameter: "position_increment_gap".to_string(),
                     reason: "must be greater than or equal to 0".to_string(),
-                },
-                ctx.location(proto_name),
-            ));
+                })
+                .at(ctx.location(proto_name)),
+            );
         }
     }
 }
@@ -196,26 +196,26 @@ impl Check for InvalidIndexPrefixesCheck {
             return;
         };
         if prefixes.has_min_chars() && prefixes.min_chars() < 0 {
-            diagnostics.push(Diagnostic::with_location(
-                DiagnosticKind::InvalidParameterValue {
+            diagnostics.push(
+                Diagnostic::error(DiagnosticKind::InvalidParameterValue {
                     message: ctx.message.full_name().to_string(),
                     field: proto_name.to_string(),
                     parameter: "index_prefixes.min_chars".to_string(),
                     reason: "must be greater than or equal to 0".to_string(),
-                },
-                ctx.location(proto_name),
-            ));
+                })
+                .at(ctx.location(proto_name)),
+            );
         }
         if prefixes.has_max_chars() && !(0..=20).contains(&prefixes.max_chars()) {
-            diagnostics.push(Diagnostic::with_location(
-                DiagnosticKind::InvalidParameterValue {
+            diagnostics.push(
+                Diagnostic::error(DiagnosticKind::InvalidParameterValue {
                     message: ctx.message.full_name().to_string(),
                     field: proto_name.to_string(),
                     parameter: "index_prefixes.max_chars".to_string(),
                     reason: "must be less than or equal to 20".to_string(),
-                },
-                ctx.location(proto_name),
-            ));
+                })
+                .at(ctx.location(proto_name)),
+            );
         }
     }
 }
