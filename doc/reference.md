@@ -52,6 +52,10 @@ In most cases, you will need to use `field` to define field parameters.
 * It does not support `index_phrases` and `index_prefixes` because those are specific to the `text` field type.
 * It does not support `properties`, because the plugin supports defining `object` and `nested` fields as protobuf message fields.
 
+Certain fields, namely `dynamic`, `index_options`, and `term_vector`, are enums.
+All provide a default `UNSPECIFIED` value.
+The plugin will not output an enum parameter if it has the default `UNSPECIFIED` value.
+
 If you need to generate a parameter that is not in this list, see [`target`](#target) below.
 
 |Field|Type|Description|
@@ -61,7 +65,7 @@ If you need to generate a parameter that is not in this list, see [`target`](#ta
 |[`coerce`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/coerce)|`bool`|Whether to coerce values to the declared mapping type. Applies to numeric and date fields.|
 |[`copy_to`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/copy-to)|`repeated string`|Copy this field's value to the named field.|
 |[`doc_values`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/doc-values)|`bool`|Whether to store doc values for sorting and aggregation.|
-|[`dynamic`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dynamic)|`string`|How to handle unknown subfields. Applies to `object` fields.|
+|[`dynamic`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dynamic)|`protosearch.Dynamic`|How to handle unknown subfields. Applies to `object` fields.|
 |[`eager_global_ordinals`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/eager-global-ordinals)|`bool`|Whether to load global ordinals at refresh time.|
 |[`enabled`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/enabled)|`bool`|Whether to parse and index the field.|
 |[`fielddata`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/fielddata)|[`google.protobuf.Value`](https://protobuf.dev/reference/protobuf/google.protobuf/#value)|Fielddata configuration for in-memory aggregations. Applies to `text` fields.|
@@ -69,7 +73,7 @@ If you need to generate a parameter that is not in this list, see [`target`](#ta
 |[`format`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/format)|`string`|The date format. Applies to `date` and `date_nanos` fields.|
 |[`ignore_above`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/ignore-above)|`int32`|Do not index strings longer than this length. Applies to `keyword` fields.|
 |[`ignore_malformed`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/ignore-malformed)|`bool`|Ignore invalid values instead of rejecting the document.|
-|[`index_options`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/index-options)|`string`|Which information to store in the index. Applies to `text` fields.|
+|[`index_options`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/index-options)|`protosearch.IndexOptions`|Which information to store in the index. Applies to `text` fields.|
 |[`index`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/index)|`bool`|Whether to index the field.|
 |[`meta`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/meta)|`map<string, string>`|Metadata about the field.|
 |[`normalizer`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/normalizer)|`string`|Normalize `keyword` fields with this normalizer.|
@@ -79,8 +83,38 @@ If you need to generate a parameter that is not in this list, see [`target`](#ta
 |[`search_analyzer`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/search-analyzer)|`string`|Analyzer used at search time.|
 |[`similarity`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/similarity)|`string`|The scoring algorithm.|
 |[`store`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/store)|`bool`|Whether to store this field separately from `_source`.|
-|[`subobjects`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/subobjects)|`bool`|Whether dotted field names are interpreted as nested subobjects.|
-|[`term_vector`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/term-vector)|`string`|Whether to store term vectors.|
+|[`subobjects`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/subobjects)|`string`|Whether dotted field names are interpreted as nested subobjects.|
+|[`term_vector`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/term-vector)|`protosearch.TermVector`|Whether to store term vectors.|
+
+#### `dynamic`
+
+`protosearch.Dynamic` is an enum with the following values:
+
+* `DYNAMIC_TRUE`
+* `DYNAMIC_FALSE`
+* `DYNAMIC_STRICT`
+* `DYNAMIC_RUNTIME`
+
+#### `index_options`
+
+`protosearch.IndexOptions` is an enum with the following values:
+
+* `INDEX_OPTIONS_DOCS`
+* `INDEX_OPTIONS_FREQS`
+* `INDEX_OPTIONS_POSITIONS`
+* `INDEX_OPTIONS_OFFSETS`
+
+#### `term_vector`
+
+`protosearch.TermVector` is an enum with the following values:
+
+* `TERM_VECTOR_NO`
+* `TERM_VECTOR_YES`
+* `TERM_VECTOR_WITH_POSITIONS`
+* `TERM_VECTOR_WITH_OFFSETS`
+* `TERM_VECTOR_WITH_POSITIONS_OFFSETS`
+* `TERM_VECTOR_WITH_POSITIONS_PAYLOADS`
+* `TERM_VECTOR_WITH_POSITIONS_OFFSETS_PAYLOADS`
 
 ### `target`
 
@@ -157,9 +191,37 @@ If `type` is not specified, `protoc-gen-protosearch` will infer a field type fro
 |message|`object`|
 |enum|`keyword`|
 
-## Limitations
+## Errors
 
-The plugin does not support enum fields in `FieldMapping`.
+The plugin validates some field options.
+It will return the following errors.
+
+### E001
+
+`name` is invalid.
+
+Names must match the pattern `[@a-z][a-z0-9_]*(\.[a-z0-9_]+)*`.
+These are all allowed names:
+
+```
+@timestamp
+foo
+foo_bar
+foo.bar.baz
+foo_123
+```
+
+### E002
+
+`target.json` is not valid JSON.
+
+### E003
+
+`target.json` is not a JSON object.
+
+### E100
+
+The specified value is invalid for this parameter. The plugin will report the reason.
 
 ## `protoc-gen-protosearch`
 
