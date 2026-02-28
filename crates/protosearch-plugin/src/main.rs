@@ -10,7 +10,7 @@ fn main() -> protosearch_plugin::Result<()> {
     let (errors, warnings): (Vec<_>, Vec<_>) = diagnostics.iter().partition(|d| d.is_error());
     if !errors.is_empty() {
         resp.set_error(
-            diagnostics
+            errors
                 .iter()
                 .map(|d| d.to_string())
                 .collect::<Vec<_>>()
