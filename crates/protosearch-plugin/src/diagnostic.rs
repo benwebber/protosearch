@@ -98,10 +98,12 @@ impl Severity {
 impl DiagnosticKind {
     pub fn number(&self) -> u32 {
         match self {
-            Self::InvalidFieldName { .. } => 1,
+            // E
+            Self::InvalidParameterValue { .. } => 1,
             Self::InvalidTargetJson { .. } => 2,
             Self::InvalidTargetJsonType { .. } => 3,
-            Self::InvalidParameterValue { .. } => 100,
+            // W
+            Self::InvalidFieldName { .. } => 1,
             Self::UnknownTarget { .. } => 2,
         }
     }

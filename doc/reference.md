@@ -202,12 +202,29 @@ If `type` is not specified, `protoc-gen-protosearch` will infer a field type fro
 |message|`object`|
 |enum|`keyword`|
 
-## Errors
+## Diagnostics
 
-The plugin validates some field options.
-It will return the following errors.
+The plugin validates some field options and collects diagnostics during compilation.
+Errors (`EXXX`) are fatal; `protc` will exit with an error code and will not produce any output.
+The plugin prints warnings (`WXXX`) to standard output.
 
-### E001
+### Errors
+
+#### E001
+
+The specified value is invalid for this parameter. The plugin will report the reason.
+
+#### E002
+
+`target.json` is not valid JSON.
+
+#### E003
+
+`target.json` is not a JSON object.
+
+### Warnings
+
+#### W001
 
 `name` is invalid.
 
@@ -222,17 +239,9 @@ foo.bar.baz
 foo_123
 ```
 
-### E002
+#### W002
 
-`target.json` is not valid JSON.
-
-### E003
-
-`target.json` is not a JSON object.
-
-### E100
-
-The specified value is invalid for this parameter. The plugin will report the reason.
+The target `label` does not correspond to a known target.
 
 ## `protoc-gen-protosearch`
 
