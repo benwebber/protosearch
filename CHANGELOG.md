@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+* **BREAKING:** Renamed the top-level extension filed back to `(protosearch.field)`.
+
+  Moved field parameters to the `(protosearch.field).mapping` field.
+  This change will make it easier to implement index configuration using a consistent options API.
+
 ## [0.2.0] - 2026-02-28
 
 ### Added
@@ -35,7 +42,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- **BREAKING:** Renamed the top-level extension field from `(protosearch.field)` to `(protosearch.mapping)`. Moved field parameters to the `(protosearch.mapping).field` field.
+- **BREAKING:** Renamed the top-level extension field from `(protosearch.field)` to `(protosearch.mapping)`.
+
+  Moved field parameters to the `(protosearch.mapping).field` field.
 - **BREAKING:** Replaced the `dynamic`, `index_options`, and `term_vector` string fields with enum types.
 - **BREAKING:** Moved output `name` and `target` to `Mapping`.
 - Print warnings to standard error. Only return fatal errors to `protoc` using `set_error()`.
