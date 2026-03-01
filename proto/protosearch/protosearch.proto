@@ -5,6 +5,10 @@ package protosearch;
 import "google/protobuf/descriptor.proto";
 import "google/protobuf/struct.proto";
 
+extend google.protobuf.MessageOptions {
+  optional Index index = 50000;
+}
+
 extend google.protobuf.FieldOptions {
   optional Field field = 50000;
 }
@@ -34,6 +38,98 @@ enum TermVector {
   TERM_VECTOR_WITH_POSITIONS_OFFSETS = 5;
   TERM_VECTOR_WITH_POSITIONS_PAYLOADS = 6;
   TERM_VECTOR_WITH_POSITIONS_OFFSETS_PAYLOADS = 7;
+}
+
+enum SourceMode {
+  SOURCE_MODE_UNSPECIFIED = 0;
+  SOURCE_MODE_DISABLED = 1;
+  SOURCE_MODE_STORED = 2;
+  SOURCE_MODE_SYNTHETIC = 3;
+}
+
+/**
+ * Index represents common index parameters.
+ *
+ * This message does not support the `dynamic_templates` or `runtime`
+ * parameters. This file supports explicit mappings.
+ */
+message Index {
+  // Whether to detect date strings as `date` fields.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dynamic-field-mapping#date-detection
+  optional bool date_detection = 1;
+
+  // How to handle unknown fields.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dynamic
+  optional Dynamic dynamic = 2;
+
+  // Date formats to use for dynamic date detection.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dynamic-field-mapping#dynamic-date-formats
+  repeated string dynamic_date_formats = 3;
+
+  // Controls the `_field_names` metadata field.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/field-names-field
+  optional IndexFieldNames _field_names = 4;
+
+  // Metadata about the index mapping.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-meta
+  map<string, string> _meta = 5;
+
+  // Whether to detect numeric strings as numeric fields.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dynamic-field-mapping#numeric-detection
+  optional bool numeric_detection = 6;
+
+  // Controls the `_routing` metadata field.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-routing
+  optional IndexRouting _routing = 7;
+
+  // Controls the `_source` metadata field.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/source-field
+  optional IndexSource _source = 8;
+}
+
+message IndexFieldNames {
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/field-names-field
+  optional bool enabled = 1;
+}
+
+message IndexRouting {
+  // Whether to require routing for all document operations.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-routing
+  optional bool required = 1;
+}
+
+message IndexSource {
+  // Whether to compress stored source data.
+  //
+  // Elasticsearch: deprecated
+  // OpenSearch: all
+  //
+  // https://docs.opensearch.org/latest/field-types/supported-field-types/
+  optional bool compress = 1;
+
+  // Minimum source size to trigger compression.
+  //
+  // Elasticsearch: deprecated
+  // OpenSearch: all
+  //
+  // https://docs.opensearch.org/latest/field-types/supported-field-types/
+  optional string compress_threshold = 2;
+
+  // Whether to store the `_source` field.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/source-field
+  optional bool enabled = 3;
+
+  // Fields to exclude from the stored `_source`.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/source-field
+  repeated string excludes = 4;
+
+  // Fields to include in the stored `_source`.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/source-field
+  repeated string includes = 5;
+
+  // How to store the `_source` field.
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/source-field
+  optional SourceMode mode = 6;
 }
 
 message Field {

@@ -3,6 +3,8 @@ modules:
   - path: proto/
     lint:
       ignore_only:
+        FIELD_LOWER_SNAKE_CASE:
+          - proto/protosearch
         PACKAGE_VERSION_SUFFIX:
           - proto/protosearch
           - proto/tests
