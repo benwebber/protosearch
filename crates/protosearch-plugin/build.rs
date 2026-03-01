@@ -29,17 +29,19 @@ fn main() {
     std::fs::write(out_dir.join("protosearch.rs"), stripped)
         .expect("failed to write to standard output");
 
-    let status = std::process::Command::new(protoc)
-        .arg("-I")
-        .arg(&proto_dir)
-        .arg("--include_imports")
-        .arg("--include_source_info")
-        .arg("--descriptor_set_out")
-        .arg(out_dir.join("tests.pb"))
-        .arg("tests/tests.proto")
-        .status()
-        .expect("failed to execute protoc");
-    if !status.success() {
-        panic!("protoc failed with status {}", status);
+    if env::var("CARGO_CFG_TEST").is_ok() {
+        let status = std::process::Command::new(protoc)
+            .arg("-I")
+            .arg(&proto_dir)
+            .arg("--include_imports")
+            .arg("--include_source_info")
+            .arg("--descriptor_set_out")
+            .arg(out_dir.join("tests.pb"))
+            .arg("tests/tests.proto")
+            .status()
+            .expect("failed to execute protoc");
+        if !status.success() {
+            panic!("protoc failed with status {}", status);
+        }
     }
 }
