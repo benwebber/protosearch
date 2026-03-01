@@ -52,7 +52,7 @@ Refer to the [reference documentation](doc/reference.md) for details.
 This means it is possible to declare invalid mappings:
 
 ```protobuf
-string uuid = 1 [(protosearch.mapping).field.type = "long"];
+string uuid = 1 [(protosearch.field).mapping.type = "long"];
 ```
 
 ## API

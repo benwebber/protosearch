@@ -8,7 +8,7 @@ use serde_json::Value;
 use crate::context::Context;
 use crate::diagnostic::{Diagnostic, DiagnosticKind, Location};
 use crate::mapping::{Mapping, Parameters, Property};
-use crate::options::{get_mapping_options, property_name};
+use crate::options::{get_field_options, property_name};
 use crate::validator::{ValidationContext, validate};
 use crate::{Error, Result, Span, proto};
 
@@ -71,7 +71,7 @@ fn compile_field(
     file: &str,
     diagnostics: &mut Vec<Diagnostic>,
 ) -> Result<Option<(String, Property)>> {
-    let Some(options) = get_mapping_options(field)? else {
+    let Some(options) = get_field_options(field)? else {
         return Ok(None);
     };
     let name = property_name(field, &options);
@@ -146,8 +146,8 @@ fn compile_field(
 }
 
 /// Build a [`Property`] from `FieldMapping`, inferring `type` if absent.
-fn property(field: &FieldDescriptor, options: &proto::Mapping) -> Property {
-    let field_mapping = options.field.clone().unwrap_or_default();
+fn property(field: &FieldDescriptor, options: &proto::Field) -> Property {
+    let field_mapping = options.mapping.clone().unwrap_or_default();
     let inferred_type = if field_mapping.has_type() {
         None
     } else {

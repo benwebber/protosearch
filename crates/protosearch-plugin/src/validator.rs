@@ -3,7 +3,7 @@ use std::sync::LazyLock;
 
 use crate::diagnostic::{Diagnostic, DiagnosticKind, Location};
 use crate::mapping::{Mapping, Parameters, Property};
-use crate::options::{get_mapping_options, property_name};
+use crate::options::{get_field_options, property_name};
 use crate::proto::FieldMapping;
 use crate::span::Span;
 use protobuf::reflect::MessageDescriptor;
@@ -27,7 +27,7 @@ impl<'a> ValidationContext<'a> {
         let proto_names = message
             .fields()
             .filter_map(|f| {
-                get_mapping_options(&f).ok().flatten().map(|opts| {
+                get_field_options(&f).ok().flatten().map(|opts| {
                     let output = property_name(&f, &opts);
                     (output.to_string(), f.name().to_string())
                 })

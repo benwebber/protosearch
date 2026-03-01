@@ -4,14 +4,14 @@ This document describes the complete `protosearch` API.
 
 ## API
 
-`protosearch` exposes a single field extension, `protosearch.mapping`.
+`protosearch` exposes a single field extension, `protosearch.field`.
 
-This extension is a protobuf message (`protosearch.Mapping`) that wraps the extension options.
+This extension is a protobuf message (`protosearch.Field`) that wraps the extension options.
 
 |Field|Type|Description|
 |---|---|---|
 |`name`|`string`|Rename a field in the mapping.|
-|`field`|`protosearch.FieldMapping`|Define mapping field parameters.|
+|`mapping`|`protosearch.FieldMapping`|Define mapping field parameters.|
 |`target`|`repeated protosearch.Target`|Configure a literal mapping for a specific target.|
 
 The `protoc-gen-protosearch` plugin compiles these message options to a JSON file containing the document mapping.
@@ -19,19 +19,19 @@ The `protoc-gen-protosearch` plugin compiles these message options to a JSON fil
 The simplest way to annotate a field is:
 
 ```protobuf
-string uid = 1 [(protosearch.mapping) = {}];
+string uid = 1 [(protosearch.field) = {}];
 ```
 
 This will generate a basic field mapping with no parameters except for `type`. See [type inference](#type-inference) below.
 
-If you do not annotate a protobuf field with `(protosearch.mapping)` options, it will be excluded from the mapping.
+If you do not annotate a protobuf field with `(protosearch.field)` options, it will be excluded from the mapping.
 
 ### `name`
 
 The `name` field lets you rename a protobuf field in the compiled mapping.
 
 ```
-string uid = 1 [(protosearch.mapping).name = "user_uid"];
+string uid = 1 [(protosearch.field).name = "user_uid"];
 ```
 
 ```json
@@ -44,9 +44,9 @@ string uid = 1 [(protosearch.mapping).name = "user_uid"];
 }
 ```
 
-### `field`
+### `mapping`
 
-In most cases, you will need to use `field` to define field parameters.
+In most cases, you will need to use `mapping` to define field parameters.
 `FieldMapping` supports the [most common mapping parameters](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-parameters) with one important difference:
 
 * It does not support `properties`, because the plugin supports defining `object` and `nested` fields as protobuf message fields.
@@ -146,7 +146,7 @@ For example, you might want to represent a `Point` object as a `geo_point` in El
 You can create targets for both mappings:
 
 ```protobuf
-Point origin = 1 [(protosearch.mapping) = {
+Point origin = 1 [(protosearch.field) = {
   target: {
     label: "elasticsearch"
     json: '{"type": "point"}'
@@ -205,7 +205,7 @@ If `type` is not specified, `protoc-gen-protosearch` will infer a field type fro
 ## Diagnostics
 
 The plugin validates some field options and collects diagnostics during compilation.
-Errors (`EXXX`) are fatal; `protc` will exit with an error code and will not produce any output.
+Errors (`EXXX`) are fatal; `protoc` will exit with an error code and will not produce any output.
 The plugin prints warnings (`WXXX`) to standard output.
 
 ### Errors

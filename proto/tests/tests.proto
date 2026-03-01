@@ -5,7 +5,7 @@ package tests;
 import "protosearch/protosearch.proto";
 
 message TestCase {
-  string basic = 1 [(protosearch.mapping).field = {
+  string basic = 1 [(protosearch.field).mapping = {
     type: "text"
     analyzer: "english"
     boost: 3.14
@@ -45,9 +45,9 @@ message TestCase {
     term_vector: TERM_VECTOR_WITH_POSITIONS
   }];
 
-  string output_name = 2 [(protosearch.mapping).name = "foo"];
+  string output_name = 2 [(protosearch.field).name = "foo"];
 
-  string output_target = 3 [(protosearch.mapping).target = {
+  string output_target = 3 [(protosearch.field).target = {
     label: "foo"
     json: '{"type": "keyword"}'
   }];
@@ -60,54 +60,54 @@ message InferTypeTestCase {
     ENUM_UNSPECIFIED = 0;
   }
 
-  string keyword_string = 1 [(protosearch.mapping) = {}];
-  Enum keyword_enum = 2 [(protosearch.mapping) = {}];
-  bool boolean = 3 [(protosearch.mapping) = {}];
-  int32 integer_int32 = 4 [(protosearch.mapping) = {}];
-  sint32 integer_sint32 = 5 [(protosearch.mapping) = {}];
-  sfixed32 integer_sfixed32 = 6 [(protosearch.mapping) = {}];
-  uint32 long_uint32 = 7 [(protosearch.mapping) = {}];
-  fixed32 long_fixed32 = 8 [(protosearch.mapping) = {}];
-  int64 long_int64 = 9 [(protosearch.mapping) = {}];
-  sint64 long_sint64 = 10 [(protosearch.mapping) = {}];
-  sfixed64 long_sfixed64 = 11 [(protosearch.mapping) = {}];
-  uint64 unsigned_long_uint64 = 12 [(protosearch.mapping) = {}];
-  fixed64 unsigned_long_fixed64 = 13 [(protosearch.mapping) = {}];
-  float float = 14 [(protosearch.mapping) = {}];
-  double double = 15 [(protosearch.mapping) = {}];
-  bytes binary = 16 [(protosearch.mapping) = {}];
-  Message object = 17 [(protosearch.mapping) = {}];
+  string keyword_string = 1 [(protosearch.field) = {}];
+  Enum keyword_enum = 2 [(protosearch.field) = {}];
+  bool boolean = 3 [(protosearch.field) = {}];
+  int32 integer_int32 = 4 [(protosearch.field) = {}];
+  sint32 integer_sint32 = 5 [(protosearch.field) = {}];
+  sfixed32 integer_sfixed32 = 6 [(protosearch.field) = {}];
+  uint32 long_uint32 = 7 [(protosearch.field) = {}];
+  fixed32 long_fixed32 = 8 [(protosearch.field) = {}];
+  int64 long_int64 = 9 [(protosearch.field) = {}];
+  sint64 long_sint64 = 10 [(protosearch.field) = {}];
+  sfixed64 long_sfixed64 = 11 [(protosearch.field) = {}];
+  uint64 unsigned_long_uint64 = 12 [(protosearch.field) = {}];
+  fixed64 unsigned_long_fixed64 = 13 [(protosearch.field) = {}];
+  float float = 14 [(protosearch.field) = {}];
+  double double = 15 [(protosearch.field) = {}];
+  bytes binary = 16 [(protosearch.field) = {}];
+  Message object = 17 [(protosearch.field) = {}];
 }
 
 message DynamicTestCase {
-  string unspecified = 1 [(protosearch.mapping).field.dynamic = DYNAMIC_UNSPECIFIED];
-  string true = 2 [(protosearch.mapping).field.dynamic = DYNAMIC_TRUE];
-  string false = 3 [(protosearch.mapping).field.dynamic = DYNAMIC_FALSE];
-  string strict = 4 [(protosearch.mapping).field.dynamic = DYNAMIC_STRICT];
-  string runtime = 5 [(protosearch.mapping).field.dynamic = DYNAMIC_RUNTIME];
+  string unspecified = 1 [(protosearch.field).mapping.dynamic = DYNAMIC_UNSPECIFIED];
+  string true = 2 [(protosearch.field).mapping.dynamic = DYNAMIC_TRUE];
+  string false = 3 [(protosearch.field).mapping.dynamic = DYNAMIC_FALSE];
+  string strict = 4 [(protosearch.field).mapping.dynamic = DYNAMIC_STRICT];
+  string runtime = 5 [(protosearch.field).mapping.dynamic = DYNAMIC_RUNTIME];
 }
 
 message TermVectorTestCase {
-  string unspecified = 1 [(protosearch.mapping).field.term_vector = TERM_VECTOR_UNSPECIFIED];
-  string no = 2 [(protosearch.mapping).field.term_vector = TERM_VECTOR_NO];
-  string yes = 3 [(protosearch.mapping).field.term_vector = TERM_VECTOR_YES];
-  string with_positions = 4 [(protosearch.mapping).field.term_vector = TERM_VECTOR_WITH_POSITIONS];
-  string with_offsets = 5 [(protosearch.mapping).field.term_vector = TERM_VECTOR_WITH_OFFSETS];
-  string with_positions_offsets = 6 [(protosearch.mapping).field.term_vector = TERM_VECTOR_WITH_POSITIONS_OFFSETS];
-  string with_positions_payloads = 7 [(protosearch.mapping).field.term_vector = TERM_VECTOR_WITH_POSITIONS_PAYLOADS];
-  string with_positions_offsets_payloads = 8 [(protosearch.mapping).field.term_vector = TERM_VECTOR_WITH_POSITIONS_OFFSETS_PAYLOADS];
+  string unspecified = 1 [(protosearch.field).mapping.term_vector = TERM_VECTOR_UNSPECIFIED];
+  string no = 2 [(protosearch.field).mapping.term_vector = TERM_VECTOR_NO];
+  string yes = 3 [(protosearch.field).mapping.term_vector = TERM_VECTOR_YES];
+  string with_positions = 4 [(protosearch.field).mapping.term_vector = TERM_VECTOR_WITH_POSITIONS];
+  string with_offsets = 5 [(protosearch.field).mapping.term_vector = TERM_VECTOR_WITH_OFFSETS];
+  string with_positions_offsets = 6 [(protosearch.field).mapping.term_vector = TERM_VECTOR_WITH_POSITIONS_OFFSETS];
+  string with_positions_payloads = 7 [(protosearch.field).mapping.term_vector = TERM_VECTOR_WITH_POSITIONS_PAYLOADS];
+  string with_positions_offsets_payloads = 8 [(protosearch.field).mapping.term_vector = TERM_VECTOR_WITH_POSITIONS_OFFSETS_PAYLOADS];
 }
 
 message IndexOptionsTestCase {
-  string unspecified = 1 [(protosearch.mapping).field.index_options = INDEX_OPTIONS_UNSPECIFIED];
-  string docs = 2 [(protosearch.mapping).field.index_options = INDEX_OPTIONS_DOCS];
-  string freqs = 3 [(protosearch.mapping).field.index_options = INDEX_OPTIONS_FREQS];
-  string positions = 4 [(protosearch.mapping).field.index_options = INDEX_OPTIONS_POSITIONS];
-  string offsets = 5 [(protosearch.mapping).field.index_options = INDEX_OPTIONS_OFFSETS];
+  string unspecified = 1 [(protosearch.field).mapping.index_options = INDEX_OPTIONS_UNSPECIFIED];
+  string docs = 2 [(protosearch.field).mapping.index_options = INDEX_OPTIONS_DOCS];
+  string freqs = 3 [(protosearch.field).mapping.index_options = INDEX_OPTIONS_FREQS];
+  string positions = 4 [(protosearch.field).mapping.index_options = INDEX_OPTIONS_POSITIONS];
+  string offsets = 5 [(protosearch.field).mapping.index_options = INDEX_OPTIONS_OFFSETS];
 }
 
 message InvalidTargetJsonTestCase {
-  string invalid_json = 1 [(protosearch.mapping) = {
+  string invalid_json = 1 [(protosearch.field) = {
     target: {
       label: "invalid-json-string"
       json: "foo"
@@ -120,64 +120,64 @@ message InvalidTargetJsonTestCase {
 }
 
 message InvalidFieldNameTestCase {
-  string lowercase = 1 [(protosearch.mapping).name = "valid"];
-  string with_underscore = 2 [(protosearch.mapping).name = "valid_name"];
-  string with_digit = 3 [(protosearch.mapping).name = "field1"];
-  string at_prefix = 4 [(protosearch.mapping).name = "@timestamp"];
-  string dotted = 5 [(protosearch.mapping).name = "object.field"];
+  string lowercase = 1 [(protosearch.field).name = "valid"];
+  string with_underscore = 2 [(protosearch.field).name = "valid_name"];
+  string with_digit = 3 [(protosearch.field).name = "field1"];
+  string at_prefix = 4 [(protosearch.field).name = "@timestamp"];
+  string dotted = 5 [(protosearch.field).name = "object.field"];
 
-  string empty = 100 [(protosearch.mapping).name = ""];
-  string uppercase = 101 [(protosearch.mapping).name = "Title"];
-  string leading_digit = 102 [(protosearch.mapping).name = "1field"];
-  string hyphen = 103 [(protosearch.mapping).name = "field-name"];
+  string empty = 100 [(protosearch.field).name = ""];
+  string uppercase = 101 [(protosearch.field).name = "Title"];
+  string leading_digit = 102 [(protosearch.field).name = "1field"];
+  string hyphen = 103 [(protosearch.field).name = "field-name"];
 }
 
 message IgnoreAboveTestCase {
-  string valid = 1 [(protosearch.mapping).field = {
+  string valid = 1 [(protosearch.field).mapping = {
     type: "keyword"
     ignore_above: 256
   }];
-  string zero = 2 [(protosearch.mapping).field = {
+  string zero = 2 [(protosearch.field).mapping = {
     type: "keyword"
     ignore_above: 0
   }];
-  string negative = 3 [(protosearch.mapping).field = {
+  string negative = 3 [(protosearch.field).mapping = {
     type: "keyword"
     ignore_above: -1
   }];
 }
 
 message PositionIncrementGapTestCase {
-  string zero = 1 [(protosearch.mapping).field = {
+  string zero = 1 [(protosearch.field).mapping = {
     type: "text"
     position_increment_gap: 0
   }];
-  string valid = 2 [(protosearch.mapping).field = {
+  string valid = 2 [(protosearch.field).mapping = {
     type: "text"
     position_increment_gap: 100
   }];
-  string negative = 3 [(protosearch.mapping).field = {
+  string negative = 3 [(protosearch.field).mapping = {
     type: "text"
     position_increment_gap: -1
   }];
 }
 
 message IndexPrefixesTestCase {
-  string valid = 1 [(protosearch.mapping).field = {
+  string valid = 1 [(protosearch.field).mapping = {
     type: "text"
     index_prefixes: {
       min_chars: 1
       max_chars: 10
     }
   }];
-  string min_chars_negative = 2 [(protosearch.mapping).field = {
+  string min_chars_negative = 2 [(protosearch.field).mapping = {
     type: "text"
     index_prefixes: {
       min_chars: -1
       max_chars: 10
     }
   }];
-  string max_chars_negative = 3 [(protosearch.mapping).field = {
+  string max_chars_negative = 3 [(protosearch.field).mapping = {
     type: "text"
     index_prefixes: {
       min_chars: 1
@@ -192,32 +192,32 @@ message EnumTestCase {
     ENUM_ACTIVE = 1;
   }
 
-  Enum status_inferred = 1 [(protosearch.mapping).field = {}];
-  Enum status_keyword = 2 [(protosearch.mapping).field.type = "keyword"];
-  Enum status_integer = 3 [(protosearch.mapping).field.type = "integer"];
+  Enum status_inferred = 1 [(protosearch.field).mapping = {}];
+  Enum status_keyword = 2 [(protosearch.field).mapping.type = "keyword"];
+  Enum status_integer = 3 [(protosearch.field).mapping.type = "integer"];
 }
 
 message NestedValidationTestCase {
   message Inner {
-    string bad_field = 1 [(protosearch.mapping).name = "BadField"];
+    string bad_field = 1 [(protosearch.field).name = "BadField"];
   }
-  Inner inner = 1 [(protosearch.mapping).field = {}];
+  Inner inner = 1 [(protosearch.field).mapping = {}];
 }
 
 message MessageTestCase {
   message Message {
-    string uid = 1 [(protosearch.mapping).field = {}];
+    string uid = 1 [(protosearch.field).mapping = {}];
   }
 
-  Message message_object_singular = 1 [(protosearch.mapping).field = {type: "object"}];
-  Message message_nested_singular = 2 [(protosearch.mapping).field = {type: "nested"}];
-  repeated Message message_object_repeated = 3 [(protosearch.mapping).field = {type: "object"}];
-  repeated Message message_nested_repeated = 4 [(protosearch.mapping).field = {type: "nested"}];
-  Message message_object_with_parameters = 5 [(protosearch.mapping).field = {
+  Message message_object_singular = 1 [(protosearch.field).mapping = {type: "object"}];
+  Message message_nested_singular = 2 [(protosearch.field).mapping = {type: "nested"}];
+  repeated Message message_object_repeated = 3 [(protosearch.field).mapping = {type: "object"}];
+  repeated Message message_nested_repeated = 4 [(protosearch.field).mapping = {type: "nested"}];
+  Message message_object_with_parameters = 5 [(protosearch.field).mapping = {
     type: "object"
     dynamic: DYNAMIC_STRICT
   }];
-  Message message_nested_with_parameters = 6 [(protosearch.mapping).field = {
+  Message message_nested_with_parameters = 6 [(protosearch.field).mapping = {
     type: "nested"
     dynamic: DYNAMIC_STRICT
   }];

@@ -6,7 +6,7 @@ import "google/protobuf/descriptor.proto";
 import "google/protobuf/struct.proto";
 
 extend google.protobuf.FieldOptions {
-  optional Mapping mapping = 50000;
+  optional Field field = 50000;
 }
 
 enum Dynamic {
@@ -36,9 +36,9 @@ enum TermVector {
   TERM_VECTOR_WITH_POSITIONS_OFFSETS_PAYLOADS = 7;
 }
 
-message Mapping {
+message Field {
   // Rename this field in the mapping.
-  optional string name = 1 [targets = TARGET_TYPE_FIELD];
+  optional string name = 1;
 
   // Configure a literal mapping for a specific target.
   //
@@ -47,16 +47,11 @@ message Mapping {
   repeated Target target = 2;
 
   // Field options.
-  optional FieldMapping field = 3 [targets = TARGET_TYPE_FIELD];
-
-  // Reserved for document options.
-  optional DocumentMapping doc = 4 [targets = TARGET_TYPE_MESSAGE];
+  optional FieldMapping mapping = 3;
 
   // Reserved for future use.
   extensions 1000 to max;
 }
-
-message DocumentMapping {}
 
 /**
  * FieldMapping represents common mapping parameters.
