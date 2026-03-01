@@ -23,13 +23,34 @@ pub use validator::validate;
 mod tests {
     use std::collections::BTreeMap;
     use std::path::PathBuf;
+    use std::sync::LazyLock;
 
     use protobuf::Message;
-    use protobuf::descriptor::FileDescriptorSet;
+    use protobuf::descriptor::{FileDescriptorProto, FileDescriptorSet};
     use protobuf::plugin::CodeGeneratorRequest;
     use serde_json::Value;
 
     use crate::diagnostic::DiagnosticKind;
+
+    static DESCRIPTORS: LazyLock<Vec<FileDescriptorProto>> = LazyLock::new(|| {
+        let manifest_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+        let proto_dir = manifest_dir.join("../../proto");
+        let out = PathBuf::from(env!("OUT_DIR")).join("tests.pb");
+        let protoc = protoc_bin_vendored::protoc_bin_path().expect("cannot find bundled protoc");
+        let status = std::process::Command::new(&protoc)
+            .arg("-I")
+            .arg(&proto_dir)
+            .arg("--include_imports")
+            .arg("--include_source_info")
+            .arg("--descriptor_set_out")
+            .arg(&out)
+            .arg("tests/tests.proto")
+            .status()
+            .expect("failed to execute protoc");
+        assert!(status.success(), "protoc failed with status {status}");
+        let bytes = std::fs::read(&out).unwrap();
+        FileDescriptorSet::parse_from_bytes(&bytes).unwrap().file
+    });
 
     macro_rules! test_snapshot {
         ($name:ident, $test:expr, $target:expr) => {
@@ -43,15 +64,12 @@ mod tests {
     }
 
     fn make_request(file_to_generate: &str, target: Option<&str>) -> CodeGeneratorRequest {
-        let pb = PathBuf::from(env!("OUT_DIR")).join("tests.pb");
-        let bytes = std::fs::read(pb).unwrap();
-        let fds = FileDescriptorSet::parse_from_bytes(&bytes).unwrap();
         let mut req = CodeGeneratorRequest::new();
         if let Some(t) = target {
             req.set_parameter(format!("target={t}"))
         }
         req.file_to_generate.push(file_to_generate.to_string());
-        req.proto_file = fds.file;
+        req.proto_file = DESCRIPTORS.clone();
         req
     }
 

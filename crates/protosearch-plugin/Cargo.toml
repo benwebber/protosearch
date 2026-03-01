@@ -16,6 +16,7 @@ protobuf-codegen = "3.7.2"
 
 [dev-dependencies]
 insta = { version = "1.46.3", features = ["json"] }
+protoc-bin-vendored = { version = "3.2.0" }
 
 [[bin]]
 name = "protoc-gen-protosearch"
