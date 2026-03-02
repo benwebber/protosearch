@@ -197,6 +197,14 @@ If `target` does not match an existing label, the plugin falls back on the commo
 
 |Field|Type|Description|
 |---|---|---|
+|`mapping`|`protosearch.IndexMapping`|Define index mapping parameters.|
+
+#### `mapping`
+
+`protosearch.IndexMapping` is a message with the following fields:
+
+|Field|Type|Description|
+|---|---|---|
 |[`date_detection`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dynamic-field-mapping#date-detection)|`bool`|Whether to detect date strings as `date` fields.|
 |[`dynamic`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dynamic)|`protosearch.Dynamic`|How to handle unknown fields.|
 |[`dynamic_date_formats`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dynamic-field-mapping#dynamic-date-formats)|`repeated string`|Date formats to use for dynamic date detection.|
@@ -208,7 +216,7 @@ If `target` does not match an existing label, the plugin falls back on the commo
 
 `dynamic` uses the same [`protosearch.Dynamic`](#dynamic) enum as `field.mapping.dynamic`.
 
-#### `_field_names`
+##### `_field_names`
 
 `protosearch.IndexFieldNames` is a message with the following fields:
 
@@ -216,7 +224,7 @@ If `target` does not match an existing label, the plugin falls back on the commo
 |---|---|---|
 |[`enabled`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/field-names-field)|`bool`|Whether to enable the `_field_names` metadata field.|
 
-#### `_routing`
+##### `_routing`
 
 `protosearch.IndexRouting` is a message with the following fields:
 
@@ -224,7 +232,7 @@ If `target` does not match an existing label, the plugin falls back on the commo
 |---|---|---|
 |[`required`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-routing)|`bool`|Whether to require routing for all document operations.|
 
-#### `_source`
+##### `_source`
 
 `protosearch.IndexSource` is a message with the following fields:
 
@@ -237,7 +245,7 @@ If `target` does not match an existing label, the plugin falls back on the commo
 |[`includes`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/source-field)|`repeated string`|Fields to include in the stored `_source`.|
 |[`mode`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/source-field)|`protosearch.SourceMode`|How to store the `_source` field.|
 
-##### `mode`
+###### `mode`
 
 `protosearch.SourceMode` is an enum with the following values:
 

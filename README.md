@@ -26,7 +26,7 @@ Annotate the message with `protosearch.field` options to map its fields to [mapp
 import "protosearch/protosearch.proto";
 
 message Article {
-  option (protosearch.index).dynamic = DYNAMIC_STRICT;
+  option (protosearch.index).mapping.dynamic = DYNAMIC_STRICT;
 
   message Author {
     string uid = 1 [(protosearch.field) = {}];

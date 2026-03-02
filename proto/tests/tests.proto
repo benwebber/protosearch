@@ -54,7 +54,7 @@ message FieldTestCase {
 }
 
 message IndexTestCase {
-  option (protosearch.index) = {
+  option (protosearch.index).mapping = {
     date_detection: false
     dynamic: DYNAMIC_STRICT
     dynamic_date_formats: "strict_date_optional_time"

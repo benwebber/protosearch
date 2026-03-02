@@ -57,7 +57,8 @@ impl Serialize for Mapping {
         let mut map: BTreeMap<String, Value> = self
             .index
             .as_ref()
-            .map(|i| other_to_json(i as &dyn MessageDyn))
+            .and_then(|i| i.mapping.as_ref())
+            .map(|m| other_to_json(m as &dyn MessageDyn))
             .transpose()
             .map_err(S::Error::custom)?
             .unwrap_or_default()

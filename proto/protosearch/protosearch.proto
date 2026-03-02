@@ -47,13 +47,20 @@ enum SourceMode {
   SOURCE_MODE_SYNTHETIC = 3;
 }
 
+message Index {
+  optional IndexMapping mapping = 1;
+}
+
 /**
- * Index represents common index parameters.
+ * IndexMapping represents common index parameters.
  *
  * This message does not support the `dynamic_templates` or `runtime`
  * parameters. This file supports explicit mappings.
+ *
+ * We deliberately omit the `properties` field because we represent mapping
+ * fields as message fields.
  */
-message Index {
+message IndexMapping {
   // Whether to detect date strings as `date` fields.
   // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dynamic-field-mapping#date-detection
   optional bool date_detection = 1;
@@ -264,8 +271,6 @@ message FieldMapping {
   // Applies to `text` fields.
   // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/position-increment-gap
   optional int32 position_increment_gap = 20;
-
-  // properties
 
   // Analyzer used at search time.
   // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/search-analyzer
