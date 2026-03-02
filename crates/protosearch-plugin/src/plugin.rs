@@ -8,7 +8,7 @@ use serde_json::Value;
 use crate::context::Context;
 use crate::diagnostic::{Diagnostic, DiagnosticKind, Location};
 use crate::mapping::{Mapping, Parameters, Property};
-use crate::options::{get_field_options, property_name};
+use crate::options::{get_field_options, get_index_options, property_name};
 use crate::validator::{ValidationContext, validate};
 use crate::{Error, Result, Span, proto};
 
@@ -34,7 +34,7 @@ pub fn process(request: CodeGeneratorRequest) -> Result<(CodeGeneratorResponse, 
             )?;
             message_diagnostics.extend(validate(&validation_ctx, &mapping));
             let has_errors = message_diagnostics.iter().any(|d| d.is_error());
-            if !mapping.properties.is_empty() && !has_errors {
+            if (!mapping.properties.is_empty() || mapping.index.is_some()) && !has_errors {
                 let mut file = File::new();
                 file.set_name(format!("{}.json", message_descriptor.full_name()));
                 file.set_content(serde_json::to_string(&mapping)?);
@@ -54,6 +54,7 @@ fn compile_message(
     diagnostics: &mut Vec<Diagnostic>,
 ) -> Result<Mapping> {
     let mut mapping = Mapping::with_descriptor(message.clone());
+    mapping.index = get_index_options(message)?;
     for field in message.fields() {
         if let Some((name, property)) = compile_field(ctx, &field, file, diagnostics)? {
             mapping.properties.insert(name, property);

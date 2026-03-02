@@ -4,9 +4,16 @@ This document describes the complete `protosearch` API.
 
 ## API
 
-`protosearch` exposes a single field extension, `protosearch.field`.
+`protosearch` exposes two extensions.
 
-This extension is a protobuf message (`protosearch.Field`) that wraps the extension options.
+|Extension|Message|Description|
+|---|---|---|
+|`protosearch.field`|`protosearch.Field`|Manage field configuration|
+|`protosearch.index`|`protosearch.Index`|Manage index configuration|
+
+### `field`
+
+`protosearch.Field` is a message with the following fields:
 
 |Field|Type|Description|
 |---|---|---|
@@ -26,7 +33,7 @@ This will generate a basic field mapping with no parameters except for `type`. S
 
 If you do not annotate a protobuf field with `(protosearch.field)` options, it will be excluded from the mapping.
 
-### `name`
+#### `name`
 
 The `name` field lets you rename a protobuf field in the compiled mapping.
 
@@ -44,7 +51,7 @@ string uid = 1 [(protosearch.field).name = "user_uid"];
 }
 ```
 
-### `mapping`
+#### `mapping`
 
 In most cases, you will need to use `mapping` to define field parameters.
 `FieldMapping` supports the [most common mapping parameters](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-parameters) with one important difference:
@@ -88,7 +95,7 @@ If you need to generate a parameter that is not in this list, see [`target`](#ta
 |[`subobjects`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/subobjects)|`bool`|Whether dotted field names are interpreted as nested subobjects.|
 |[`term_vector`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/term-vector)|`protosearch.TermVector`|Whether to store term vectors.|
 
-#### `dynamic`
+##### `dynamic`
 
 `protosearch.Dynamic` is an enum with the following values:
 
@@ -97,7 +104,7 @@ If you need to generate a parameter that is not in this list, see [`target`](#ta
 * `DYNAMIC_STRICT`
 * `DYNAMIC_RUNTIME`
 
-#### `index_options`
+##### `index_options`
 
 `protosearch.IndexOptions` is an enum with the following values:
 
@@ -106,7 +113,7 @@ If you need to generate a parameter that is not in this list, see [`target`](#ta
 * `INDEX_OPTIONS_POSITIONS`
 * `INDEX_OPTIONS_OFFSETS`
 
-#### `index_prefixes`
+##### `index_prefixes`
 
 `protosearch.IndexPrefixes` is a message with the following fields:
 
@@ -115,7 +122,7 @@ If you need to generate a parameter that is not in this list, see [`target`](#ta
 |`min_chars`|`int32`|Minimum prefix length to index.|
 |`max_chars`|`int32`|Maximum prefix length to index.|
 
-#### `term_vector`
+##### `term_vector`
 
 `protosearch.TermVector` is an enum with the following values:
 
@@ -127,7 +134,7 @@ If you need to generate a parameter that is not in this list, see [`target`](#ta
 * `TERM_VECTOR_WITH_POSITIONS_PAYLOADS`
 * `TERM_VECTOR_WITH_POSITIONS_OFFSETS_PAYLOADS`
 
-### `target`
+#### `target`
 
 The `target` field gives you complete control over how a protobuf field compiles to a mapping property.
 
@@ -183,6 +190,60 @@ With `--protosearch_opt=target=opensearch`:
 ```
 
 If `target` does not match an existing label, the plugin falls back on the common mapping parameters.
+
+### `index`
+
+`protosearch.Index` is a message with the following fields:
+
+|Field|Type|Description|
+|---|---|---|
+|[`date_detection`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dynamic-field-mapping#date-detection)|`bool`|Whether to detect date strings as `date` fields.|
+|[`dynamic`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dynamic)|`protosearch.Dynamic`|How to handle unknown fields.|
+|[`dynamic_date_formats`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dynamic-field-mapping#dynamic-date-formats)|`repeated string`|Date formats to use for dynamic date detection.|
+|[`_field_names`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/field-names-field)|`protosearch.IndexFieldNames`|Controls the `_field_names` metadata field.|
+|[`_meta`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-meta)|`map<string, string>`|Metadata about the index mapping.|
+|[`numeric_detection`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dynamic-field-mapping#numeric-detection)|`bool`|Whether to detect numeric strings as numeric fields.|
+|[`_routing`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-routing)|`protosearch.IndexRouting`|Controls the `_routing` metadata field.|
+|[`_source`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/source-field)|`protosearch.IndexSource`|Controls the `_source` metadata field.|
+
+`dynamic` uses the same [`protosearch.Dynamic`](#dynamic) enum as `field.mapping.dynamic`.
+
+#### `_field_names`
+
+`protosearch.IndexFieldNames` is a message with the following fields:
+
+|Field|Type|Description|
+|---|---|---|
+|[`enabled`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/field-names-field)|`bool`|Whether to enable the `_field_names` metadata field.|
+
+#### `_routing`
+
+`protosearch.IndexRouting` is a message with the following fields:
+
+|Field|Type|Description|
+|---|---|---|
+|[`required`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-routing)|`bool`|Whether to require routing for all document operations.|
+
+#### `_source`
+
+`protosearch.IndexSource` is a message with the following fields:
+
+|Field|Type|Description|
+|---|---|---|
+|[`compress`](https://docs.opensearch.org/latest/field-types/supported-field-types/)|`bool`|Whether to compress stored source data. OpenSearch only.|
+|[`compress_threshold`](https://docs.opensearch.org/latest/field-types/supported-field-types/)|`string`|Minimum source size to trigger compression. OpenSearch only.|
+|[`enabled`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/source-field)|`bool`|Whether to store the `_source` field.|
+|[`excludes`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/source-field)|`repeated string`|Fields to exclude from the stored `_source`.|
+|[`includes`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/source-field)|`repeated string`|Fields to include in the stored `_source`.|
+|[`mode`](https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/source-field)|`protosearch.SourceMode`|How to store the `_source` field.|
+
+##### `mode`
+
+`protosearch.SourceMode` is an enum with the following values:
+
+* `SOURCE_MODE_DISABLED`
+* `SOURCE_MODE_STORED`
+* `SOURCE_MODE_SYNTHETIC`
 
 ## Type inference
 

@@ -7,9 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+* Added `(protosearch.index)` extension to manage index configuration.
+
 ### Changed
 
-* **BREAKING:** Renamed the top-level extension filed back to `(protosearch.field)`.
+* **BREAKING:** Renamed the field extension back to `(protosearch.field)`.
 
   Moved field parameters to the `(protosearch.field).mapping` field.
   This change will make it easier to implement index configuration using a consistent options API.

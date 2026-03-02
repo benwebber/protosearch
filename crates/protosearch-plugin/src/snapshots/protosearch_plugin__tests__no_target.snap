@@ -1,9 +1,9 @@
 ---
 source: crates/protosearch-plugin/src/lib.rs
-expression: "output_for(& resp, \"tests.TestCase\")"
+expression: "output_for(& resp, \"tests.FieldTestCase\")"
 ---
 {
-  "tests.TestCase.json": {
+  "tests.FieldTestCase.json": {
     "properties": {
       "basic": {
         "analyzer": "english",

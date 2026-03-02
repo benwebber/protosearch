@@ -1,0 +1,45 @@
+---
+source: crates/protosearch-plugin/src/lib.rs
+assertion_line: 93
+expression: "output_for(& resp, \"tests.IndexTestCase\")"
+---
+{
+  "tests.IndexTestCase.json": {
+    "_field_names": {
+      "enabled": false
+    },
+    "_meta": {
+      "created_by": "protosearch"
+    },
+    "_routing": {
+      "required": true
+    },
+    "_source": {
+      "compress": true,
+      "compress_threshold": "512kb",
+      "enabled": true,
+      "excludes": [
+        "secret_field"
+      ],
+      "includes": [
+        "title"
+      ],
+      "mode": "stored"
+    },
+    "date_detection": false,
+    "dynamic": "strict",
+    "dynamic_date_formats": [
+      "strict_date_optional_time",
+      "epoch_millis"
+    ],
+    "numeric_detection": true,
+    "properties": {
+      "title": {
+        "type": "text"
+      },
+      "uid": {
+        "type": "keyword"
+      }
+    }
+  }
+}

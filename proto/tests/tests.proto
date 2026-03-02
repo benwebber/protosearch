@@ -4,7 +4,7 @@ package tests;
 
 import "protosearch/protosearch.proto";
 
-message TestCase {
+message FieldTestCase {
   string basic = 1 [(protosearch.field).mapping = {
     type: "text"
     analyzer: "english"
@@ -51,6 +51,33 @@ message TestCase {
     label: "foo"
     json: '{"type": "keyword"}'
   }];
+}
+
+message IndexTestCase {
+  option (protosearch.index) = {
+    date_detection: false
+    dynamic: DYNAMIC_STRICT
+    dynamic_date_formats: "strict_date_optional_time"
+    dynamic_date_formats: "epoch_millis"
+    _field_names: {enabled: false}
+    _meta: {
+      key: "created_by"
+      value: "protosearch"
+    }
+    numeric_detection: true
+    _routing: {required: true}
+    _source: {
+      compress: true
+      compress_threshold: "512kb"
+      enabled: true
+      excludes: "secret_field"
+      includes: "title"
+      mode: SOURCE_MODE_STORED
+    }
+  };
+
+  string title = 1 [(protosearch.field).mapping.type = "text"];
+  string uid = 2 [(protosearch.field) = {}];
 }
 
 message InferTypeTestCase {

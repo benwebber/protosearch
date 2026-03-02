@@ -26,6 +26,8 @@ Annotate the message with `protosearch.field` options to map its fields to [mapp
 import "protosearch/protosearch.proto";
 
 message Article {
+  option (protosearch.index).dynamic = DYNAMIC_STRICT;
+
   message Author {
     string uid = 1 [(protosearch.field) = {}];
     string name = 2 [(protosearch.field).mapping.type = "text"];
@@ -57,6 +59,7 @@ protoc -I proto/ --plugin=protoc-gen-protosearch --protosearch_out=. proto/artic
 
 ```json
 {
+  "dynamic": "strict",
   "properties": {
     "uid": {
       "type": "keyword"

@@ -87,9 +87,10 @@ mod tests {
             .collect()
     }
 
-    test_snapshot!(test_no_target, "tests.TestCase", None);
+    test_snapshot!(test_no_target, "tests.FieldTestCase", None);
     test_snapshot!(test_infer_type, "tests.InferTypeTestCase", None);
-    test_snapshot!(test_target, "tests.TestCase", Some("foo"));
+    test_snapshot!(test_target, "tests.FieldTestCase", Some("foo"));
+    test_snapshot!(test_index_params, "tests.IndexTestCase", None);
     test_snapshot!(test_enum, "tests.EnumTestCase", None);
     test_snapshot!(test_nested, "tests.MessageTestCase", None);
     test_snapshot!(test_dynamic, "tests.DynamicTestCase", None);
@@ -239,7 +240,7 @@ mod tests {
         let req = make_request("tests/tests.proto", Some("bar"));
         let (_resp, diagnostics) = crate::process(req).unwrap();
         let expected = DiagnosticKind::UnknownTarget {
-            message: "TestCase".to_string(),
+            message: "FieldTestCase".to_string(),
             field: "output_target".to_string(),
             label: "bar".to_string(),
         };

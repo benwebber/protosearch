@@ -8,13 +8,13 @@ use serde::ser::{Error, Serializer};
 use serde_json::{Map, Value, json};
 
 use crate::Result;
-use crate::proto::{Dynamic, FieldMapping, IndexOptions, TermVector};
+use crate::proto::{Dynamic, FieldMapping, Index, IndexOptions, SourceMode, TermVector};
 
 /// A document mapping.
-#[derive(Debug, Default, Serialize)]
+#[derive(Debug, Default)]
 pub struct Mapping {
-    #[serde(skip)]
     pub descriptor: Option<MessageDescriptor>,
+    pub index: Option<Index>,
     pub properties: BTreeMap<String, Property>,
 }
 
@@ -43,8 +43,33 @@ impl Mapping {
     pub fn with_descriptor(descriptor: MessageDescriptor) -> Self {
         Self {
             descriptor: Some(descriptor),
+            index: None,
             properties: Default::default(),
         }
+    }
+}
+
+impl Serialize for Mapping {
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut map: BTreeMap<String, Value> = self
+            .index
+            .as_ref()
+            .map(|i| other_to_json(i as &dyn MessageDyn))
+            .transpose()
+            .map_err(S::Error::custom)?
+            .unwrap_or_default()
+            .into_iter()
+            .collect();
+        if !self.properties.is_empty() {
+            map.insert(
+                "properties".to_string(),
+                serde_json::to_value(&self.properties).map_err(S::Error::custom)?,
+            );
+        }
+        map.serialize(serializer)
     }
 }
 
@@ -125,6 +150,17 @@ impl fmt::Display for IndexOptions {
     }
 }
 
+impl fmt::Display for SourceMode {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.write_str(match self {
+            Self::SOURCE_MODE_UNSPECIFIED => "",
+            Self::SOURCE_MODE_DISABLED => "disabled",
+            Self::SOURCE_MODE_STORED => "stored",
+            Self::SOURCE_MODE_SYNTHETIC => "synthetic",
+        })
+    }
+}
+
 impl fmt::Display for TermVector {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         f.write_str(match self {
@@ -162,6 +198,7 @@ fn reflect_value_to_json(v: ReflectValueRef) -> Result<Value> {
         ReflectValueRef::Enum(desc, i) => match desc.full_name() {
             "protosearch.Dynamic" => proto_enum_to_json::<Dynamic>(i),
             "protosearch.IndexOptions" => proto_enum_to_json::<IndexOptions>(i),
+            "protosearch.SourceMode" => proto_enum_to_json::<SourceMode>(i),
             "protosearch.TermVector" => proto_enum_to_json::<TermVector>(i),
             _ => unreachable!(
                 "unknown enum type '{}': implement Display and add match arm",
