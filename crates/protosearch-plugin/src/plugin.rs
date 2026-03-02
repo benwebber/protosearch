@@ -176,6 +176,7 @@ fn infer_type(t: &RuntimeType) -> &str {
         RuntimeType::Bool => "boolean",
         RuntimeType::String => "keyword",
         RuntimeType::VecU8 => "binary",
+        RuntimeType::Message(desc) if desc.full_name() == "google.protobuf.Timestamp" => "date",
         RuntimeType::Message(_) => "object",
         RuntimeType::Enum(_) => "keyword",
     }

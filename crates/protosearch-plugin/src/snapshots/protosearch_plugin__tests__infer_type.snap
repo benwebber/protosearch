@@ -11,6 +11,9 @@ expression: "output_for(& resp, \"tests.InferTypeTestCase\")"
       "boolean": {
         "type": "boolean"
       },
+      "date": {
+        "type": "date"
+      },
       "double": {
         "type": "double"
       },

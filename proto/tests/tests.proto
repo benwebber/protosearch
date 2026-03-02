@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package tests;
 
+import "google/protobuf/timestamp.proto";
 import "protosearch/protosearch.proto";
 
 message FieldTestCase {
@@ -104,6 +105,7 @@ message InferTypeTestCase {
   double double = 15 [(protosearch.field) = {}];
   bytes binary = 16 [(protosearch.field) = {}];
   Message object = 17 [(protosearch.field) = {}];
+  google.protobuf.Timestamp date = 18 [(protosearch.field) = {}];
 }
 
 message DynamicTestCase {
