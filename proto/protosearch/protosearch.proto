@@ -78,7 +78,7 @@ message IndexMapping {
   optional IndexFieldNames _field_names = 4;
 
   // Metadata about the index mapping.
-  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-meta
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-meta-field
   map<string, string> _meta = 5;
 
   // Whether to detect numeric strings as numeric fields.
@@ -86,7 +86,7 @@ message IndexMapping {
   optional bool numeric_detection = 6;
 
   // Controls the `_routing` metadata field.
-  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-routing
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-routing-field
   optional IndexRouting _routing = 7;
 
   // Controls the `_source` metadata field.
@@ -101,7 +101,7 @@ message IndexFieldNames {
 
 message IndexRouting {
   // Whether to require routing for all document operations.
-  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-routing
+  // https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/mapping-routing-field
   optional bool required = 1;
 }
 
