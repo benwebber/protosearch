@@ -3,6 +3,7 @@ use crate::{Error, Result};
 #[derive(Debug)]
 pub struct Config {
     pub target: Option<String>,
+    pub pretty: bool,
 }
 
 impl TryFrom<&str> for Config {
@@ -10,14 +11,25 @@ impl TryFrom<&str> for Config {
 
     fn try_from(s: &str) -> Result<Self> {
         let mut target = None;
+        let mut pretty = true;
         for param in s.split(',').filter(|s| !s.is_empty()) {
             if let Some(v) = param.strip_prefix("target=") {
                 target = Some(v.to_string());
+            } else if let Some(v) = param.strip_prefix("pretty=") {
+                pretty = match v {
+                    "true" => true,
+                    "false" => false,
+                    _ => {
+                        return Err(Error::InvalidRequest(format!(
+                            "invalid value for pretty: {v}"
+                        )));
+                    }
+                };
             } else {
                 return Err(Error::InvalidRequest(format!("unknown parameter: {param}")));
             }
         }
-        Ok(Self { target })
+        Ok(Self { target, pretty })
     }
 }
 
@@ -50,6 +62,32 @@ mod tests {
     fn test_target_with_unknown_parameter() {
         assert!(matches!(
             Config::try_from("target=foo,unknown=bar").unwrap_err(),
+            Error::InvalidRequest(_)
+        ));
+    }
+
+    #[test]
+    fn test_pretty_default() {
+        let config = Config::try_from("").unwrap();
+        assert!(config.pretty);
+    }
+
+    #[test]
+    fn test_pretty_false() {
+        let config = Config::try_from("pretty=false").unwrap();
+        assert!(!config.pretty);
+    }
+
+    #[test]
+    fn test_pretty_true() {
+        let config = Config::try_from("pretty=true").unwrap();
+        assert!(config.pretty);
+    }
+
+    #[test]
+    fn test_pretty_invalid() {
+        assert!(matches!(
+            Config::try_from("pretty=yes").unwrap_err(),
             Error::InvalidRequest(_)
         ));
     }

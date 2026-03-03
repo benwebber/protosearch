@@ -325,3 +325,6 @@ Specify `--protosearch_opt=target=<label>` to compile the mapping for a specific
 ```
 protoc -I proto/ --plugin=protoc-gen-protosearch --protosearch_out=. --protosearch_opt=target=<label> proto/example/article.proto
 ```
+
+The plugin pretty-prints output by default.
+Specify `--protosearch_opt=pretty=false` to disable this.

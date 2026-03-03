@@ -37,7 +37,11 @@ pub fn process(request: CodeGeneratorRequest) -> Result<(CodeGeneratorResponse, 
             if (!mapping.properties.is_empty() || mapping.index.is_some()) && !has_errors {
                 let mut file = File::new();
                 file.set_name(format!("{}.json", message_descriptor.full_name()));
-                file.set_content(serde_json::to_string(&mapping)?);
+                file.set_content(if ctx.pretty() {
+                    serde_json::to_string_pretty(&mapping)?
+                } else {
+                    serde_json::to_string(&mapping)?
+                });
                 response.file.push(file);
             }
             diagnostics.extend(message_diagnostics);

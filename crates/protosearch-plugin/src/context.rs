@@ -34,6 +34,10 @@ impl Context {
         self.config.target.as_deref()
     }
 
+    pub fn pretty(&self) -> bool {
+        self.config.pretty
+    }
+
     pub fn get_file_descriptor_by_name(&self, name: &str) -> Option<&FileDescriptor> {
         self.file_descriptors_by_name.get(name)
     }

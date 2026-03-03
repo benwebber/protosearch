@@ -18,6 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
   Moved field parameters to the `(protosearch.field).mapping` field.
   This change will make it easier to implement index configuration using a consistent options API.
+* Pretty-print output by default.
+
+  Disable with `pretty=false`.
 
 ## [0.2.0] - 2026-02-28
 
