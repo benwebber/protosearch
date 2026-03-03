@@ -30,7 +30,7 @@ jobs:
         with:
           tool: cargo-llvm-cov
 
-      - run: cargo llvm-cov --lcov --output-path lcov.info
+      - run: cargo llvm-cov --workspace --exclude protosearch-vendor --lcov --output-path lcov.info
 
       - uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5.5.2
         with:
