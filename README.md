@@ -1,4 +1,5 @@
 # protosearch
+[![codecov](https://codecov.io/gh/benwebber/protosearch/graph/badge.svg?token=LDRVV0QNIK)](https://codecov.io/gh/benwebber/protosearch)
 
 Compile protobuf messages to Elasticsearch document mappings.
 
