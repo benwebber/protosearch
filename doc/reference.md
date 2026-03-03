@@ -270,6 +270,7 @@ If `type` is not specified, `protoc-gen-protosearch` will infer a field type fro
 |`bytes`|`binary`|
 |message|`object`|
 |enum|`keyword`|
+|`google.protobuf.Timestamp`|`date`|
 
 ## Diagnostics
 
