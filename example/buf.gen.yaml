@@ -1,0 +1,10 @@
+version: v2
+plugins:
+  - local: protoc-gen-protosearch
+    out: gen/default/
+  - local: protoc-gen-protosearch
+    out: gen/elasticsearch/
+    opt: target=elasticsearch
+  - local: protoc-gen-protosearch
+    out: gen/opensearch/
+    opt: target=opensearch

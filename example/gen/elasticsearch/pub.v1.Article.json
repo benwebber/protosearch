@@ -1,0 +1,105 @@
+{
+  "_meta": {
+    "version": "1"
+  },
+  "_routing": {
+    "required": true
+  },
+  "_source": {
+    "excludes": [
+      "body",
+      "embedding"
+    ]
+  },
+  "dynamic": "strict",
+  "properties": {
+    "author": {
+      "properties": {
+        "bio": {
+          "analyzer": "english",
+          "type": "text"
+        },
+        "embedding": {
+          "dims": 1536,
+          "index": true,
+          "similarity": "cosine",
+          "type": "dense_vector"
+        },
+        "name": {
+          "fields": {
+            "keyword": {
+              "ignore_above": 256,
+              "type": "keyword"
+            }
+          },
+          "type": "text"
+        },
+        "uid": {
+          "type": "keyword"
+        },
+        "url": {
+          "type": "keyword"
+        }
+      },
+      "type": "nested"
+    },
+    "body": {
+      "analyzer": "english",
+      "copy_to": [
+        "content"
+      ],
+      "type": "text"
+    },
+    "content": {
+      "analyzer": "english",
+      "type": "text"
+    },
+    "embedding": {
+      "dims": 1536,
+      "index": true,
+      "similarity": "cosine",
+      "type": "dense_vector"
+    },
+    "published_at": {
+      "type": "date"
+    },
+    "slug": {
+      "type": "keyword"
+    },
+    "status": {
+      "type": "keyword"
+    },
+    "summary": {
+      "analyzer": "english",
+      "copy_to": [
+        "content"
+      ],
+      "type": "text"
+    },
+    "title": {
+      "copy_to": [
+        "content"
+      ],
+      "fields": {
+        "en": {
+          "analyzer": "english",
+          "type": "text"
+        },
+        "keyword": {
+          "ignore_above": 256,
+          "type": "keyword"
+        }
+      },
+      "type": "text"
+    },
+    "uid": {
+      "type": "keyword"
+    },
+    "view_count": {
+      "type": "long"
+    },
+    "word_count": {
+      "type": "integer"
+    }
+  }
+}

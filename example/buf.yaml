@@ -1,0 +1,10 @@
+version: v2
+modules:
+  - path: proto
+    lint:
+      ignore_only:
+        FIELD_LOWER_SNAKE_CASE:
+          # _field_names, _meta, _routing, _source
+          - proto/protosearch
+        PACKAGE_VERSION_SUFFIX:
+          - proto/protosearch

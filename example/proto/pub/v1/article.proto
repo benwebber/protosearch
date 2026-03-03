@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package pub.v1;
+
+import "protosearch/protosearch.proto";
+import "pub/v1/author.proto";
+
+enum Status {
+  STATUS_UNSPECIFIED = 0;
+  STATUS_DRAFT = 1;
+  STATUS_PUBLISHED = 2;
+  STATUS_ARCHIVED = 3;
+}
+
+message Article {
+  option (protosearch.index).mapping = {
+    dynamic: DYNAMIC_STRICT
+    _routing: {required: true}
+    _source: {excludes: "body" excludes: "embedding"}
+    _meta: {
+      key: "version"
+      value: "1"
+    }
+  };
+
+  string uid = 1 [(protosearch.field) = {}];
+
+  string slug = 2 [(protosearch.field) = {}];
+
+  string title = 4 [(protosearch.field).mapping = {
+    type: "text"
+    fields: {
+      key: "keyword"
+      value: {type: "keyword" ignore_above: 256}
+    }
+    fields: {
+      key: "en"
+      value: {type: "text" analyzer: "english"}
+    }
+    copy_to: "content"
+  }];
+
+  string body = 5 [(protosearch.field).mapping = {
+    type: "text"
+    analyzer: "english"
+    copy_to: "content"
+  }];
+
+  string summary = 6 [(protosearch.field).mapping = {
+    type: "text"
+    analyzer: "english"
+    copy_to: "content"
+  }];
+
+  // title, body, summary
+  string content = 7 [(protosearch.field).mapping = {
+    type: "text"
+    analyzer: "english"
+  }];
+
+  repeated Author authors = 8 [
+    (protosearch.field).name = "author",
+    (protosearch.field).mapping.type = "nested"
+  ];
+
+  string published_at = 10 [(protosearch.field).mapping.type = "date"];
+
+  Status status = 11 [(protosearch.field) = {}];
+
+  int64 view_count = 12 [(protosearch.field) = {}];
+
+  int32 word_count = 13 [(protosearch.field) = {}];
+
+  repeated float embedding = 14 [(protosearch.field) = {
+    target: {
+      label: "elasticsearch"
+      json: '{"type": "dense_vector", "dims": 1536, "index": true, "similarity": "cosine"}'
+    }
+    target: {
+      label: "opensearch"
+      json: '{"type": "knn_vector", "dimension": 1536, "method": {"name": "hnsw", "space_type": "cosinesimil", "engine": "faiss"}}'
+    }
+  }];
+}

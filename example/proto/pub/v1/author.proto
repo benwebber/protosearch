@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package pub.v1;
+
+import "protosearch/protosearch.proto";
+
+message Author {
+  option (protosearch.index).mapping = {
+    dynamic: DYNAMIC_STRICT
+    _source: {excludes: "embedding"}
+  };
+
+  string uid = 1 [(protosearch.field) = {}];
+
+  string name = 2 [(protosearch.field).mapping = {
+    type: "text"
+    fields: {
+      key: "keyword"
+      value: {type: "keyword" ignore_above: 256}
+    }
+  }];
+
+  string bio = 3 [(protosearch.field).mapping = {
+    type: "text"
+    analyzer: "english"
+  }];
+
+  string url = 4 [(protosearch.field) = {}];
+
+  repeated float embedding = 5 [(protosearch.field) = {
+    target: {
+      label: "elasticsearch"
+      json: '{"type": "dense_vector", "dims": 1536, "index": true, "similarity": "cosine"}'
+    }
+    target: {
+      label: "opensearch"
+      json: '{"type": "knn_vector", "dimension": 1536, "method": {"name": "hnsw", "space_type": "cosinesimil", "engine": "faiss"}}'
+    }
+  }];
+}
